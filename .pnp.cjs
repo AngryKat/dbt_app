@@ -31,6 +31,7 @@ const RAW_RUNTIME_STATE =
           ["@eslint/js", "npm:9.39.4"],\
           ["@fontsource-variable/geist", "npm:5.2.8"],\
           ["@fontsource-variable/ibm-plex-sans", "npm:5.2.8"],\
+          ["@tailwindcss/typography", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:0.5.19"],\
           ["@types/node", "npm:24.12.2"],\
           ["@types/react", "npm:19.2.14"],\
           ["@types/react-dom", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:19.2.3"],\
@@ -3094,6 +3095,29 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@tailwindcss/typography", [\
+      ["npm:0.5.19", {\
+        "packageLocation": "../../../.yarn/berry/cache/@tailwindcss-typography-npm-0.5.19-0259eda217-10c0.zip/node_modules/@tailwindcss/typography/",\
+        "packageDependencies": [\
+          ["@tailwindcss/typography", "npm:0.5.19"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:0.5.19", {\
+        "packageLocation": "./.yarn/__virtual__/@tailwindcss-typography-virtual-0e72c0f45a/4/.yarn/berry/cache/@tailwindcss-typography-npm-0.5.19-0259eda217-10c0.zip/node_modules/@tailwindcss/typography/",\
+        "packageDependencies": [\
+          ["@tailwindcss/typography", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:0.5.19"],\
+          ["@types/tailwindcss", null],\
+          ["postcss-selector-parser", "npm:6.0.10"],\
+          ["tailwindcss", "npm:4.2.4"]\
+        ],\
+        "packagePeers": [\
+          "@types/tailwindcss",\
+          "tailwindcss"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@ts-morph/common", [\
       ["npm:0.27.0", {\
         "packageLocation": "../../../.yarn/berry/cache/@ts-morph-common-npm-0.27.0-1881357cf0-10c0.zip/node_modules/@ts-morph/common/",\
@@ -4105,6 +4129,7 @@ const RAW_RUNTIME_STATE =
           ["@eslint/js", "npm:9.39.4"],\
           ["@fontsource-variable/geist", "npm:5.2.8"],\
           ["@fontsource-variable/ibm-plex-sans", "npm:5.2.8"],\
+          ["@tailwindcss/typography", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:0.5.19"],\
           ["@types/node", "npm:24.12.2"],\
           ["@types/react", "npm:19.2.14"],\
           ["@types/react-dom", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:19.2.3"],\
@@ -6478,6 +6503,15 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["postcss-selector-parser", [\
+      ["npm:6.0.10", {\
+        "packageLocation": "../../../.yarn/berry/cache/postcss-selector-parser-npm-6.0.10-a4d7aaa270-10c0.zip/node_modules/postcss-selector-parser/",\
+        "packageDependencies": [\
+          ["cssesc", "npm:3.0.0"],\
+          ["postcss-selector-parser", "npm:6.0.10"],\
+          ["util-deprecate", "npm:1.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:7.1.1", {\
         "packageLocation": "../../../.yarn/berry/cache/postcss-selector-parser-npm-7.1.1-b4ce358dae-10c0.zip/node_modules/postcss-selector-parser/",\
         "packageDependencies": [\
