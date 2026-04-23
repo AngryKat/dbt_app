@@ -15,8 +15,11 @@ import {
 } from "@/components/ui/select";
 import { DateTimePick } from "./components/DateTimePick";
 import { EmotionsPick } from "./components/EmotionsPick";
+import { SituationSelect } from "./components/SituationSelect";
 import { QuickStressLevelSelectButtons } from "./components/QuickStressLevelSelectButtons";
-import angerData from "@/data/anger.json";
+import { emotions as emotionsData } from "@/data";
+
+const allEmotionsData = Object.values(emotionsData);
 
 type StressFormData = {
   date: Date;
@@ -92,24 +95,7 @@ export function StressForm() {
         <Controller
           name="situation"
           control={control}
-          render={({ field }) => (
-            <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger
-                id="situation"
-                className="w-full overflow-hidden [&>[data-slot=select-value]]:truncate [&>[data-slot=select-value]]:block"
-              >
-                <SelectValue placeholder="Select a situation" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Other">Other</SelectItem>
-                {angerData.promptingEvents.events.map((event) => (
-                  <SelectItem key={event} value={event}>
-                    {event}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          )}
+          render={({ field }) => <SituationSelect {...field} />}
         />
       </div>
 
@@ -152,13 +138,15 @@ export function StressForm() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Other">Other</SelectItem>
-                {angerData.interpretations.interpretations.map(
-                  (interpretation) => (
+                {allEmotionsData
+                  .flatMap(
+                    ({ interpretations }) => interpretations.interpretations,
+                  )
+                  .map((interpretation) => (
                     <SelectItem key={interpretation} value={interpretation}>
                       {interpretation}
                     </SelectItem>
-                  ),
-                )}
+                  ))}
               </SelectContent>
             </Select>
           )}

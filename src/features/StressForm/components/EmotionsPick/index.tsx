@@ -17,7 +17,7 @@ import {
   ComboboxGroup,
   ComboboxLabel,
 } from "@/components/ui/combobox";
-import angerData from "@/data/anger.json";
+import { emotions as emotionsData } from "@/data";
 
 interface Emotion {
   id: string;
@@ -25,17 +25,54 @@ interface Emotion {
   category: string;
 }
 
-// Create emotions data from anger.json words
-const EMOTIONS_DATA: Emotion[] = angerData.words.map((word) => ({
-  id: word.toLowerCase(),
-  label: word.charAt(0).toUpperCase() + word.slice(1),
-  category: "Anger",
-}));
+// Create emotions data from all emotion categories
+const emotionCategoryMap: Record<string, string> = {
+  anger: "Anger",
+  disgust: "Disgust",
+  envy: "Envy",
+  fear: "Fear",
+  guilt: "Guilt",
+  happiness: "Happiness",
+  jealousy: "Jealousy",
+  love: "Love",
+  sadness: "Sadness",
+  shame: "Shame",
+};
 
-const CATEGORIES = ["Anger"];
+const EMOTIONS_DATA: Emotion[] = Object.values(emotionsData).flatMap(
+  (emotionData, index) => {
+    const categoryKey = Object.keys(emotionCategoryMap)[index];
+    const category = emotionCategoryMap[categoryKey];
+    return emotionData.words.map((word) => ({
+      id: `${categoryKey}-${word.toLowerCase()}`,
+      label: word.charAt(0).toUpperCase() + word.slice(1),
+      category,
+    }));
+  },
+);
+
+const CATEGORIES = Object.values(emotionCategoryMap);
+
+// Color map for emotions - maps category name to bg and text classes
+const EMOTION_COLOR_MAP: Record<string, { bg: string; text: string }> = {
+  Anger: { bg: "bg-red-100", text: "text-red-800" },
+  Disgust: { bg: "bg-green-100", text: "text-green-800" },
+  Envy: { bg: "bg-cyan-100", text: "text-cyan-800" },
+  Fear: { bg: "bg-purple-100", text: "text-purple-800" },
+  Guilt: { bg: "bg-orange-100", text: "text-orange-800" },
+  Happiness: { bg: "bg-yellow-100", text: "text-yellow-800" },
+  Jealousy: { bg: "bg-pink-100", text: "text-pink-800" },
+  Love: { bg: "bg-rose-100", text: "text-rose-800" },
+  Sadness: { bg: "bg-blue-100", text: "text-blue-800" },
+  Shame: { bg: "bg-slate-100", text: "text-slate-800" },
+};
 
 const getEmotionLabel = (id: string) => {
   return EMOTIONS_DATA.find((e) => e.id === id)?.label || id;
+};
+
+const getEmotionCategory = (id: string) => {
+  return EMOTIONS_DATA.find((e) => e.id === id)?.category || "";
 };
 
 type EmotionsPickProps = {
@@ -126,11 +163,18 @@ export function EmotionsPick({ value, onChange }: EmotionsPickProps) {
                   <XIcon className="size-4" />
                 </button>
               )}
-              {values.map((value: string) => (
-                <ComboboxChip key={value} className="bg-red-200 text-red-900">
-                  {getEmotionLabel(value)}
-                </ComboboxChip>
-              ))}
+              {values.map((value: string) => {
+                const category = getEmotionCategory(value);
+                const colors = EMOTION_COLOR_MAP[category];
+                return (
+                  <ComboboxChip
+                    key={value}
+                    className={`${colors.bg} ${colors.text}`}
+                  >
+                    {getEmotionLabel(value)}
+                  </ComboboxChip>
+                );
+              })}
               <ComboboxChipsInput placeholder="Search emotions..." />
             </React.Fragment>
           )}
@@ -144,9 +188,12 @@ export function EmotionsPick({ value, onChange }: EmotionsPickProps) {
               (e) => e.category === category,
             );
             if (categoryEmotions.length === 0) return null;
+            const colors = EMOTION_COLOR_MAP[category];
             return (
               <ComboboxGroup key={category}>
-                <ComboboxLabel>{category}</ComboboxLabel>
+                <ComboboxLabel className={`${colors.bg} ${colors.text}`}>
+                  {category}
+                </ComboboxLabel>
                 {categoryEmotions.map((emotion) => (
                   <ComboboxItem key={emotion.id} value={emotion.id}>
                     {emotion.label}
