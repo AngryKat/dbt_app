@@ -4,13 +4,12 @@ import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { DateTimePick } from "./components/DateTimePick";
 import { EmotionsPick } from "./components/EmotionsPick";
 import { SituationSelect } from "./components/SituationSelect";
+import { StressLevelSelect } from "./components/StressLevelSelect";
 import { ThoughtsSelect } from "./components/ThoughtsSelect";
-import { QuickStressLevelSelectButtons } from "./components/QuickStressLevelSelectButtons";
 
 type StressFormData = {
   date: Date;
@@ -81,30 +80,8 @@ export function StressForm() {
         <Controller
           name="stressLevel"
           control={control}
-          render={({ field: { value, onChange, ...field } }) => (
-            <>
-              <div className="flex justify-between text-sm">
-                <Label htmlFor={field.name} className="text-base">
-                  Stress level
-                </Label>
-                <span className="text-muted-foreground">{value}%</span>
-              </div>
-              <Slider
-                id={field.name}
-                min={0}
-                max={100}
-                step={1}
-                value={[value]}
-                onValueChange={([val]) => onChange(val)}
-                {...field}
-              />
-
-              {/* Quick select buttons */}
-              <QuickStressLevelSelectButtons
-                value={value}
-                onChange={onChange}
-              />
-            </>
+          render={({ field: { value, onChange, name } }) => (
+            <StressLevelSelect name={name} value={value} onChange={onChange} />
           )}
         />
       </div>

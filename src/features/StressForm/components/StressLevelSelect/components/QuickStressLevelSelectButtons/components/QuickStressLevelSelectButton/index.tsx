@@ -1,26 +1,30 @@
 import * as React from "react";
 
 type QuickStressLevelSelectButtonProps = {
-  level: number;
+  level: [number, number];
   label: string;
   description: string;
   IconComponent: React.ComponentType<{ className?: string }>;
   selected: boolean;
+  value: number;
   onClick: (level: number) => void;
 };
 
 export function QuickStressLevelSelectButton({
-  level,
   label,
   description,
   IconComponent,
   selected,
+  value,
   onClick,
 }: QuickStressLevelSelectButtonProps) {
+  const handleClick = () => {
+    onClick(value);
+  };
   return (
     <button
       type="button"
-      onClick={() => onClick(level)}
+      onClick={handleClick}
       className={`grid grid-rows-subgrid row-span-4 w-full p-2 rounded-lg font-semibold transition-all border-2 cursor-pointer ${
         selected
           ? "border-primary bg-primary text-primary-foreground shadow-lg scale-105"
