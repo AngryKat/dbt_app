@@ -30,10 +30,7 @@ export function QuickStressLevelSelectButton({
       <div className="flex justify-center">
         <IconComponent className="h-6 w-6" />
       </div>
-      <div className="flex justify-center items-center text-lg">{level}%</div>
-      <div className="flex justify-center items-center font-bold text-xs">
-        {label}
-      </div>
+      <div className="flex justify-center items-center text-sm">{label}</div>
       <div className="flex justify-center items-center text-xs opacity-75 text-center leading-tight">
         {description}
       </div>

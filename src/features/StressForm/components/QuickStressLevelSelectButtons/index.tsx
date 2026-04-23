@@ -20,44 +20,47 @@ export function QuickStressLevelSelectButtons({
     <div className="grid grid-cols-5 gap-2 pt-2 auto-rows-max">
       {[
         {
-          level: 0,
+          level: [0, 24],
           label: "Zen",
           description: "Absolute calm",
           icon: Sun,
         },
         {
-          level: 25,
+          level: [25, 49],
           label: "Excited",
           description: "Mind is busy",
           icon: CloudSun,
         },
         {
-          level: 50,
-          label: "Agitated",
+          level: [50, 74],
+          label: "Tensed",
           description: "Critical point",
           icon: CloudSunRain,
         },
         {
-          level: 75,
+          level: [75, 89],
           label: "On the edge",
           description: "Losing control",
           icon: CloudRainWind,
         },
         {
-          level: 100,
+          level: [90, 100],
           label: "Thrown off",
           description: "Loss of control",
           icon: CloudLightning,
         },
       ].map(({ level, label, description, icon: IconComponent }, index) => {
+        const [minLevel, maxLevel] = level;
+        const isSelected = value >= minLevel && value <= maxLevel;
+
         return (
           <QuickStressLevelSelectButton
             key={index}
-            level={level}
+            level={minLevel}
             label={label}
             description={description}
             IconComponent={IconComponent}
-            selected={value === level}
+            selected={isSelected}
             onClick={onChange}
           />
         );
