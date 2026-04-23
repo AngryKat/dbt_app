@@ -48,23 +48,20 @@ export function StressForm() {
           <Controller
             name="date"
             control={control}
-            render={({ field }) => (
+            render={({ field: { value, onChange, ...field } }) => (
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="outline" data-empty={!field.value}>
+                  <Button variant="outline" data-empty={!value}>
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {field.value ? (
-                      format(field.value, "PPP")
-                    ) : (
-                      <span>Pick a date</span>
-                    )}
+                    {value ? format(value, "PPP") : <span>Pick a date</span>}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto mx-2">
                   <Calendar
                     mode="single"
-                    selected={field.value}
-                    onSelect={(date) => field.onChange(date ?? new Date())}
+                    selected={value}
+                    onSelect={(date) => onChange(date ?? new Date())}
+                    {...field}
                   />
                 </PopoverContent>
               </Popover>
