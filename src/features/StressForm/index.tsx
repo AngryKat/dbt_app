@@ -108,10 +108,11 @@ export function StressForm() {
           render={({ field: { value, onChange, ...field } }) => (
             <>
               <div className="flex justify-between text-sm">
-                <Label htmlFor="stressLevel">Stress level</Label>
+                <Label htmlFor={field.name}>Stress level</Label>
                 <span className="text-muted-foreground">{value}%</span>
               </div>
               <Slider
+                id={field.name}
                 min={0}
                 max={100}
                 step={1}

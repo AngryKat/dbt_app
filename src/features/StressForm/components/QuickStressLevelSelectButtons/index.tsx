@@ -49,9 +49,10 @@ export function QuickStressLevelSelectButtons({
           description: "Loss of control",
           icon: CloudLightning,
         },
-      ].map(({ level, label, description, icon: IconComponent }) => {
+      ].map(({ level, label, description, icon: IconComponent }, index) => {
         return (
           <QuickStressLevelSelectButton
+            key={index}
             level={level}
             label={label}
             description={description}
