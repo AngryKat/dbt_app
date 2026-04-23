@@ -6,31 +6,49 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { DateTimePick } from "./components/DateTimePick";
+import { EmotionsPick } from "./components/EmotionsPick";
 import { QuickStressLevelSelectButtons } from "./components/QuickStressLevelSelectButtons";
+import angerData from "@/data/anger.json";
 
 type StressFormData = {
   date: Date;
   place: string;
   situation: string;
+  otherSituation?: string;
   stressLevel: number;
+  emotions: string[];
   thoughts: string;
+  otherThoughts?: string;
   behaviour: string;
   bodilyFeelings: string;
 };
 
 export function StressForm() {
-  const { control, handleSubmit, reset } = useForm<StressFormData>({
+  const { control, handleSubmit, reset, watch } = useForm<StressFormData>({
     defaultValues: {
       date: new Date(),
       place: "",
       situation: "",
+      otherSituation: "",
       stressLevel: 0,
+      emotions: [],
       thoughts: "",
+      otherThoughts: "",
       behaviour: "",
       bodilyFeelings: "",
     },
   });
+
+  const situation = watch("situation");
+  const thoughts = watch("thoughts");
 
   const onSubmit: SubmitHandler<StressFormData> = (data) => {
     console.log(data);
@@ -75,14 +93,108 @@ export function StressForm() {
           name="situation"
           control={control}
           render={({ field }) => (
-            <Textarea
-              id="situation"
-              placeholder="Describe the situation..."
-              {...field}
-            />
+            <Select value={field.value} onValueChange={field.onChange}>
+              <SelectTrigger
+                id="situation"
+                className="w-full overflow-hidden [&>[data-slot=select-value]]:truncate [&>[data-slot=select-value]]:block"
+              >
+                <SelectValue placeholder="Select a situation" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Other">Other</SelectItem>
+                {angerData.promptingEvents.events.map((event) => (
+                  <SelectItem key={event} value={event}>
+                    {event}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           )}
         />
       </div>
+
+      {/* Other Situation */}
+      {situation === "Other" && (
+        <div className="grid w-full gap-2">
+          <Label htmlFor="otherSituation" className="text-base">
+            Please describe the situation
+          </Label>
+          <Controller
+            name="otherSituation"
+            control={control}
+            render={({ field }) => (
+              <Textarea
+                id="otherSituation"
+                placeholder="Describe what's happening..."
+                {...field}
+              />
+            )}
+          />
+        </div>
+      )}
+      {/* Thoughts */}
+      <div className="grid w-full gap-2">
+        <Label htmlFor="thoughts" className="text-base">
+          Thoughts
+        </Label>
+        <Controller
+          name="thoughts"
+          control={control}
+          render={({ field }) => (
+            <Select value={field.value} onValueChange={field.onChange}>
+              <SelectTrigger
+                id="thoughts"
+                className="w-full overflow-hidden [&>[data-slot=select-value]]:truncate [&>[data-slot=select-value]]:block"
+              >
+                <span className="truncate block text-left flex-1 min-w-0">
+                  <SelectValue placeholder="What are your thoughts?" />
+                </span>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Other">Other</SelectItem>
+                {angerData.interpretations.interpretations.map(
+                  (interpretation) => (
+                    <SelectItem key={interpretation} value={interpretation}>
+                      {interpretation}
+                    </SelectItem>
+                  ),
+                )}
+              </SelectContent>
+            </Select>
+          )}
+        />
+      </div>
+
+      {/* Other Thoughts */}
+      {thoughts === "Other" && (
+        <div className="grid w-full gap-2">
+          <Label htmlFor="otherThoughts" className="text-base">
+            Please describe your thoughts
+          </Label>
+          <Controller
+            name="otherThoughts"
+            control={control}
+            render={({ field }) => (
+              <Textarea
+                id="otherThoughts"
+                placeholder="What thoughts are going through your head?"
+                {...field}
+              />
+            )}
+          />
+        </div>
+      )}
+
+      {/* Emotions */}
+      <div className="grid w-full gap-2">
+        <Label className="text-base">Emotions</Label>
+        <Controller
+          name="emotions"
+          control={control}
+          render={({ field }) => <EmotionsPick {...field} />}
+        />
+      </div>
+
       {/* Stress Level */}
       <div className="grid w-full gap-2">
         <Controller
@@ -112,23 +224,6 @@ export function StressForm() {
                 onChange={onChange}
               />
             </>
-          )}
-        />
-      </div>
-      {/* Thoughts */}
-      <div className="grid w-full gap-2">
-        <Label htmlFor="thoughts" className="text-base">
-          Thoughts
-        </Label>
-        <Controller
-          name="thoughts"
-          control={control}
-          render={({ field }) => (
-            <Textarea
-              id="thoughts"
-              placeholder="What thoughts are going through your head?"
-              {...field}
-            />
           )}
         />
       </div>
