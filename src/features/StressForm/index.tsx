@@ -6,20 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { DateTimePick } from "./components/DateTimePick";
 import { EmotionsPick } from "./components/EmotionsPick";
 import { SituationSelect } from "./components/SituationSelect";
+import { ThoughtsSelect } from "./components/ThoughtsSelect";
 import { QuickStressLevelSelectButtons } from "./components/QuickStressLevelSelectButtons";
-import { emotions as emotionsData } from "@/data";
-
-const allEmotionsData = Object.values(emotionsData);
 
 type StressFormData = {
   date: Date;
@@ -72,7 +63,6 @@ export function StressForm() {
           render={({ field }) => <DateTimePick {...field} />}
         />
       </div>
-
       {/* Place */}
       <div className="grid w-full gap-2">
         <Label htmlFor="place" className="text-base">
@@ -84,6 +74,47 @@ export function StressForm() {
           render={({ field }) => (
             <Input id="place" placeholder="Enter your location" {...field} />
           )}
+        />
+      </div>
+      {/* Stress Level */}
+      <div className="grid w-full gap-2">
+        <Controller
+          name="stressLevel"
+          control={control}
+          render={({ field: { value, onChange, ...field } }) => (
+            <>
+              <div className="flex justify-between text-sm">
+                <Label htmlFor={field.name} className="text-base">
+                  Stress level
+                </Label>
+                <span className="text-muted-foreground">{value}%</span>
+              </div>
+              <Slider
+                id={field.name}
+                min={0}
+                max={100}
+                step={1}
+                value={[value]}
+                onValueChange={([val]) => onChange(val)}
+                {...field}
+              />
+
+              {/* Quick select buttons */}
+              <QuickStressLevelSelectButtons
+                value={value}
+                onChange={onChange}
+              />
+            </>
+          )}
+        />
+      </div>
+      {/* Emotions */}
+      <div className="grid w-full gap-2">
+        <Label className="text-base">Emotions</Label>
+        <Controller
+          name="emotions"
+          control={control}
+          render={({ field }) => <EmotionsPick {...field} />}
         />
       </div>
 
@@ -126,30 +157,7 @@ export function StressForm() {
         <Controller
           name="thoughts"
           control={control}
-          render={({ field }) => (
-            <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger
-                id="thoughts"
-                className="w-full overflow-hidden [&>[data-slot=select-value]]:truncate [&>[data-slot=select-value]]:block"
-              >
-                <span className="truncate block text-left flex-1 min-w-0">
-                  <SelectValue placeholder="What are your thoughts?" />
-                </span>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Other">Other</SelectItem>
-                {allEmotionsData
-                  .flatMap(
-                    ({ interpretations }) => interpretations.interpretations,
-                  )
-                  .map((interpretation) => (
-                    <SelectItem key={interpretation} value={interpretation}>
-                      {interpretation}
-                    </SelectItem>
-                  ))}
-              </SelectContent>
-            </Select>
-          )}
+          render={({ field }) => <ThoughtsSelect {...field} />}
         />
       </div>
 
@@ -172,49 +180,6 @@ export function StressForm() {
           />
         </div>
       )}
-
-      {/* Emotions */}
-      <div className="grid w-full gap-2">
-        <Label className="text-base">Emotions</Label>
-        <Controller
-          name="emotions"
-          control={control}
-          render={({ field }) => <EmotionsPick {...field} />}
-        />
-      </div>
-
-      {/* Stress Level */}
-      <div className="grid w-full gap-2">
-        <Controller
-          name="stressLevel"
-          control={control}
-          render={({ field: { value, onChange, ...field } }) => (
-            <>
-              <div className="flex justify-between text-sm">
-                <Label htmlFor={field.name} className="text-base">
-                  Stress level
-                </Label>
-                <span className="text-muted-foreground">{value}%</span>
-              </div>
-              <Slider
-                id={field.name}
-                min={0}
-                max={100}
-                step={1}
-                value={[value]}
-                onValueChange={([val]) => onChange(val)}
-                {...field}
-              />
-
-              {/* Quick select buttons */}
-              <QuickStressLevelSelectButtons
-                value={value}
-                onChange={onChange}
-              />
-            </>
-          )}
-        />
-      </div>
 
       {/* Bodily Feelings */}
       <div className="grid w-full gap-2">
