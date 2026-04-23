@@ -1,3 +1,4 @@
+"use client";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -100,23 +101,28 @@ export function StressForm() {
 
       {/* Stress Level */}
       <div className="grid w-full gap-2">
-        <Label htmlFor="stressLevel">Stress level</Label>
         <Controller
           name="stressLevel"
           control={control}
           render={({ field: { value, onChange, ...field } }) => (
-            <Slider
-              min={0}
-              max={100}
-              step={1}
-              value={[value]}
-              onValueChange={([val]) => onChange(val)}
-              {...field}
-            />
+            <>
+              <div className="flex justify-between mt-2 text-xs text-muted-foreground">
+                <Label htmlFor="stressLevel">Stress level</Label>
+                <span>{value}%</span>
+              </div>
+              <Slider
+                min={0}
+                max={100}
+                step={1}
+                value={[value]}
+                onValueChange={([val]) => onChange(val)}
+                {...field}
+              />
+            </>
           )}
         />
       </div>
-      <div className="w-full flex justify-end gap-1">
+      <div className="w-full grid gap-1 pt-4">
         <Button type="submit">Submit</Button>
         <Button type="reset" variant="outline">
           Clear
