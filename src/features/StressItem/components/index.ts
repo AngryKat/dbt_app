@@ -1,1 +1,0 @@
-export { StressForm } from "./StressForm";

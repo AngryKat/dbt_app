@@ -2,7 +2,6 @@ import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
@@ -36,24 +35,17 @@ export function StressForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(onSubmit)}>
       {/* Date */}
-      <div className="flex flex-col gap-1.5">
-        <label className="text-sm font-medium">Date</label>
+      <div>
+        <label>Date</label>
         <Controller
           name="date"
           control={control}
           render={({ field }) => (
             <Popover>
               <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  data-empty={!field.value}
-                  className={cn(
-                    "w-full justify-start text-left font-normal",
-                    !field.value && "text-muted-foreground",
-                  )}
-                >
+                <Button variant="outline" data-empty={!field.value}>
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   {field.value ? (
                     format(field.value, "PPP")
@@ -75,10 +67,8 @@ export function StressForm() {
       </div>
 
       {/* Place */}
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="place" className="text-sm font-medium">
-          Where are you?
-        </label>
+      <div>
+        <label htmlFor="place">Where are you?</label>
         <Controller
           name="place"
           control={control}
@@ -89,10 +79,8 @@ export function StressForm() {
       </div>
 
       {/* Situation */}
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="situation" className="text-sm font-medium">
-          What's going on?
-        </label>
+      <div>
+        <label htmlFor="situation">What's going on?</label>
         <Controller
           name="situation"
           control={control}
@@ -107,13 +95,13 @@ export function StressForm() {
       </div>
 
       {/* Stress Level */}
-      <div className="flex flex-col gap-3">
-        <label className="text-sm font-medium">Stress level</label>
+      <div>
+        <label>Stress level</label>
         <Controller
           name="stressLevel"
           control={control}
           render={({ field }) => (
-            <div className="flex flex-col gap-1.5">
+            <div>
               <Slider
                 min={0}
                 max={10}
@@ -121,17 +109,12 @@ export function StressForm() {
                 value={[field.value]}
                 onValueChange={([val]) => field.onChange(val)}
               />
-              <span className="text-sm text-muted-foreground text-right">
-                {field.value} / 10
-              </span>
             </div>
           )}
         />
       </div>
 
-      <Button type="submit" className="mt-2">
-        Submit
-      </Button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 }

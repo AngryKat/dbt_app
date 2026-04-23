@@ -35,7 +35,7 @@ const RAW_RUNTIME_STATE =
           ["@tailwindcss/vite", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:4.2.4"],\
           ["@testing-library/dom", "npm:10.4.1"],\
           ["@testing-library/react", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:16.3.2"],\
-          ["@types/node", "npm:24.12.2"],\
+          ["@types/node", "npm:25.6.0"],\
           ["@types/react", "npm:19.2.14"],\
           ["@types/react-dom", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:19.2.3"],\
           ["@vitejs/plugin-react", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:6.0.1"],\
@@ -3490,14 +3490,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@types/node", [\
-      ["npm:24.12.2", {\
-        "packageLocation": "../../../.yarn/berry/cache/@types-node-npm-24.12.2-c1d68de38c-10c0.zip/node_modules/@types/node/",\
-        "packageDependencies": [\
-          ["@types/node", "npm:24.12.2"],\
-          ["undici-types", "npm:7.16.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:25.6.0", {\
         "packageLocation": "../../../.yarn/berry/cache/@types-node-npm-25.6.0-429799b5e8-10c0.zip/node_modules/@types/node/",\
         "packageDependencies": [\
@@ -4616,7 +4608,7 @@ const RAW_RUNTIME_STATE =
           ["@tailwindcss/vite", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:4.2.4"],\
           ["@testing-library/dom", "npm:10.4.1"],\
           ["@testing-library/react", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:16.3.2"],\
-          ["@types/node", "npm:24.12.2"],\
+          ["@types/node", "npm:25.6.0"],\
           ["@types/react", "npm:19.2.14"],\
           ["@types/react-dom", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:19.2.3"],\
           ["@vitejs/plugin-react", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:6.0.1"],\
@@ -8300,13 +8292,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["undici-types", [\
-      ["npm:7.16.0", {\
-        "packageLocation": "../../../.yarn/berry/cache/undici-types-npm-7.16.0-0e23b08124-10c0.zip/node_modules/undici-types/",\
-        "packageDependencies": [\
-          ["undici-types", "npm:7.16.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:7.19.2", {\
         "packageLocation": "../../../.yarn/berry/cache/undici-types-npm-7.19.2-93c792b6dd-10c0.zip/node_modules/undici-types/",\
         "packageDependencies": [\
@@ -8495,7 +8480,7 @@ const RAW_RUNTIME_STATE =
           ["@types/esbuild", null],\
           ["@types/jiti", null],\
           ["@types/less", null],\
-          ["@types/node", "npm:24.12.2"],\
+          ["@types/node", "npm:25.6.0"],\
           ["@types/sass", null],\
           ["@types/sass-embedded", null],\
           ["@types/stylus", null],\
@@ -8567,7 +8552,7 @@ const RAW_RUNTIME_STATE =
           ["@types/edge-runtime__vm", null],\
           ["@types/happy-dom", null],\
           ["@types/jsdom", null],\
-          ["@types/node", "npm:24.12.2"],\
+          ["@types/node", "npm:25.6.0"],\
           ["@types/opentelemetry__api", null],\
           ["@types/vite", null],\
           ["@types/vitest__browser-playwright", null],\
