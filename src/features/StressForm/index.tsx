@@ -1,19 +1,12 @@
 "use client";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
-import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { Label } from "@/components/ui/label";
+import { DateTimePick } from "./components/DateTimePick";
 import { QuickStressLevelSelectButtons } from "./components/QuickStressLevelSelectButtons";
 
 type StressFormData = {
@@ -43,33 +36,14 @@ export function StressForm() {
       onReset={() => reset()}
       className="grid w-full max-w-md gap-6 mx-auto"
     >
-      {/* Date */}
+      {/* Date & Time */}
       <div className="grid w-full gap-2">
-        <Label>Date</Label>
-        <div>
-          <Controller
-            name="date"
-            control={control}
-            render={({ field: { value, onChange, ...field } }) => (
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button variant="outline" data-empty={!value}>
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {value ? format(value, "PPP") : <span>Pick a date</span>}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto mx-2">
-                  <Calendar
-                    mode="single"
-                    selected={value}
-                    onSelect={(date) => onChange(date ?? new Date())}
-                    {...field}
-                  />
-                </PopoverContent>
-              </Popover>
-            )}
-          />
-        </div>
+        <Label>Date & Time</Label>
+        <Controller
+          name="date"
+          control={control}
+          render={({ field }) => <DateTimePick {...field} />}
+        />
       </div>
 
       {/* Place */}
@@ -131,7 +105,7 @@ export function StressForm() {
         />
       </div>
       <div className="w-full grid gap-1 pt-4">
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Save</Button>
         <Button type="reset" variant="outline">
           Clear
         </Button>
