@@ -1,0 +1,89 @@
+{
+  "emotion": "anger",
+  "title": "Ways to Describe Emotions - ANGER",
+  "description": "Comprehensive guide to understanding anger emotions, their triggers, manifestations, and effects",
+  "words": [
+    "anger",
+    "aggravation",
+    "agitation",
+    "annoyance",
+    "bitterness",
+    "exasperation",
+    "ferocity",
+    "frustration",
+    "fury",
+    "grouchiness",
+    "grumpiness",
+    "hostility",
+    "indignation",
+    "irritation",
+    "outrage",
+    "rage",
+    "vengefulness",
+    "wrath"
+  ],
+  "promptingEvents": {
+    "description": "Events that trigger feelings of anger",
+    "events": [
+      "Having an important goal blocked",
+      "You or someone you care about being attacked or threatened by others",
+      "Losing power, status, or respect",
+      "Not having things turn out as expected",
+      "Physical or emotional pain"
+    ]
+  },
+  "interpretations": {
+    "description": "Interpretations of events that prompt feelings of anger",
+    "interpretations": [
+      "Rigidly thinking, 'I'm right'",
+      "Judging that the situation is illegitimate or wrong",
+      "Ruminating about the event that set off the anger in the first place",
+      "Believing that you have been treated unfairly",
+      "Blaming",
+      "Believing that important goals are being blocked or stopped",
+      "Believing that things 'should' be different than they are"
+    ]
+  },
+  "biologicalChanges": {
+    "description": "Biological changes and experiences of anger",
+    "changes": [
+      "Muscles tightening",
+      "Teeth clamping together",
+      "Hands clenching",
+      "Feeling your face flush or get hot",
+      "Feeling like you are going to explode",
+      "Being unable to stop tears",
+      "Wanting to hit someone, bang the wall, throw something, blow up",
+      "Wanting to hurt someone"
+    ]
+  },
+  "expressionsAndActions": {
+    "description": "Expressions and actions of anger",
+    "behaviors": [
+      "Physically or verbally attacking",
+      "Making aggressive or threatening gestures",
+      "Pounding, throwing things, breaking things",
+      "Walking heavily, stomping, slamming doors",
+      "Walking out",
+      "Using a loud, quarrelsome, or sarcastic voice",
+      "Using obscenities or swearing",
+      "Criticizing or complaining",
+      "Clenching your hands or fists",
+      "Frowning, not smiling, mean expression",
+      "Brooding or withdrawing from others",
+      "Crying",
+      "Grinning",
+      "A red or flushed face"
+    ]
+  },
+  "aftereffects": {
+    "description": "Aftereffects of anger",
+    "effects": [
+      "Narrowing of attention",
+      "Attending only to the situation that's making you angry",
+      "Ruminating about the situation making you angry or about situations in the past",
+      "Imagining future situations that will make you angry",
+      "Depersonalization, dissociative experiences, numbness"
+    ]
+  }
+}
