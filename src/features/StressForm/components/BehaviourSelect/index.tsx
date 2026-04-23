@@ -13,36 +13,34 @@ import { emotions as emotionsData } from "@/data";
 
 const allEmotionsData = Object.values(emotionsData);
 
-type ThoughtsSelectProps = {
+type BehaviourSelectProps = {
   value: string;
   onChange: (value: string) => void;
 };
 
-export function ThoughtsSelect({ value, onChange }: ThoughtsSelectProps) {
+export function BehaviourSelect({ value, onChange }: BehaviourSelectProps) {
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger
-        id="thoughts"
+        id="behaviour"
         className="w-full overflow-hidden [&>[data-slot=select-value]]:truncate [&>[data-slot=select-value]]:block"
       >
         <span className="truncate block text-left flex-1 min-w-0">
-          <SelectValue placeholder="What are your thoughts?" />
+          <SelectValue placeholder="What are you doing or how are you acting?" />
         </span>
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="Other">Other</SelectItem>
-        {allEmotionsData.map(({ emotion, interpretations }) => {
+        {allEmotionsData.map(({ emotion, expressionsAndActions }, index) => {
+          const key = `${emotion}-${index}`;
           return (
-            <SelectGroup key={emotion}>
+            <SelectGroup key={key}>
               <SelectLabel className="capitalize">{emotion}</SelectLabel>
-              {interpretations.interpretations.map((interpretation) => {
-                const itemKey = `${emotion}-${interpretation}`;
+              {expressionsAndActions.behaviors.map((behavior, index) => {
+                const itemKey = `${emotion}-${behavior}-${index}`;
                 return (
-                  <SelectItem
-                    key={itemKey}
-                    value={`${emotion}:${interpretation}`}
-                  >
-                    {interpretation}
+                  <SelectItem key={itemKey} value={`${emotion}:${behavior}`}>
+                    {behavior}
                   </SelectItem>
                 );
               })}

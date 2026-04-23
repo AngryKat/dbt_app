@@ -29,16 +29,21 @@ export function SituationSelect({ value, onChange }: SituationSelectProps) {
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="Other">Other</SelectItem>
-        {allEmotionsData.map(({ emotion, promptingEvents }) => (
-          <SelectGroup key={emotion}>
-            <SelectLabel className="capitalize">{emotion}</SelectLabel>
-            {promptingEvents.events.map((event) => (
-              <SelectItem key={event} value={event}>
-                {event}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        ))}
+        {allEmotionsData.map(({ emotion, promptingEvents }) => {
+          return (
+            <SelectGroup key={emotion}>
+              <SelectLabel className="capitalize">{emotion}</SelectLabel>
+              {promptingEvents.events.map((event) => {
+                const itemKey = `${emotion}-${event}`;
+                return (
+                  <SelectItem key={itemKey} value={`${emotion}:${event}`}>
+                    {event}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          );
+        })}
       </SelectContent>
     </Select>
   );

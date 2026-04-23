@@ -10,6 +10,8 @@ import { EmotionsPick } from "./components/EmotionsPick";
 import { SituationSelect } from "./components/SituationSelect";
 import { StressLevelSelect } from "./components/StressLevelSelect";
 import { ThoughtsSelect } from "./components/ThoughtsSelect";
+import { BehaviourSelect } from "./components/BehaviourSelect";
+import { BodilyFeelingsSelect } from "./components/BodilyFeelingsSelect";
 
 type StressFormData = {
   date: Date;
@@ -21,7 +23,10 @@ type StressFormData = {
   thoughts: string;
   otherThoughts?: string;
   behaviour: string;
+  otherBehaviour?: string;
   bodilyFeelings: string;
+  otherBodilyFeelings?: string;
+  notes: string;
 };
 
 export function StressForm() {
@@ -30,18 +35,20 @@ export function StressForm() {
       date: new Date(),
       place: "",
       situation: "",
-      otherSituation: "",
       stressLevel: 0,
       emotions: [],
       thoughts: "",
-      otherThoughts: "",
       behaviour: "",
       bodilyFeelings: "",
+      otherBodilyFeelings: "",
+      notes: "",
     },
   });
 
   const situation = watch("situation");
   const thoughts = watch("thoughts");
+  const behaviour = watch("behaviour");
+  const bodilyFeelings = watch("bodilyFeelings");
 
   const onSubmit: SubmitHandler<StressFormData> = (data) => {
     console.log(data);
@@ -160,39 +167,82 @@ export function StressForm() {
 
       {/* Bodily Feelings */}
       <div className="grid w-full gap-2">
-        <Label htmlFor="bodilyFeelings" className="text-base">
-          Bodily Feelings
-        </Label>
+        <Label className="text-base">Bodily Feelings</Label>
         <Controller
           name="bodilyFeelings"
           control={control}
+          render={({ field }) => <BodilyFeelingsSelect {...field} />}
+        />
+      </div>
+
+      {/* Other Bodily Feelings */}
+      {bodilyFeelings === "Other" && (
+        <div className="grid w-full gap-2">
+          <Label htmlFor="otherBodilyFeelings" className="text-base">
+            Please describe what you feel in your body
+          </Label>
+          <Controller
+            name="otherBodilyFeelings"
+            control={control}
+            render={({ field }) => (
+              <Textarea
+                id="otherBodilyFeelings"
+                placeholder="What do you feel in your body?"
+                {...field}
+              />
+            )}
+          />
+        </div>
+      )}
+
+      {/* Behaviour */}
+      <div className="grid w-full gap-2">
+        <Label className="text-base">Behaviour</Label>
+        <Controller
+          name="behaviour"
+          control={control}
+          render={({ field }) => <BehaviourSelect {...field} />}
+        />
+      </div>
+
+      {/* Other Behaviour */}
+      {behaviour === "Other" && (
+        <div className="grid w-full gap-2">
+          <Label htmlFor="otherBehaviour" className="text-base">
+            Please describe your behaviour
+          </Label>
+          <Controller
+            name="behaviour"
+            control={control}
+            render={({ field }) => (
+              <Textarea
+                id="otherBehaviour"
+                placeholder="How are you acting or what are you doing?"
+                {...field}
+              />
+            )}
+          />
+        </div>
+      )}
+
+      {/* Notes */}
+      <div className="grid w-full gap-2">
+        <Label htmlFor="notes" className="text-base">
+          Notes
+        </Label>
+        <Controller
+          name="notes"
+          control={control}
           render={({ field }) => (
             <Textarea
-              id="bodilyFeelings"
-              placeholder="What do you feel in your body?"
+              id="notes"
+              placeholder="Add any additional notes..."
               {...field}
             />
           )}
         />
       </div>
 
-      {/* Behaviour */}
-      <div className="grid w-full gap-2">
-        <Label htmlFor="behaviour" className="text-base">
-          Behaviour
-        </Label>
-        <Controller
-          name="behaviour"
-          control={control}
-          render={({ field }) => (
-            <Textarea
-              id="behaviour"
-              placeholder="How are you acting or what are you doing?"
-              {...field}
-            />
-          )}
-        />
-      </div>
       <div className="w-full grid gap-1">
         <Button type="submit">Save</Button>
         <Button type="reset" variant="outline">
