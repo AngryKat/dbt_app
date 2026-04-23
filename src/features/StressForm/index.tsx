@@ -14,6 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Label } from "@/components/ui/label";
+import { QuickStressLevelSelectButtons } from "./components/QuickStressLevelSelectButtons";
 
 type StressFormData = {
   date: Date;
@@ -100,23 +101,30 @@ export function StressForm() {
       </div>
 
       {/* Stress Level */}
-      <div className="grid w-full gap-2">
+      <div className="grid w-full gap-4">
         <Controller
           name="stressLevel"
           control={control}
           render={({ field: { value, onChange, ...field } }) => (
             <>
-              <div className="flex justify-between mt-2 text-xs text-muted-foreground">
-                <Label htmlFor="stressLevel">Stress level</Label>
-                <span>{value}%</span>
+              <div className="flex justify-between text-sm">
+                <Label htmlFor={field.name}>Stress level</Label>
+                <span className="text-muted-foreground">{value}%</span>
               </div>
               <Slider
+                id={field.name}
                 min={0}
                 max={100}
                 step={1}
                 value={[value]}
                 onValueChange={([val]) => onChange(val)}
                 {...field}
+              />
+
+              {/* Quick select buttons */}
+              <QuickStressLevelSelectButtons
+                value={value}
+                onChange={onChange}
               />
             </>
           )}
