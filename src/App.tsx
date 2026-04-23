@@ -3,7 +3,7 @@ import { StressForm } from "./features/StressForm";
 
 function App() {
   return (
-    <main>
+    <main className="p-2">
       <div className="flex min-h-svh flex-col items-center justify-center">
         <StressForm />
       </div>

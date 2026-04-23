@@ -12,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Label } from "@/components/ui/label";
 
 type StressFormData = {
   date: Date;
@@ -21,7 +22,7 @@ type StressFormData = {
 };
 
 export function StressForm() {
-  const { control, handleSubmit } = useForm<StressFormData>({
+  const { control, handleSubmit, reset } = useForm<StressFormData>({
     defaultValues: {
       date: new Date(),
       place: "",
@@ -35,40 +36,46 @@ export function StressForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      onReset={() => reset()}
+      className="grid w-full max-w-md gap-6 mx-auto"
+    >
       {/* Date */}
-      <div>
-        <label>Date</label>
-        <Controller
-          name="date"
-          control={control}
-          render={({ field }) => (
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button variant="outline" data-empty={!field.value}>
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {field.value ? (
-                    format(field.value, "PPP")
-                  ) : (
-                    <span>Pick a date</span>
-                  )}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar
-                  mode="single"
-                  selected={field.value}
-                  onSelect={(date) => field.onChange(date ?? new Date())}
-                />
-              </PopoverContent>
-            </Popover>
-          )}
-        />
+      <div className="grid w-full gap-2">
+        <Label>Date</Label>
+        <div>
+          <Controller
+            name="date"
+            control={control}
+            render={({ field }) => (
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" data-empty={!field.value}>
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {field.value ? (
+                      format(field.value, "PPP")
+                    ) : (
+                      <span>Pick a date</span>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={field.value}
+                    onSelect={(date) => field.onChange(date ?? new Date())}
+                  />
+                </PopoverContent>
+              </Popover>
+            )}
+          />
+        </div>
       </div>
 
       {/* Place */}
-      <div>
-        <label htmlFor="place">Where are you?</label>
+      <div className="grid w-full gap-2">
+        <Label htmlFor="place">Where are you?</Label>
         <Controller
           name="place"
           control={control}
@@ -79,8 +86,8 @@ export function StressForm() {
       </div>
 
       {/* Situation */}
-      <div>
-        <label htmlFor="situation">What's going on?</label>
+      <div className="grid w-full gap-2">
+        <Label htmlFor="situation">What's going on?</Label>
         <Controller
           name="situation"
           control={control}
@@ -95,26 +102,29 @@ export function StressForm() {
       </div>
 
       {/* Stress Level */}
-      <div>
-        <label>Stress level</label>
+      <div className="grid w-full gap-2">
+        <Label htmlFor="stressLevel">Stress level</Label>
         <Controller
           name="stressLevel"
           control={control}
-          render={({ field }) => (
-            <div>
-              <Slider
-                min={0}
-                max={10}
-                step={1}
-                value={[field.value]}
-                onValueChange={([val]) => field.onChange(val)}
-              />
-            </div>
+          render={({ field: { value, onChange, ...field } }) => (
+            <Slider
+              min={0}
+              max={100}
+              step={1}
+              value={[value]}
+              onValueChange={([val]) => onChange(val)}
+              {...field}
+            />
           )}
         />
       </div>
-
-      <Button type="submit">Submit</Button>
+      <div className="w-full flex justify-end gap-1">
+        <Button type="submit">Submit</Button>
+        <Button type="reset" variant="outline">
+          Clear
+        </Button>
+      </div>
     </form>
   );
 }
