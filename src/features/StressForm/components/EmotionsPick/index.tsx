@@ -129,7 +129,7 @@ export function EmotionsPick({ value, onChange }: EmotionsPickProps) {
                 </button>
               )}
               {values.map((value: string) => (
-                <ComboboxChip key={value}>
+                <ComboboxChip key={value} className="bg-red-200 text-red-900">
                   {getEmotionLabel(value)}
                 </ComboboxChip>
               ))}
