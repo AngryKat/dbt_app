@@ -45,7 +45,11 @@ export function DateTimePick({ value, onChange }: DateTimePickProps) {
 
   const handleDateSelect = (selectedDate: Date | undefined) => {
     if (!selectedDate) return;
-    setDate(selectedDate);
+    const dateWithPreservedTime = setMinutes(
+      setHours(selectedDate, hours),
+      minutes,
+    );
+    setDate(dateWithPreservedTime);
   };
 
   const handleTimeChange = (newHours: number, newMinutes: number) => {
