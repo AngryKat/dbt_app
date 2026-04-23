@@ -1,0 +1,93 @@
+{
+  "emotion": "envy",
+  "title": "Ways to Describe Emotions - ENVY",
+  "description": "Comprehensive guide to understanding envy emotions, their triggers, manifestations, and effects",
+  "words": [
+    "envy",
+    "bitterness",
+    "covetous",
+    "craving",
+    "discontented",
+    "disgruntled",
+    "displeased",
+    "dissatisfied",
+    "down-hearted",
+    "greed",
+    "green-eyed",
+    "longing",
+    "pettiness",
+    "resentment",
+    "wishful"
+  ],
+  "promptingEvents": {
+    "description": "Events that trigger feelings of envy",
+    "events": [
+      "Someone has something you really want or need but don't or can't have",
+      "You are not part of the 'in' crowd",
+      "Someone appears to have everything",
+      "You are alone while others are having fun",
+      "Someone else gets credit for what you've done",
+      "Someone gets positive recognition for something and you don't",
+      "Others get something you really want and you don't get it",
+      "Being around people who have more than you have",
+      "Someone you are competing with is more successful than you in an area important to you"
+    ]
+  },
+  "interpretations": {
+    "description": "Interpretations of events that prompt feelings of envy",
+    "interpretations": [
+      "Thinking you deserve what others have",
+      "Thinking others have more than you",
+      "Thinking about how unfair it is that you have such a bad lot in life compared to others",
+      "Thinking you have been treated unfairly by life",
+      "Thinking you are unlucky",
+      "Thinking you are inferior, a failure, or mediocre in comparison to others whom you want to be like",
+      "Comparing yourself to others who have more than you",
+      "Comparing yourself to people who have characteristics that you wish you had",
+      "Thinking you are unappreciated"
+    ]
+  },
+  "biologicalChanges": {
+    "description": "Biological changes and experiences of envy",
+    "changes": [
+      "Muscles tightening",
+      "Teeth clamping together, mouth tightening",
+      "Feeling your face flush or get hot",
+      "Feeling rigidity in your body",
+      "Pain in the pit of the stomach",
+      "Having an urge to get even",
+      "Hating the other person",
+      "Wanting to hurt the people you envy",
+      "Wanting the person or people you envy to lose what they have, to have bad luck, or to be hurt",
+      "Feeling pleasure when others experience failure or lose what they have",
+      "Feeling unhappy if another person experiences some good luck",
+      "Feeling motivated to improve yourself"
+    ]
+  },
+  "expressionsAndActions": {
+    "description": "Expressions and actions of envy",
+    "behaviors": [
+      "Doing everything you can to get what the other person has",
+      "Working a lot harder than you were to get what you want",
+      "Trying to improve yourself and your situation",
+      "Taking away or ruining what the other person has",
+      "Attacking or criticizing the other person",
+      "Doing something to get even",
+      "Doing something to make the other person fail or lose what he or she has",
+      "Saying mean things about the other person or making the person look bad to others",
+      "Trying to show the other person up, to look better than the other person",
+      "Avoiding persons who have what you want"
+    ]
+  },
+  "aftereffects": {
+    "description": "Aftereffects of envy",
+    "effects": [
+      "Narrowing of attention",
+      "Attending only to what others have that you don't",
+      "Ruminating when others have had more than you",
+      "Discounting what you do have; not appreciating things you have or things others do for you",
+      "Ruminating about what you don't have",
+      "Making resolutions to change"
+    ]
+  }
+}

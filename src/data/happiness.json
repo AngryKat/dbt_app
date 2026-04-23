@@ -1,0 +1,106 @@
+{
+  "emotion": "happiness",
+  "title": "Ways to Describe Emotions - HAPPINESS",
+  "description": "Comprehensive guide to understanding happiness emotions, their triggers, manifestations, and effects",
+  "words": [
+    "happiness",
+    "joy",
+    "enjoyment",
+    "relief",
+    "amusement",
+    "enthrallment",
+    "hope",
+    "satisfaction",
+    "bliss",
+    "enthusiasm",
+    "jolliness",
+    "thrill",
+    "cheerfulness",
+    "euphoria",
+    "joviality",
+    "triumph",
+    "contentment",
+    "excitement",
+    "jubilation",
+    "zaniness",
+    "delight",
+    "exhilaration",
+    "optimism",
+    "zest",
+    "eagerness",
+    "gaiety",
+    "pleasure",
+    "zeal",
+    "ecstasy",
+    "gladness",
+    "pride",
+    "elation",
+    "glee",
+    "rapture"
+  ],
+  "promptingEvents": {
+    "description": "Events that trigger feelings of happiness",
+    "events": [
+      "Receiving a wonderful surprise",
+      "Reality exceeding your expectations",
+      "Getting what you want",
+      "Getting something you have worked hard for or worried about",
+      "Things turning out better than you thought they would",
+      "Being successful at a task",
+      "Achieving a desirable outcome",
+      "Receiving esteem, respect, or praise",
+      "Receiving love, liking, or affection",
+      "Being accepted by others",
+      "Belonging somewhere or with someone or a group",
+      "Being with or in contact with people who love or like you",
+      "Having very pleasurable sensations",
+      "Doing things that create or bring to mind pleasurable sensations"
+    ]
+  },
+  "interpretations": {
+    "description": "Interpretations of events that prompt feelings of happiness",
+    "interpretations": [
+      "Interpreting joyful events just as they are, without adding or subtracting"
+    ]
+  },
+  "biologicalChanges": {
+    "description": "Biological changes and experiences of happiness",
+    "changes": [
+      "Feeling excited",
+      "Feeling physically energetic, active",
+      "Feeling like giggling or laughing",
+      "Feeling your face flush",
+      "Feeling calm all the way through",
+      "Urge to keep doing what is associated with happiness",
+      "Feeling at peace",
+      "Feeling open or expansive"
+    ]
+  },
+  "expressionsAndActions": {
+    "description": "Expressions and actions of happiness",
+    "behaviors": [
+      "Smiling",
+      "Having a bright, glowing face",
+      "Being bouncy or bubbly",
+      "Communicating your good feelings",
+      "Sharing the feeling",
+      "Silliness",
+      "Hugging people",
+      "Jumping up and down",
+      "Saying positive things",
+      "Using an enthusiastic or excited voice",
+      "Being talkative or talking a lot"
+    ]
+  },
+  "aftereffects": {
+    "description": "Aftereffects of happiness",
+    "effects": [
+      "Being courteous or friendly to others",
+      "Doing nice things for other people",
+      "Having a positive outlook; seeing the bright side",
+      "Having a high threshold for worry or annoyance",
+      "Remembering and imagining other times you have felt joyful",
+      "Expecting more good things to happen"
+    ]
+  }
+}

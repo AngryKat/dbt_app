@@ -1,0 +1,101 @@
+{
+  "emotion": "disgust",
+  "title": "Ways to Describe Emotions - DISGUST",
+  "description": "Comprehensive guide to understanding disgust emotions, their triggers, manifestations, and effects",
+  "words": [
+    "disgust",
+    "abhorrence",
+    "antipathy",
+    "aversion",
+    "condescension",
+    "contempt",
+    "dislike",
+    "derision",
+    "disdain",
+    "distaste",
+    "hate",
+    "loathing",
+    "repugnance",
+    "repelled",
+    "repulsion",
+    "resentment",
+    "revolted",
+    "scorn",
+    "sickened",
+    "spite",
+    "vile"
+  ],
+  "promptingEvents": {
+    "description": "Events that trigger feelings of disgust",
+    "events": [
+      "Seeing or smelling human or animal waste products",
+      "Having a person or an animal that is dirty, slimy, or unclean come close to you",
+      "Tasting something or being forced to swallow something you really don't want",
+      "Seeing or being near a dead body",
+      "Touching items worn or owned by a stranger, dead person, or disliked person",
+      "Observing or hearing about a person who grovels or who strips another person of dignity",
+      "Seeing blood; getting blood drawn",
+      "Observing or hearing about a person acting with extreme hypocrisy or fawning",
+      "Observing or hearing about betrayal, child abuse, racism, or other types of cruelty",
+      "Being forced to watch something that deeply violates your own Wise Mind values",
+      "Being confronted with someone who is deeply violating your own Wise Mind values",
+      "Being forced to engage in or watch unwanted sexual contact"
+    ]
+  },
+  "interpretations": {
+    "description": "Interpretations of events that prompt feelings of disgust",
+    "interpretations": [
+      "Believing that you are swallowing something toxic",
+      "Your skin or your mind is being contaminated",
+      "Your own body or body parts are ugly",
+      "Others are evil or the 'scum' of the earth, or that they disrespect authority or the group",
+      "Disapproving of or feeling morally superior to another",
+      "Extreme disapproval of yourself or your own feelings, thoughts, or behaviors",
+      "Judging that a person is deeply immoral or has sinned or violated the natural order of things",
+      "Judging someone's body as extremely ugly"
+    ]
+  },
+  "biologicalChanges": {
+    "description": "Biological changes and experiences of disgust",
+    "changes": [
+      "Feelings of nausea; sick feeling",
+      "Urge to vomit, vomiting, gagging, choking",
+      "Having a lump in your throat",
+      "Aversion to drinking or eating",
+      "Intense urge to destroy or get rid of something",
+      "Urge to take a shower",
+      "Urge to run away or push away",
+      "Feeling contaminated, dirty, unclean",
+      "Feeling mentally polluted",
+      "Fainting"
+    ]
+  },
+  "expressionsAndActions": {
+    "description": "Expressions and actions of disgust",
+    "behaviors": [
+      "Vomiting, spitting out",
+      "Closing your eyes, looking away",
+      "Washing, scrubbing, taking a bath",
+      "Changing your clothes; cleaning spaces",
+      "Avoiding eating or drinking",
+      "Pushing or kicking away; running away",
+      "Treating with disdain or disrespect",
+      "Stepping over; crowding another person out",
+      "Physically attacking causes of your disgust",
+      "Using obscenities or cursing",
+      "Clenching your hands or fists",
+      "Frowning, or not smiling",
+      "Mean or unpleasant facial expression",
+      "Speaking with a sarcastic voice tone",
+      "Nose and top lip tightened up; smirking"
+    ]
+  },
+  "aftereffects": {
+    "description": "Aftereffects of disgust",
+    "effects": [
+      "Narrowing of attention",
+      "Ruminating about the situation that's making you feel disgusted",
+      "Becoming hypersensitive to dirt"
+    ]
+  }
+}
