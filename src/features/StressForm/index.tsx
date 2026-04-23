@@ -168,7 +168,7 @@ export function StressForm() {
           )}
         />
       </div>
-      <div className="w-full grid gap-1 pt-4">
+      <div className="w-full grid gap-1">
         <Button type="submit">Save</Button>
         <Button type="reset" variant="outline">
           Clear
