@@ -22,7 +22,7 @@ export function QuickStressLevelSelectButtons({
         {
           level: [0, 24],
           label: "Zen",
-          description: "Absolute calm",
+          description: "Calm",
           icon: Sun,
         },
         {

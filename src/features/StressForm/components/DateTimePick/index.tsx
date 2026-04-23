@@ -27,7 +27,6 @@ type DateTimePickProps = {
 export function DateTimePick({ value, onChange }: DateTimePickProps) {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(value);
-  console.log({ value });
   const hours = getHours(date);
   const minutes = getMinutes(date);
   const formattedDate = value ? (
@@ -40,8 +39,6 @@ export function DateTimePick({ value, onChange }: DateTimePickProps) {
   ) : (
     <span>Pick a date</span>
   );
-
-  console.log("DateTimePick rendered with value:", value);
 
   const handleDateSelect = (selectedDate: Date | undefined) => {
     if (!selectedDate) return;
@@ -66,7 +63,7 @@ export function DateTimePick({ value, onChange }: DateTimePickProps) {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="outline" data-empty={!value}>
+        <Button variant="outline" data-empty={!value} className="justify-start">
           <CalendarIcon className="mr-2 h-4 w-4" />
           {formattedDate}
         </Button>

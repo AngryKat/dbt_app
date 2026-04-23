@@ -21,7 +21,7 @@ export function QuickStressLevelSelectButton({
     <button
       type="button"
       onClick={() => onClick(level)}
-      className={`grid grid-rows-subgrid row-span-4 w-full p-3 rounded-lg font-semibold transition-all border-2 cursor-pointer ${
+      className={`grid grid-rows-subgrid row-span-4 w-full p-2 rounded-lg font-semibold transition-all border-2 cursor-pointer ${
         selected
           ? "border-primary bg-primary text-primary-foreground shadow-lg scale-105"
           : "border-muted bg-muted/30 hover:bg-muted/50 hover:border-primary/50"
