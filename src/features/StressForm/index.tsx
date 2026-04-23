@@ -58,10 +58,10 @@ export function StressForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       onReset={() => reset()}
-      className="grid w-full max-w-md gap-6 mx-auto"
+      className="grid w-full max-w-full max-w-md gap-6 mx-auto"
     >
       {/* Date & Time */}
-      <div className="grid w-full gap-2">
+      <div className="grid w-full max-w-full gap-2">
         <Label className="text-base">Date & Time</Label>
         <Controller
           name="date"
@@ -71,7 +71,7 @@ export function StressForm() {
       </div>
 
       {/* Place */}
-      <div className="grid w-full gap-2">
+      <div className="grid w-full max-w-full gap-2">
         <Label htmlFor="place" className="text-base">
           Where are you?
         </Label>
@@ -85,7 +85,7 @@ export function StressForm() {
       </div>
 
       {/* Situation */}
-      <div className="grid w-full gap-2">
+      <div className="grid w-full max-w-full gap-2">
         <Label htmlFor="situation" className="text-base">
           What's going on?
         </Label>
@@ -94,7 +94,10 @@ export function StressForm() {
           control={control}
           render={({ field }) => (
             <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger id="situation">
+              <SelectTrigger
+                id="situation"
+                className="w-full overflow-hidden [&>[data-slot=select-value]]:truncate [&>[data-slot=select-value]]:block"
+              >
                 <SelectValue placeholder="Select a situation" />
               </SelectTrigger>
               <SelectContent>
@@ -112,7 +115,7 @@ export function StressForm() {
 
       {/* Other Situation */}
       {situation === "Other" && (
-        <div className="grid w-full gap-2">
+        <div className="grid w-full max-w-full gap-2">
           <Label htmlFor="otherSituation" className="text-base">
             Please describe the situation
           </Label>
@@ -130,7 +133,7 @@ export function StressForm() {
         </div>
       )}
       {/* Thoughts */}
-      <div className="grid w-full gap-2">
+      <div className="grid w-full max-w-full max-w-full gap-2">
         <Label htmlFor="thoughts" className="text-base">
           Thoughts
         </Label>
@@ -139,8 +142,13 @@ export function StressForm() {
           control={control}
           render={({ field }) => (
             <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger id="thoughts">
-                <SelectValue placeholder="What are your thoughts?" />
+              <SelectTrigger
+                id="thoughts"
+                className="w-full overflow-hidden [&>[data-slot=select-value]]:truncate [&>[data-slot=select-value]]:block"
+              >
+                <span className="truncate block text-left flex-1 min-w-0">
+                  <SelectValue placeholder="What are your thoughts?" />
+                </span>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Other">Other</SelectItem>
@@ -159,7 +167,7 @@ export function StressForm() {
 
       {/* Other Thoughts */}
       {thoughts === "Other" && (
-        <div className="grid w-full gap-2">
+        <div className="grid w-full max-w-full gap-2">
           <Label htmlFor="otherThoughts" className="text-base">
             Please describe your thoughts
           </Label>
@@ -178,7 +186,7 @@ export function StressForm() {
       )}
 
       {/* Emotions */}
-      <div className="grid w-full gap-2">
+      <div className="grid w-full max-w-full gap-2">
         <Label className="text-base">Emotions</Label>
         <Controller
           name="emotions"
@@ -188,7 +196,7 @@ export function StressForm() {
       </div>
 
       {/* Stress Level */}
-      <div className="grid w-full gap-2">
+      <div className="grid w-full max-w-full gap-2">
         <Controller
           name="stressLevel"
           control={control}
@@ -221,7 +229,7 @@ export function StressForm() {
       </div>
 
       {/* Bodily Feelings */}
-      <div className="grid w-full gap-2">
+      <div className="grid w-full max-w-full gap-2">
         <Label htmlFor="bodilyFeelings" className="text-base">
           Bodily Feelings
         </Label>
@@ -239,7 +247,7 @@ export function StressForm() {
       </div>
 
       {/* Behaviour */}
-      <div className="grid w-full gap-2">
+      <div className="grid w-full max-w-full gap-2">
         <Label htmlFor="behaviour" className="text-base">
           Behaviour
         </Label>
