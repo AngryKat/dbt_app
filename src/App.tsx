@@ -1,10 +1,12 @@
 import "./App.css";
+import { StressForm } from "./features/StressForm";
 
 function App() {
   return (
-    <main>
-      <h1 className="text-red-500 font-heading font-bold">Vite + React</h1>
-      <p>Hello world</p>
+    <main className="p-[14px]">
+      <div className="flex min-h-svh flex-col items-center justify-center">
+        <StressForm />
+      </div>
     </main>
   );
 }
