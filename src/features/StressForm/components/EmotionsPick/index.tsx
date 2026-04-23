@@ -45,11 +45,9 @@ type EmotionsPickProps = {
 
 export function EmotionsPick({ value, onChange }: EmotionsPickProps) {
   const anchor = useComboboxAnchor();
-  const [internalValue, setInternalValue] = React.useState(value);
   const [searchTerm, setSearchTerm] = React.useState("");
 
   const handleValueChange = (newValue: string[]) => {
-    setInternalValue(newValue);
     onChange?.(newValue);
   };
 
@@ -111,7 +109,7 @@ export function EmotionsPick({ value, onChange }: EmotionsPickProps) {
       multiple
       autoHighlight
       items={filteredEmotionIds}
-      value={internalValue}
+      value={value}
       onValueChange={handleValueChange}
       onInputValueChange={setSearchTerm}
     >
