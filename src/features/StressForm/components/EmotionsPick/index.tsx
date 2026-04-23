@@ -16,7 +16,7 @@ import {
   useComboboxAnchor,
   ComboboxGroup,
   ComboboxLabel,
-} from "@/components/ui/combobox";
+} from "@/components/shadcn/combobox";
 import { emotions as emotionsData } from "@/data";
 
 interface Emotion {

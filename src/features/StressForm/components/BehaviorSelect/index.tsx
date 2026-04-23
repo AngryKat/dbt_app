@@ -5,28 +5,28 @@ import { emotions as emotionsData } from "@/data";
 
 const allEmotionsData = Object.values(emotionsData);
 
-type SituationSelectProps = {
+type BehaviorSelectProps = {
   value: string;
   onChange: (value: string) => void;
 };
 
-export function SituationSelect({ value, onChange }: SituationSelectProps) {
+export function BehaviorSelect({ value, onChange }: BehaviorSelectProps) {
   return (
     <Select
+      id="behavior"
       value={value}
       onChange={onChange}
       items={[
         { value: "Other", label: "Other" },
-        ...allEmotionsData.map(({ emotion, promptingEvents }) => ({
+        ...allEmotionsData.map(({ emotion, expressionsAndActions }) => ({
           label: emotion,
-          items: promptingEvents.events.map((event) => ({
-            value: `${emotion}:${event}`,
-            label: event,
+          items: expressionsAndActions.behaviors.map((behavior) => ({
+            value: `${emotion}:${behavior}`,
+            label: behavior,
           })),
         })),
       ]}
-      label="Select a situation"
-      id="situation"
+      label="What are you doing or how are you acting?"
     />
   );
 }

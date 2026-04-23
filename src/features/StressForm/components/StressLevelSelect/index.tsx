@@ -1,5 +1,5 @@
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
+import { Label } from "@/components/shadcn/label";
+import { Slider } from "@/components/shadcn/slider";
 import { QuickStressLevelSelectButtons } from "./components/QuickStressLevelSelectButtons";
 
 type StressLevelSelectProps = {

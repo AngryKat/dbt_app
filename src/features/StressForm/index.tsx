@@ -1,16 +1,16 @@
 "use client";
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/components/shadcn/button";
+import { Input } from "@/components/shadcn/input";
+import { Textarea } from "@/components/shadcn/textarea";
+import { Label } from "@/components/shadcn/label";
 import { DateTimePick } from "./components/DateTimePick";
 import { EmotionsPick } from "./components/EmotionsPick";
 import { SituationSelect } from "./components/SituationSelect";
 import { StressLevelSelect } from "./components/StressLevelSelect";
 import { ThoughtsSelect } from "./components/ThoughtsSelect";
-import { BehaviourSelect } from "./components/BehaviourSelect";
+import { BehaviorSelect } from "./components/BehaviorSelect";
 import { BodilyFeelingsSelect } from "./components/BodilyFeelingsSelect";
 
 type StressFormData = {
@@ -22,8 +22,8 @@ type StressFormData = {
   emotions: string[];
   thoughts: string;
   otherThoughts?: string;
-  behaviour: string;
-  otherBehaviour?: string;
+  behavior: string;
+  otherBehavior?: string;
   bodilyFeelings: string;
   otherBodilyFeelings?: string;
   notes: string;
@@ -38,7 +38,7 @@ export function StressForm() {
       stressLevel: 0,
       emotions: [],
       thoughts: "",
-      behaviour: "",
+      behavior: "",
       bodilyFeelings: "",
       otherBodilyFeelings: "",
       notes: "",
@@ -47,7 +47,7 @@ export function StressForm() {
 
   const situation = watch("situation");
   const thoughts = watch("thoughts");
-  const behaviour = watch("behaviour");
+  const behavior = watch("behavior");
   const bodilyFeelings = watch("bodilyFeelings");
 
   const onSubmit: SubmitHandler<StressFormData> = (data) => {
@@ -195,28 +195,28 @@ export function StressForm() {
         </div>
       )}
 
-      {/* Behaviour */}
+      {/* Behavior */}
       <div className="grid w-full gap-2">
-        <Label className="text-base">Behaviour</Label>
+        <Label className="text-base">Behavior</Label>
         <Controller
-          name="behaviour"
+          name="behavior"
           control={control}
-          render={({ field }) => <BehaviourSelect {...field} />}
+          render={({ field }) => <BehaviorSelect {...field} />}
         />
       </div>
 
-      {/* Other Behaviour */}
-      {behaviour === "Other" && (
+      {/* Other Behavior */}
+      {behavior === "Other" && (
         <div className="grid w-full gap-2">
-          <Label htmlFor="otherBehaviour" className="text-base">
-            Please describe your behaviour
+          <Label htmlFor="otherBehavior" className="text-base">
+            Please describe your behavior
           </Label>
           <Controller
-            name="behaviour"
+            name="behavior"
             control={control}
             render={({ field }) => (
               <Textarea
-                id="otherBehaviour"
+                id="otherBehavior"
                 placeholder="How are you acting or what are you doing?"
                 {...field}
               />

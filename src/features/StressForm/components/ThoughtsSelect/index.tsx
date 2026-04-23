@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select } from "@/components/ui/Select";
 import { emotions as emotionsData } from "@/data";
 
 const allEmotionsData = Object.values(emotionsData);
@@ -20,36 +12,21 @@ type ThoughtsSelectProps = {
 
 export function ThoughtsSelect({ value, onChange }: ThoughtsSelectProps) {
   return (
-    <Select value={value} onValueChange={onChange}>
-      <SelectTrigger
-        id="thoughts"
-        className="w-full overflow-hidden [&>[data-slot=select-value]]:truncate [&>[data-slot=select-value]]:block"
-      >
-        <span className="truncate block text-left flex-1 min-w-0">
-          <SelectValue placeholder="What are your thoughts?" />
-        </span>
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="Other">Other</SelectItem>
-        {allEmotionsData.map(({ emotion, interpretations }) => {
-          return (
-            <SelectGroup key={emotion}>
-              <SelectLabel className="capitalize">{emotion}</SelectLabel>
-              {interpretations.interpretations.map((interpretation) => {
-                const itemKey = `${emotion}-${interpretation}`;
-                return (
-                  <SelectItem
-                    key={itemKey}
-                    value={`${emotion}:${interpretation}`}
-                  >
-                    {interpretation}
-                  </SelectItem>
-                );
-              })}
-            </SelectGroup>
-          );
-        })}
-      </SelectContent>
-    </Select>
+    <Select
+      id="thoughts"
+      value={value}
+      onChange={onChange}
+      items={[
+        { value: "Other", label: "Other" },
+        ...allEmotionsData.map(({ emotion, interpretations }) => ({
+          label: emotion,
+          items: interpretations.interpretations.map((interpretation) => ({
+            value: `${emotion}:${interpretation}`,
+            label: interpretation,
+          })),
+        })),
+      ]}
+      label="What are your thoughts?"
+    />
   );
 }
