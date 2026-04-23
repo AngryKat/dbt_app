@@ -14,6 +14,9 @@ type StressFormData = {
   place: string;
   situation: string;
   stressLevel: number;
+  thoughts: string;
+  behaviour: string;
+  bodilyFeelings: string;
 };
 
 export function StressForm() {
@@ -22,7 +25,10 @@ export function StressForm() {
       date: new Date(),
       place: "",
       situation: "",
-      stressLevel: 5,
+      stressLevel: 0,
+      thoughts: "",
+      behaviour: "",
+      bodilyFeelings: "",
     },
   });
 
@@ -38,7 +44,7 @@ export function StressForm() {
     >
       {/* Date & Time */}
       <div className="grid w-full gap-2">
-        <Label>Date & Time</Label>
+        <Label className="text-base">Date & Time</Label>
         <Controller
           name="date"
           control={control}
@@ -48,7 +54,9 @@ export function StressForm() {
 
       {/* Place */}
       <div className="grid w-full gap-2">
-        <Label htmlFor="place">Where are you?</Label>
+        <Label htmlFor="place" className="text-base">
+          Where are you?
+        </Label>
         <Controller
           name="place"
           control={control}
@@ -60,7 +68,9 @@ export function StressForm() {
 
       {/* Situation */}
       <div className="grid w-full gap-2">
-        <Label htmlFor="situation">What's going on?</Label>
+        <Label htmlFor="situation" className="text-base">
+          What's going on?
+        </Label>
         <Controller
           name="situation"
           control={control}
@@ -73,16 +83,17 @@ export function StressForm() {
           )}
         />
       </div>
-
       {/* Stress Level */}
-      <div className="grid w-full gap-4">
+      <div className="grid w-full gap-2">
         <Controller
           name="stressLevel"
           control={control}
           render={({ field: { value, onChange, ...field } }) => (
             <>
               <div className="flex justify-between text-sm">
-                <Label htmlFor={field.name}>Stress level</Label>
+                <Label htmlFor={field.name} className="text-base">
+                  Stress level
+                </Label>
                 <span className="text-muted-foreground">{value}%</span>
               </div>
               <Slider
@@ -101,6 +112,59 @@ export function StressForm() {
                 onChange={onChange}
               />
             </>
+          )}
+        />
+      </div>
+      {/* Thoughts */}
+      <div className="grid w-full gap-2">
+        <Label htmlFor="thoughts" className="text-base">
+          Thoughts
+        </Label>
+        <Controller
+          name="thoughts"
+          control={control}
+          render={({ field }) => (
+            <Textarea
+              id="thoughts"
+              placeholder="What thoughts are going through your head?"
+              {...field}
+            />
+          )}
+        />
+      </div>
+
+      {/* Bodily Feelings */}
+      <div className="grid w-full gap-2">
+        <Label htmlFor="bodilyFeelings" className="text-base">
+          Bodily Feelings
+        </Label>
+        <Controller
+          name="bodilyFeelings"
+          control={control}
+          render={({ field }) => (
+            <Textarea
+              id="bodilyFeelings"
+              placeholder="What do you feel in your body?"
+              {...field}
+            />
+          )}
+        />
+      </div>
+
+      {/* Behaviour */}
+      <div className="grid w-full gap-2">
+        <Label htmlFor="behaviour" className="text-base">
+          Behaviour
+        </Label>
+        <Controller
+          name="behaviour"
+          control={control}
+          render={({ field }) => (
+            <Textarea
+              id="behaviour"
+              placeholder="How are you acting or what are you doing?"
+              {...field}
+            />
           )}
         />
       </div>
