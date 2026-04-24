@@ -40,7 +40,7 @@ export function EmotionCard({
     >
       <div className="flex flex-col gap-3 border-b border-border pb-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-2xl font-headings font-bold text-foreground tracking-tight">
+          <h3 className="text-2xl font-sans font-bold text-foreground tracking-tight">
             {label}
           </h3>
           <button
