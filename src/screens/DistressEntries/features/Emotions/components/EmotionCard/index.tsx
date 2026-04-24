@@ -33,9 +33,13 @@ export function EmotionCard({
 
   return (
     <article
-      className={`border border-border rounded-[20px] p-6 flex flex-col gap-5 shadow-sm cursor-pointer transition-all focus-within:ring-3 focus-within:ring-black/40 ${
+      className={`border border-border rounded-[20px] p-6 grid gap-5 shadow-sm cursor-pointer transition-all focus-within:ring-3 focus-within:ring-black/40 ${
         selected ? "ring-2 ring-primary" : ""
       }`}
+      style={{
+        gridTemplateRows: "subgrid",
+        gridRow: "span 5",
+      }}
       onClick={handleCardClick}
     >
       <div className="flex flex-col gap-3 border-b border-border pb-4">
@@ -60,36 +64,34 @@ export function EmotionCard({
         </p>
       </div>
 
-      <div className="flex flex-col gap-3">
-        {/* Feels Like Section */}
-        <div className="bg-rose-50 border border-rose-400 rounded-xl p-4 flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-rose-700">
-            <span className="text-xs font-bold uppercase tracking-wider">
-              Feels Like
-            </span>
-          </div>
-          <span className="text-sm font-medium text-rose-700">{feelsLike}</span>
+      {/* Feels Like Section */}
+      <div className="bg-rose-50 border border-rose-400 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="flex items-center gap-2 text-rose-700">
+          <span className="text-xs font-bold uppercase tracking-wider">
+            Feels Like
+          </span>
         </div>
+        <span className="text-sm font-medium text-rose-700">{feelsLike}</span>
+      </div>
 
-        {/* Thinking Section */}
-        <div className="bg-sky-50 border border-sky-400 rounded-xl p-4 flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-sky-700">
-            <span className="text-xs font-bold uppercase tracking-wider">
-              Thinking
-            </span>
-          </div>
-          <span className="text-sm italic text-sky-700">"{thinking}"</span>
+      {/* Thinking Section */}
+      <div className="bg-sky-50 border border-sky-400 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="flex items-center gap-2 text-sky-700">
+          <span className="text-xs font-bold uppercase tracking-wider">
+            Thinking
+          </span>
         </div>
+        <span className="text-sm italic text-sky-700">"{thinking}"</span>
+      </div>
 
-        {/* Self-Check Section */}
-        <div className="bg-teal-50 border border-teal-400 rounded-xl p-4 flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-teal-700">
-            <span className="text-xs font-bold uppercase tracking-wider">
-              Self-Check
-            </span>
-          </div>
-          <span className="text-sm font-medium text-teal-700">{check}</span>
+      {/* Self-Check Section */}
+      <div className="bg-teal-50 border border-teal-400 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="flex items-center gap-2 text-teal-700">
+          <span className="text-xs font-bold uppercase tracking-wider">
+            Self-Check
+          </span>
         </div>
+        <span className="text-sm font-medium text-teal-700">{check}</span>
       </div>
     </article>
   );
