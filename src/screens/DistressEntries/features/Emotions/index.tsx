@@ -5,14 +5,38 @@ import React from "react";
 
 export function Emotions() {
   const [selectedEmotions, setSelectedEmotions] = React.useState<string[]>([]);
+  const [h2AboveViewport, setH2AboveViewport] = React.useState(false);
+  const h2Ref = React.useRef<HTMLHeadingElement>(null);
+
+  React.useEffect(() => {
+    const el = h2Ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setH2AboveViewport(
+          !entry.isIntersecting && entry.boundingClientRect.top < 0,
+        );
+      },
+      { threshold: 0 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="relative h-screen flex flex-col">
       <header className="flex items-center gap-4 sticky top-0 left-0 right-0 border-b border-border p-4 z-10 mx-[-1rem] mt-[-1rem] bg-background">
         <BackButton backUrl="/distress-entry" />
         <h1 className="font-heading text-xl">Pick your emotions</h1>
+        {h2AboveViewport && (
+          <h2 className="font-heading text-xl text-gray-500">Anger</h2>
+        )}
       </header>
       <main className="flex-1 flex flex-col overflow-y-auto">
-        <h2 className="text-4xl py-6 font-heading font-black text-foreground tracking-tight">
+        <h2
+          ref={h2Ref}
+          className="text-4xl py-6 font-heading font-black text-foreground tracking-tight"
+        >
           Anger
         </h2>
 
