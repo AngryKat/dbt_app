@@ -1,0 +1,146 @@
+[
+  {
+    "id": "anger",
+    "label": "Anger",
+    "description": "A general sense that something feels wrong, unfair, blocked, or violated.",
+    "feelsLike": "Heat, tension, wanting to push back.",
+    "thinking": "This isn't okay.",
+    "check": "Am I upset and ready to confront something?"
+  },
+  {
+    "id": "aggravation",
+    "label": "Aggravation",
+    "description": "Low-to-moderate anger caused by obstacles, interruptions, or repeated hassle.",
+    "feelsLike": "Pressure building, impatience.",
+    "thinking": "Why is this so difficult?",
+    "check": "Am I irritated because something is making life harder?"
+  },
+  {
+    "id": "agitation",
+    "label": "Agitation",
+    "description": "Activated, restless anger; emotionally stirred up and unable to settle.",
+    "feelsLike": "Buzzing, pacing, clenched energy.",
+    "thinking": "I can't calm down.",
+    "check": "Do I feel wound up more than directly angry?"
+  },
+  {
+    "id": "annoyance",
+    "label": "Annoyance",
+    "description": "Mild irritation, often over something petty or repetitive.",
+    "feelsLike": "Mental 'ugh.'",
+    "thinking": "That's getting on my nerves.",
+    "check": "Is this minor, but still bothering me?"
+  },
+  {
+    "id": "bitterness",
+    "label": "Bitterness",
+    "description": "Anger mixed with hurt, resentment, or old disappointment. Often lingers.",
+    "feelsLike": "Sourness, emotional heaviness.",
+    "thinking": "I haven't gotten over what happened.",
+    "check": "Is this connected to an old wound or unfairness?"
+  },
+  {
+    "id": "exasperation",
+    "label": "Exasperation",
+    "description": "Frustration pushed to the edge of 'I give up.'",
+    "feelsLike": "Fed up, exhausted irritation.",
+    "thinking": "I cannot deal with this anymore.",
+    "check": "Am I angry because my patience is gone?"
+  },
+  {
+    "id": "ferocity",
+    "label": "Ferocity",
+    "description": "Intense, forceful, almost primal aggressive energy. Often protective or combative.",
+    "feelsLike": "Sharp power, attack energy.",
+    "thinking": "I will fight this.",
+    "check": "Does this feel fierce rather than merely angry?"
+  },
+  {
+    "id": "frustration",
+    "label": "Frustration",
+    "description": "Anger caused by blockage — wanting something and being unable to get there.",
+    "feelsLike": "Stuck pressure.",
+    "thinking": "Why isn't this working?",
+    "check": "Is something preventing me from doing what I want?"
+  },
+  {
+    "id": "fury",
+    "label": "Fury",
+    "description": "Explosive, consuming anger. Hard to contain.",
+    "feelsLike": "Fire, overwhelm.",
+    "thinking": "I am beyond mad.",
+    "check": "Does this feel overpowering?"
+  },
+  {
+    "id": "grouchiness",
+    "label": "Grouchiness",
+    "description": "Irritable, negative mood where small things bother you. Often tied to tiredness, hunger, stress.",
+    "feelsLike": "Cranky static.",
+    "thinking": "Everything is annoying today.",
+    "check": "Am I generally prickly rather than angry about one thing?"
+  },
+  {
+    "id": "grumpiness",
+    "label": "Grumpiness",
+    "description": "Like grouchiness, but often heavier, sulkier, lower-energy.",
+    "feelsLike": "Moody irritation.",
+    "thinking": "Leave me alone.",
+    "check": "Am I more crabby than actively angry?"
+  },
+  {
+    "id": "hostility",
+    "label": "Hostility",
+    "description": "Anger with antagonism toward a person or group.",
+    "feelsLike": "Guarded aggression or cold opposition.",
+    "thinking": "I'm against them.",
+    "check": "Is my anger directed at someone as an adversary?"
+  },
+  {
+    "id": "indignation",
+    "label": "Indignation",
+    "description": "Anger triggered by moral offense or injustice.",
+    "feelsLike": "Righteous heat.",
+    "thinking": "That is wrong.",
+    "check": "Am I upset because a principle was violated?"
+  },
+  {
+    "id": "irritation",
+    "label": "Irritation",
+    "description": "Low-level, sharper annoyance — often sensory or interpersonal.",
+    "feelsLike": "Prickling discomfort.",
+    "thinking": "Stop that.",
+    "check": "Is something rubbing me the wrong way?"
+  },
+  {
+    "id": "outrage",
+    "label": "Outrage",
+    "description": "Big moral anger, often shocked anger.",
+    "feelsLike": "Indignation turned intense.",
+    "thinking": "This is unacceptable.",
+    "check": "Does this feel personal and morally offensive?"
+  },
+  {
+    "id": "rage",
+    "label": "Rage",
+    "description": "Extreme anger that can feel consuming and hard to control.",
+    "feelsLike": "Volcanic.",
+    "thinking": "I could explode.",
+    "check": "Does this feel dangerous or overpowering?"
+  },
+  {
+    "id": "vengefulness",
+    "label": "Vengefulness",
+    "description": "Anger focused on payback.",
+    "feelsLike": "Cold or hot desire to make someone suffer or 'even the score.'",
+    "thinking": "They should pay.",
+    "check": "Is retaliation part of what I'm feeling?"
+  },
+  {
+    "id": "wrath",
+    "label": "Wrath",
+    "description": "Deep, severe, almost monumental anger — often moral, punishing, destructive.",
+    "feelsLike": "Rage with judgment.",
+    "thinking": "There must be consequences.",
+    "check": "Does this feel bigger and more severe than ordinary anger?"
+  }
+]
