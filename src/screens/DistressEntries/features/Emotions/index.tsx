@@ -6,13 +6,13 @@ import React from "react";
 export function Emotions() {
   const [selectedEmotions, setSelectedEmotions] = React.useState<string[]>([]);
   return (
-    <>
-      <div className="flex items-center gap-4">
+    <div className="relative h-screen flex flex-col">
+      <header className="flex items-center gap-4 sticky top-0 left-0 right-0 border-b border-border p-4 z-10 mx-[-1rem] mt-[-1rem] bg-background">
         <BackButton backUrl="/distress-entry" />
         <h1 className="font-heading text-xl">Pick your emotions</h1>
-      </div>
-      <div className="flex-1 flex flex-col gap-6 py-6">
-        <h2 className="text-4xl font-heading font-black text-foreground tracking-tight">
+      </header>
+      <main className="flex-1 flex flex-col overflow-y-auto">
+        <h2 className="text-4xl py-6 font-heading font-black text-foreground tracking-tight">
           Anger
         </h2>
 
@@ -46,7 +46,7 @@ export function Emotions() {
             );
           })}
         </div>
-      </div>
-    </>
+      </main>
+    </div>
   );
 }
