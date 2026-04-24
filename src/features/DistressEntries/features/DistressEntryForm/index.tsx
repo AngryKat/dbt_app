@@ -8,7 +8,7 @@ import { Label } from "@/components/shadcn/label";
 import {
   DateTimePick,
   StressLevelSelect,
-  EmotionsPick,
+  EmotionsRedirectCardLink,
   SituationSelect,
   ThoughtsSelect,
   BodilyFeelingsSelect,
@@ -96,14 +96,11 @@ export function DistressEntryForm() {
         />
       </div>
       {/* Emotions */}
-      <div className="grid w-full gap-2">
+      <EmotionsRedirectCardLink />
+      {/* <div className="grid w-full gap-2">
         <Label className="text-base">Emotions</Label>
-        <Controller
-          name="emotions"
-          control={control}
-          render={({ field }) => <EmotionsPick {...field} />}
-        />
-      </div>
+        <EmotionsRedirectCardLink />
+      </div> */}
 
       {/* Situation */}
       <div className="grid w-full gap-2">
