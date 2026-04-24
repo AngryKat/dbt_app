@@ -20,7 +20,7 @@ export function Emotions() {
           className="grid gap-5 px-2"
           style={{
             gridTemplateColumns:
-              "repeat(auto-fill, minmax(min(40rem, 100%), 1fr))",
+              "repeat(auto-fill, minmax(min(25rem, 100%), 1fr))",
           }}
         >
           {nuancedAngerEmotions.map((emotion) => {
