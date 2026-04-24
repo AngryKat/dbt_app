@@ -5,15 +5,17 @@ import { Button } from "@/components/shadcn/button";
 import { Input } from "@/components/shadcn/input";
 import { Textarea } from "@/components/shadcn/textarea";
 import { Label } from "@/components/shadcn/label";
-import { DateTimePick } from "./components/DateTimePick";
-import { EmotionsPick } from "./components/EmotionsPick";
-import { SituationSelect } from "./components/SituationSelect";
-import { StressLevelSelect } from "./components/StressLevelSelect";
-import { ThoughtsSelect } from "./components/ThoughtsSelect";
-import { BehaviorSelect } from "./components/BehaviorSelect";
-import { BodilyFeelingsSelect } from "./components/BodilyFeelingsSelect";
+import {
+  DateTimePick,
+  StressLevelSelect,
+  EmotionsPick,
+  SituationSelect,
+  ThoughtsSelect,
+  BodilyFeelingsSelect,
+  BehaviorSelect,
+} from "./components";
 
-type StressFormData = {
+type DistressEntryFormData = {
   date: Date;
   place: string;
   situation: string;
@@ -29,28 +31,29 @@ type StressFormData = {
   notes: string;
 };
 
-export function StressForm() {
-  const { control, handleSubmit, reset, watch } = useForm<StressFormData>({
-    defaultValues: {
-      date: new Date(),
-      place: "",
-      situation: "",
-      stressLevel: 0,
-      emotions: [],
-      thoughts: "",
-      behavior: "",
-      bodilyFeelings: "",
-      otherBodilyFeelings: "",
-      notes: "",
-    },
-  });
+export function DistressEntryForm() {
+  const { control, handleSubmit, reset, watch } =
+    useForm<DistressEntryFormData>({
+      defaultValues: {
+        date: new Date(),
+        place: "",
+        situation: "",
+        stressLevel: 0,
+        emotions: [],
+        thoughts: "",
+        behavior: "",
+        bodilyFeelings: "",
+        otherBodilyFeelings: "",
+        notes: "",
+      },
+    });
 
   const situation = watch("situation");
   const thoughts = watch("thoughts");
   const behavior = watch("behavior");
   const bodilyFeelings = watch("bodilyFeelings");
 
-  const onSubmit: SubmitHandler<StressFormData> = (data) => {
+  const onSubmit: SubmitHandler<DistressEntryFormData> = (data) => {
     console.log(data);
   };
 
