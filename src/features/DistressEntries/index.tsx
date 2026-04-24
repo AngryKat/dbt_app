@@ -3,5 +3,9 @@
 import { Outlet } from "react-router";
 
 export function DistressEntries() {
-  return <Outlet />;
+  return (
+    <main>
+      <Outlet />
+    </main>
+  );
 }
