@@ -1,3 +1,10 @@
+import { GoBackCardLink } from "./components/GoBackCardLink";
+
 export function Emotions() {
-  return <div>Emotions</div>;
+  return (
+    <>
+      <GoBackCardLink />
+      <div>Emotions</div>
+    </>
+  );
 }

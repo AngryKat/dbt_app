@@ -122,7 +122,7 @@
     @apply border-border outline-ring/50;
   }
   #root {
-    @apply flex min-h-svh flex-col items-center justify-center p-[14px]
+    @apply flex min-h-svh flex-col p-[14px];
   }
   body {
     @apply bg-background text-foreground;
