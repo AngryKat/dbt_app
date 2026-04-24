@@ -1,7 +1,7 @@
-import { createBrowserRouter, type RouteObject } from "react-router";
+import { createBrowserRouter, Navigate, type RouteObject } from "react-router";
 
 import App from "./App";
-import { StressForm } from "./features/StressForm";
+import { distressEntryRoutes } from "./features/DistressEntries/routes";
 
 export const appRoutes: RouteObject[] = [
   {
@@ -10,8 +10,9 @@ export const appRoutes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <StressForm />,
+        element: <Navigate to="/distress-entry" replace />,
       },
+      ...distressEntryRoutes,
     ],
   },
 ];

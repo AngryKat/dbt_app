@@ -1,7 +1,7 @@
+"use client";
+
 import { Outlet } from "react-router";
 
-function App() {
+export function DistressEntries() {
   return <Outlet />;
 }
-
-export default App;
