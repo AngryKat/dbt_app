@@ -1,9 +1,9 @@
-import { GoBackCardLink } from "./components/GoBackCardLink";
+import { BackButton } from "@/components/ui/BackButton";
 
 export function Emotions() {
   return (
     <>
-      <GoBackCardLink />
+      <BackButton backUrl="/distress-entry" />
       <div>Emotions</div>
     </>
   );

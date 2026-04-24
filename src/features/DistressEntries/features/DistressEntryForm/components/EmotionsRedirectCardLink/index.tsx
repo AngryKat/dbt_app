@@ -3,7 +3,12 @@ import { type MouseEvent, useRef } from "react";
 import { ArrowRightIcon } from "lucide-react";
 import { Link } from "react-router";
 
-import { Card, CardAction, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardHeader,
+  CardTitle,
+} from "@/components/shadcn/card";
 
 export function EmotionsRedirectCardLink() {
   const mainLinkRef = useRef<HTMLAnchorElement>(null);
