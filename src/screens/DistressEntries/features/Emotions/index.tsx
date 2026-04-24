@@ -24,7 +24,6 @@ export function Emotions() {
               (el) =>
                 el.getBoundingClientRect().top + el.clientHeight < headerHeight,
             );
-            console.log({ remaining });
             setH2HeaderText(remaining.at(-1)?.textContent || "");
           }
         });
@@ -56,7 +55,7 @@ export function Emotions() {
           </h2>
         )}
       </header>
-      <main className="flex-1 flex flex-col overflow-y-auto pb-4 pt-6 px-[14px]">
+      <main className="flex-1 flex flex-col overflow-y-auto px-[14px] py-6">
         {Object.entries(nuancedEmotions).map(([emotion, nuancedEmotions]) => (
           <>
             <h2
