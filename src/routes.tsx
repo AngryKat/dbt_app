@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate, type RouteObject } from "react-router";
 
 import App from "./App";
-import { distressEntryRoutes } from "./features/DistressEntry/routes";
+import { distressEntryRoutes } from "./features/DistressEntries/routes";
 
 export const appRoutes: RouteObject[] = [
   {

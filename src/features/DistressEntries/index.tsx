@@ -2,6 +2,6 @@
 
 import { Outlet } from "react-router";
 
-export function DistressEntry() {
+export function DistressEntries() {
   return <Outlet />;
 }

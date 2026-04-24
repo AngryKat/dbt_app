@@ -1,13 +1,13 @@
 import type { RouteObject } from "react-router";
 
-import { DistressEntry } from ".";
+import { DistressEntries } from "./index";
 import { DistressEntryForm } from "./features/DistressEntryForm";
 import { Emotions } from "./features/Emotions";
 
 export const distressEntryRoutes: RouteObject[] = [
   {
     path: "distress-entry",
-    element: <DistressEntry />,
+    element: <DistressEntries />,
     children: [
       {
         index: true,
