@@ -1,8 +1,9 @@
+import React from "react";
 import { BackButton } from "@/components/ui/BackButton";
 import { EmotionCard } from "./components/EmotionCard";
 import nuancedEmotions from "@/data/nuancedEmotions";
-import React from "react";
 import { SearchInput } from "@/components/ui/SearchInput";
+import { NoEmotionsFound } from "./components/NoEmotionsFound";
 
 export function Emotions() {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -10,13 +11,19 @@ export function Emotions() {
   const [h2HeaderText, setH2HeaderText] = React.useState("");
   const h2AboveViewport = !!h2HeaderText;
   const headerRef = React.useRef<HTMLElement>(null);
-  const filteredEmotions = Object.fromEntries(
-    Object.entries(nuancedEmotions).map(([emotion, nuancedEmotions]) => [
-      emotion,
-      nuancedEmotions.filter(({ label }) =>
-        label.toLowerCase().includes(searchTerm.toLowerCase()),
-      ),
-    ]),
+  const filteredEmotions = Object.entries(
+    Object.fromEntries(
+      Object.entries(nuancedEmotions).map(([emotion, nuancedEmotions]) => [
+        emotion,
+        nuancedEmotions.filter(({ label }) =>
+          label.toLowerCase().includes(searchTerm.toLowerCase()),
+        ),
+      ]),
+    ),
+  );
+
+  const haveEmotions = filteredEmotions.some(
+    ([_, emotions]) => emotions.length > 0,
   );
 
   React.useEffect(() => {
@@ -75,51 +82,55 @@ export function Emotions() {
         </div>
       </header>
       <main className="flex-1 flex flex-col overflow-y-auto px-[14px] py-6">
-        {Object.entries(filteredEmotions).map(([emotion, nuancedEmotions]) => {
-          if (!nuancedEmotions.length) return null;
-          return (
-            <>
-              <h2
-                data-emotion-heading="true"
-                className="text-4xl capitalize py-6 font-heading font-black text-foreground tracking-tight"
-              >
-                {emotion}
-              </h2>
+        {!haveEmotions ? (
+          <NoEmotionsFound searchTerm={searchTerm} />
+        ) : (
+          filteredEmotions.map(([emotion, nuancedEmotions]) => {
+            if (!nuancedEmotions.length) return null;
+            return (
+              <>
+                <h2
+                  data-emotion-heading="true"
+                  className="text-4xl capitalize py-6 font-heading font-black text-foreground tracking-tight"
+                >
+                  {emotion}
+                </h2>
 
-              <div
-                className="grid gap-5 px-2"
-                style={{
-                  gridTemplateColumns:
-                    "repeat(auto-fill, minmax(min(25rem, 100%), 1fr))",
-                  gridAutoRows: "auto auto auto auto auto",
-                }}
-              >
-                {nuancedEmotions.map((emotion) => {
-                  const { id } = emotion;
-                  const selected = selectedEmotions.includes(id);
-                  return (
-                    <EmotionCard
-                      key={id}
-                      {...emotion}
-                      selected={selectedEmotions.includes(id)}
-                      onSelect={(emotionId) => {
-                        if (selected) {
+                <div
+                  className="grid gap-5 px-2"
+                  style={{
+                    gridTemplateColumns:
+                      "repeat(auto-fill, minmax(min(25rem, 100%), 1fr))",
+                    gridAutoRows: "auto auto auto auto auto",
+                  }}
+                >
+                  {nuancedEmotions.map((emotion) => {
+                    const { id } = emotion;
+                    const selected = selectedEmotions.includes(id);
+                    return (
+                      <EmotionCard
+                        key={id}
+                        {...emotion}
+                        selected={selectedEmotions.includes(id)}
+                        onSelect={(emotionId) => {
+                          if (selected) {
+                            setSelectedEmotions((prev) =>
+                              prev.filter((prevId) => prevId !== emotionId),
+                            );
+                            return;
+                          }
                           setSelectedEmotions((prev) =>
-                            prev.filter((prevId) => prevId !== emotionId),
+                            Array.from(new Set([...prev, emotionId])),
                           );
-                          return;
-                        }
-                        setSelectedEmotions((prev) =>
-                          Array.from(new Set([...prev, emotionId])),
-                        );
-                      }}
-                    />
-                  );
-                })}
-              </div>
-            </>
-          );
-        })}
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              </>
+            );
+          })
+        )}
       </main>
     </div>
   );
