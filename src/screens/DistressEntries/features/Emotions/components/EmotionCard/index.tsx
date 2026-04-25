@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { useRef } from "react";
 import { CheckIcon } from "lucide-react";
 import { useClickDelegation } from "@/hooks/useClickDelegation";
+import { Collapse } from "@/components/ui/Collapse";
 
 type EmotionCardProps = {
   id: string;
@@ -33,13 +34,9 @@ export function EmotionCard({
 
   return (
     <article
-      className={`border border-border rounded-[20px] p-6 grid gap-5 shadow-sm cursor-pointer transition-all focus-within:ring-3 focus-within:ring-black/40 ${
+      className={`border border-border rounded-[20px] p-6 grid gap-5 shadow-sm cursor-pointer transition-all ${
         selected ? "ring-2 ring-primary" : ""
       }`}
-      style={{
-        gridTemplateRows: "subgrid",
-        gridRow: "span 5",
-      }}
       onClick={handleCardClick}
     >
       <div className="flex flex-col gap-3 border-b border-border pb-4">
@@ -50,7 +47,7 @@ export function EmotionCard({
           <button
             ref={selectButtonRef}
             onClick={() => onSelect?.(id)}
-            className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all ${
+            className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all focus-visible:ring-3 focus-visible:ring-black/40 ${
               selected
                 ? "border border-primary bg-primary text-primary-foreground shadow-sm"
                 : "border-[1.5px] border-dashed border-muted-foreground/50"
@@ -63,36 +60,40 @@ export function EmotionCard({
           {description}
         </p>
       </div>
+      <Collapse
+        triggerLabel={<span className="text-sm font-medium">More details</span>}
+        ariaLabel={`Toggle more details for ${label} emotion`}
+      >
+        {/* Feels Like Section */}
+        <section className="bg-rose-50 border border-rose-400 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2 text-rose-700">
+            <span className="text-xs font-bold uppercase tracking-wider">
+              Feels Like
+            </span>
+          </div>
+          <span className="text-sm font-medium text-rose-700">{feelsLike}</span>
+        </section>
 
-      {/* Feels Like Section */}
-      <div className="bg-rose-50 border border-rose-400 rounded-xl p-4 flex flex-col gap-1.5">
-        <div className="flex items-center gap-2 text-rose-700">
-          <span className="text-xs font-bold uppercase tracking-wider">
-            Feels Like
-          </span>
-        </div>
-        <span className="text-sm font-medium text-rose-700">{feelsLike}</span>
-      </div>
+        {/* Thinking Section */}
+        <section className="bg-sky-50 border border-sky-400 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2 text-sky-700">
+            <span className="text-xs font-bold uppercase tracking-wider">
+              Thinking
+            </span>
+          </div>
+          <span className="text-sm italic text-sky-700">"{thinking}"</span>
+        </section>
 
-      {/* Thinking Section */}
-      <div className="bg-sky-50 border border-sky-400 rounded-xl p-4 flex flex-col gap-1.5">
-        <div className="flex items-center gap-2 text-sky-700">
-          <span className="text-xs font-bold uppercase tracking-wider">
-            Thinking
-          </span>
-        </div>
-        <span className="text-sm italic text-sky-700">"{thinking}"</span>
-      </div>
-
-      {/* Self-Check Section */}
-      <div className="bg-teal-50 border border-teal-400 rounded-xl p-4 flex flex-col gap-1.5">
-        <div className="flex items-center gap-2 text-teal-700">
-          <span className="text-xs font-bold uppercase tracking-wider">
-            Self-Check
-          </span>
-        </div>
-        <span className="text-sm font-medium text-teal-700">{check}</span>
-      </div>
+        {/* Self-Check Section */}
+        <section className="bg-teal-50 border border-teal-400 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2 text-teal-700">
+            <span className="text-xs font-bold uppercase tracking-wider">
+              Self-Check
+            </span>
+          </div>
+          <span className="text-sm font-medium text-teal-700">{check}</span>
+        </section>
+      </Collapse>
     </article>
   );
 }

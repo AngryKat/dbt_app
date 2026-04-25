@@ -23,7 +23,7 @@ export function Emotions() {
   );
 
   const haveEmotions = filteredEmotions.some(
-    ([_, emotions]) => emotions.length > 0,
+    ([, emotions]) => emotions.length > 0,
   );
 
   React.useEffect(() => {
@@ -32,6 +32,7 @@ export function Emotions() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          console.log({ entry });
           if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
             setH2HeaderText(entry.target.textContent || "");
           } else if (entry.isIntersecting) {
@@ -59,11 +60,13 @@ export function Emotions() {
     <div className="relative h-screen flex flex-col overflow-hidden m-[-14px]">
       <header
         ref={headerRef}
-        className="flex items-center sticky top-0 left-0 right-0 border-b border-border p-4 z-10  mt-[-14px] bg-background"
+        className="flex items-center gap-4 sticky top-0 left-0 right-0 border-b border-border p-4 z-10  mt-[-14px] bg-background"
       >
-        <div className="mr-auto flex items-center gap-4">
-          <BackButton backUrl="/distress-entry" />
-          <h1 className="font-heading text-xl">Pick your emotions</h1>
+        <BackButton backUrl="/distress-entry" />
+        <div className="mr-auto flex gap-2 items-center ">
+          <h1 className="font-heading text-xl min-w-[fit-content]">
+            Pick your emotions
+          </h1>
           {h2AboveViewport && (
             <h2
               className="capitalize font-heading text-xl text-gray-500"
@@ -75,6 +78,7 @@ export function Emotions() {
         </div>
         <div>
           <SearchInput
+            id="search-emotions-input"
             placeholder="Search emotion"
             value={searchTerm}
             onChange={setSearchTerm}
@@ -96,14 +100,7 @@ export function Emotions() {
                   {emotion}
                 </h2>
 
-                <div
-                  className="grid gap-5 px-2"
-                  style={{
-                    gridTemplateColumns:
-                      "repeat(auto-fill, minmax(min(25rem, 100%), 1fr))",
-                    gridAutoRows: "auto auto auto auto auto",
-                  }}
-                >
+                <div className="grid gap-5 px-2">
                   {nuancedEmotions.map((emotion) => {
                     const { id } = emotion;
                     const selected = selectedEmotions.includes(id);
