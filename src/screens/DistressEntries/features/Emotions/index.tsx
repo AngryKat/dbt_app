@@ -63,18 +63,30 @@ export function Emotions() {
         className="flex items-center gap-4 sticky top-0 left-0 right-0 border-b border-border p-4 z-10  mt-[-14px] bg-background"
       >
         <BackButton backUrl="/distress-entry" />
-        <div className="mr-auto flex gap-2 items-center ">
-          <h1 className="font-heading text-xl min-w-[fit-content]">
-            Pick your emotions
-          </h1>
-          {h2AboveViewport && (
-            <h2
-              className="capitalize font-heading text-xl text-gray-500"
-              aria-hidden="true"
-            >
-              {h2HeaderText}
-            </h2>
-          )}
+        <div
+          className="mr-auto flex gap-2 items-center flex-grow-1"
+          style={{ containerType: "inline-size" }}
+        >
+          <style>{`
+            @container (max-width: 199px) {
+              .responsive-heading {
+                display: none;
+              }
+            }
+          `}</style>
+          <div className="mr-auto flex gap-2 items-center ">
+            <h1 className="font-heading text-xl min-w-[fit-content] responsive-heading">
+              Pick your emotions
+            </h1>
+            {h2AboveViewport && (
+              <h2
+                className="capitalize font-heading text-xl text-gray-500 responsive-heading"
+                aria-hidden="true"
+              >
+                {h2HeaderText}
+              </h2>
+            )}
+          </div>
         </div>
         <div>
           <SearchInput
