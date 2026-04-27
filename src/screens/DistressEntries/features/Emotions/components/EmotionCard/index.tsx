@@ -40,7 +40,7 @@ export function EmotionCard({
 
   return (
     <article
-      className="relative overflow-hidden flex-1 border-[2px] border-border rounded-[20px] p-6 grid gap-5 shadow-sm cursor-pointer transition-all"
+      className="relative overflow-hidden flex-1 border-[2px] border-border rounded-[20px] p-6 grid gap-5 shadow-sm cursor-pointer"
       onClick={handleCardClick}
     >
       <div
