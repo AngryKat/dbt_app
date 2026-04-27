@@ -32,9 +32,7 @@ export function Collapse({
           </Button>
         </CollapsibleTrigger>
       </div>
-      <CollapsibleContent className="flex flex-col gap-2">
-        {children}
-      </CollapsibleContent>
+      <CollapsibleContent>{children}</CollapsibleContent>
     </Collapsible>
   );
 }

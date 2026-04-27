@@ -74,35 +74,39 @@ export function EmotionCard({
         triggerLabel={<span className="text-sm font-medium">More details</span>}
         ariaLabel={`Toggle more details for ${label} emotion`}
       >
-        {/* Feels Like Section */}
-        <section className="bg-rose-50 border border-rose-400 rounded-xl p-4 flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-rose-700">
-            <span className="text-xs font-bold uppercase tracking-wider">
-              Feels Like
+        <div className="flex flex-col gap-2">
+          {/* Feels Like Section */}
+          <section className="bg-rose-50 border border-rose-400 rounded-xl p-4 flex flex-col gap-1.5">
+            <div className="flex items-center gap-2 text-rose-700">
+              <span className="text-xs font-bold uppercase tracking-wider">
+                Feels Like
+              </span>
+            </div>
+            <span className="text-sm font-medium text-rose-700">
+              {feelsLike}
             </span>
-          </div>
-          <span className="text-sm font-medium text-rose-700">{feelsLike}</span>
-        </section>
+          </section>
 
-        {/* Thinking Section */}
-        <section className="bg-sky-50 border border-sky-400 rounded-xl p-4 flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-sky-700">
-            <span className="text-xs font-bold uppercase tracking-wider">
-              Thinking
-            </span>
-          </div>
-          <span className="text-sm italic text-sky-700">"{thinking}"</span>
-        </section>
+          {/* Thinking Section */}
+          <section className="bg-sky-50 border border-sky-400 rounded-xl p-4 flex flex-col gap-1.5">
+            <div className="flex items-center gap-2 text-sky-700">
+              <span className="text-xs font-bold uppercase tracking-wider">
+                Thinking
+              </span>
+            </div>
+            <span className="text-sm italic text-sky-700">"{thinking}"</span>
+          </section>
 
-        {/* Self-Check Section */}
-        <section className="bg-teal-50 border border-teal-400 rounded-xl p-4 flex flex-col gap-1.5">
-          <div className="flex items-center gap-2 text-teal-700">
-            <span className="text-xs font-bold uppercase tracking-wider">
-              Self-Check
-            </span>
-          </div>
-          <span className="text-sm font-medium text-teal-700">{check}</span>
-        </section>
+          {/* Self-Check Section */}
+          <section className="bg-teal-50 border border-teal-400 rounded-xl p-4 flex flex-col gap-1.5">
+            <div className="flex items-center gap-2 text-teal-700">
+              <span className="text-xs font-bold uppercase tracking-wider">
+                Self-Check
+              </span>
+            </div>
+            <span className="text-sm font-medium text-teal-700">{check}</span>
+          </section>
+        </div>
       </Collapse>
     </article>
   );
