@@ -1,6 +1,7 @@
 import React from "react";
 import { BackButton } from "@/components/ui/BackButton";
 import { EmotionCard } from "./components/EmotionCard";
+import { SelectedEmotions } from "./components/SelectedEmotions";
 import nuancedEmotions from "@/data/nuancedEmotions";
 import { SearchInput } from "@/components/ui/SearchInput";
 import { emotionColors } from "./constants/emotion-color-map";
@@ -95,7 +96,16 @@ export function Emotions() {
           />
         </div>
       </header>
-      <main className="flex-1 flex flex-col overflow-y-auto px-[14px] py-6">
+      <main className="flex-1 flex flex-col overflow-y-auto px-[14px] py-6 relative">
+        <SelectedEmotions
+          selectedEmotions={selectedEmotions}
+          onRemoveEmotion={(emotionId) => {
+            setSelectedEmotions((prev) =>
+              prev.filter((prevId) => prevId !== emotionId),
+            );
+          }}
+          onClearAll={() => setSelectedEmotions([])}
+        />
         {allEmotions.map(([baseEmotion, nuancedEmotions]) => (
           <React.Fragment key={baseEmotion}>
             <h2
