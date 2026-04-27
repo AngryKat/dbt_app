@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { CheckIcon } from "lucide-react";
 import { useClickDelegation } from "@/hooks/useClickDelegation";
 import { Collapse } from "@/components/ui/Collapse";
-import { emotionColors } from "../../constants/emotion-color-map";
 
 type EmotionCardProps = {
   id: string;
