@@ -68,7 +68,7 @@ export function Emotions() {
       >
         <BackButton backUrl="/distress-entry" />
         <div
-          className="mr-auto flex gap-2 items-center flex-grow-1"
+          className="mr-auto flex gap-2 items-center grow"
           style={{ containerType: "inline-size" }}
         >
           <style>{`
