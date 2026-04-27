@@ -12,41 +12,31 @@ export function SearchInput({
   placeholder,
   value,
   onChange,
+  classNames,
 }: {
   id?: string;
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
+  classNames?: {
+    inputGroup?: string;
+  };
 }) {
-  const [focused, setFocused] = useState(false);
-
   return (
     <Field orientation="horizontal">
       <InputGroup className="flex items-center gap-0">
-        <div
-          className="overflow-hidden"
-          style={{
-            width: focused ? "200px" : "0px",
-            transition: "width 400ms ease-out",
-          }}
-        >
+        <div className={classNames?.inputGroup ?? ""}>
           <InputGroupInput
             placeholder={placeholder}
             value={value}
             onChange={(e) => onChange(e.target.value)}
             id={id}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
             className="w-full"
           />
         </div>
         <InputGroupAddon
           align="inline-end"
           className="flex-shrink-0 cursor-pointer pl-2"
-          onClick={() => {
-            setFocused(true);
-            setTimeout(() => document.getElementById(id)?.focus(), 10);
-          }}
         >
           <SearchIcon />
         </InputGroupAddon>

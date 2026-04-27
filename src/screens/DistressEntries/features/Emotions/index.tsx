@@ -64,7 +64,7 @@ export function Emotions() {
     <div className="relative h-screen flex flex-col overflow-hidden m-[-14px]">
       <header
         ref={headerRef}
-        className="flex items-center gap-4 sticky top-0 left-0 right-0 border-b border-border p-4 z-10 mt-[-14px] bg-background"
+        className="@container/header flex items-center gap-4 sticky top-0 left-0 right-0 border-b border-border p-4 z-10 mt-[-14px] bg-background"
       >
         <BackButton backUrl="/distress-entry" />
         <div className="mr-auto grow @container">
@@ -84,6 +84,10 @@ export function Emotions() {
         </div>
         <div>
           <SearchInput
+            classNames={{
+              inputGroup:
+                "overflow-hidden @min-md/header:w-[200px] w-0 focus-within:w-[200px]  transition-width duration-400 ease-out",
+            }}
             id="search-emotions-input"
             placeholder="Search emotion"
             value={searchTerm}
