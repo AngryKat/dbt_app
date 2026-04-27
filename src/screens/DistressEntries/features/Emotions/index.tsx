@@ -68,13 +68,13 @@ export function Emotions() {
       >
         <BackButton backUrl="/distress-entry" />
         <div className="mr-auto flex gap-2 items-center grow @container">
-          <div className="mr-auto flex gap-2 items-center ">
-            <h1 className="font-heading text-xl min-w-[fit-content] @max-[200px]:hidden">
+          <div className="mr-auto flex gap-2 items-center @max-[200px]:hidden">
+            <h1 className="font-heading text-xl min-w-[fit-content]">
               Pick your emotions
             </h1>
             {h2AboveViewport && (
               <h2
-                className="capitalize font-heading text-xl text-gray-500 @max-[200px]:hidden"
+                className="capitalize font-heading text-xl text-gray-500"
                 aria-hidden="true"
               >
                 {h2HeaderText}
