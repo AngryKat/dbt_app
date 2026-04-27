@@ -74,7 +74,7 @@ export function Emotions() {
             </h1>
             {h2AboveViewport && (
               <h2
-                className="capitalize font-heading text-xl text-gray-500 @md:hidden"
+                className="capitalize font-heading text-xl text-gray-500 @max-[200px]:hidden"
                 aria-hidden="true"
               >
                 {h2HeaderText}
