@@ -26,7 +26,7 @@ export function Collapse({
       <div className="flex items-center justify-between gap-4">
         {triggerLabel}
         <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="icon" className="size-8">
+          <Button type="button" variant="ghost" size="icon" className="size-8">
             <ChevronsUpDown />
             <span className="sr-only">{ariaLabel}</span>
           </Button>
