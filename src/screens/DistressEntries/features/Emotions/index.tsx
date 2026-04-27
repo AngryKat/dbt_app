@@ -37,7 +37,6 @@ export function Emotions() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log({ entry });
           if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
             setH2HeaderText(entry.target.textContent || "");
           } else if (entry.isIntersecting) {
