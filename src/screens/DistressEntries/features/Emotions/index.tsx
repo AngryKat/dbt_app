@@ -67,8 +67,8 @@ export function Emotions() {
         className="flex items-center gap-4 sticky top-0 left-0 right-0 border-b border-border p-4 z-10 mt-[-14px] bg-background"
       >
         <BackButton backUrl="/distress-entry" />
-        <div className="mr-auto flex gap-2 items-center grow @container">
-          <div className="mr-auto flex gap-2 items-center @max-[200px]:hidden">
+        <div className="mr-auto grow @container">
+          <div className="flex gap-2 items-center @max-[200px]:hidden">
             <h1 className="font-heading text-xl min-w-[fit-content]">
               Pick your emotions
             </h1>
