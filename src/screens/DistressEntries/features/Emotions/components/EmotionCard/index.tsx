@@ -3,20 +3,24 @@ import { useRef } from "react";
 import { CheckIcon } from "lucide-react";
 import { useClickDelegation } from "@/hooks/useClickDelegation";
 import { Collapse } from "@/components/ui/Collapse";
+import type { NuancedEmotion } from "../../types";
+
+type OptionalProps = Partial<{
+  icon: string;
+  children: ReactNode;
+  selected: boolean;
+  onSelect: (id: NuancedEmotion) => void;
+  borderColor: string;
+}>;
 
 type EmotionCardProps = {
-  id: string;
+  id: NuancedEmotion;
   label: string;
   description: string;
   feelsLike: string;
   thinking: string;
   check: string;
-  icon?: string;
-  children?: ReactNode;
-  selected?: boolean;
-  onSelect?: (id: string) => void;
-  borderColor?: string;
-};
+} & OptionalProps;
 
 export function EmotionCard({
   id,
@@ -26,8 +30,8 @@ export function EmotionCard({
   thinking,
   check,
   selected = false,
-  borderColor,
   onSelect,
+  borderColor,
 }: EmotionCardProps) {
   const selectButtonRef = useRef<HTMLButtonElement>(null);
   const handleCardClick = useClickDelegation(() => {
@@ -36,9 +40,7 @@ export function EmotionCard({
 
   return (
     <article
-      className={`relative overflow-hidden flex-1 border-[2px] border-border rounded-[20px] p-6 grid gap-5 shadow-sm cursor-pointer transition-all ${
-        selected ? "border-primary" : ""
-      }`}
+      className="relative overflow-hidden flex-1 border-[2px] border-border rounded-[20px] p-6 grid gap-5 shadow-sm cursor-pointer transition-all"
       onClick={handleCardClick}
     >
       <div

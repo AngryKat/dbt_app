@@ -5,15 +5,23 @@ import { SelectedEmotions } from "./components/SelectedEmotions";
 import nuancedEmotions from "@/data/nuancedEmotions";
 import { SearchInput } from "@/components/ui/SearchInput";
 import { emotionColors } from "./constants/emotion-color-map";
+import type {
+  BaseEmotion,
+  Emotion,
+  NuancedEmotion,
+  SelectedEmotion,
+} from "./types";
 
 export function Emotions() {
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [selectedEmotions, setSelectedEmotions] = React.useState<string[]>([]);
+  const [selectedEmotions, setSelectedEmotions] = React.useState<
+    Record<Emotion, SelectedEmotion>
+  >({} as Record<Emotion, SelectedEmotion>);
   const [h2HeaderText, setH2HeaderText] = React.useState("");
   const h2AboveViewport = !!h2HeaderText;
 
   const headerRef = React.useRef<HTMLElement>(null);
-  const allEmotions = Object.entries(nuancedEmotions);
+  const allNuancedEmotions = Object.entries(nuancedEmotions);
 
   React.useEffect(() => {
     if (!searchTerm) return;
@@ -98,15 +106,19 @@ export function Emotions() {
       </header>
       <main className="flex-1 flex flex-col overflow-y-auto px-[14px] py-6 relative">
         <SelectedEmotions
-          selectedEmotions={selectedEmotions}
+          selectedEmotions={Object.values(selectedEmotions)}
           onRemoveEmotion={(emotionId) => {
-            setSelectedEmotions((prev) =>
-              prev.filter((prevId) => prevId !== emotionId),
-            );
+            setSelectedEmotions((prev) => {
+              const copy = { ...prev };
+              delete copy[emotionId];
+              return copy;
+            });
           }}
-          onClearAll={() => setSelectedEmotions([])}
+          onClearAll={() =>
+            setSelectedEmotions({} as Record<Emotion, SelectedEmotion>)
+          }
         />
-        {allEmotions.map(([baseEmotion, nuancedEmotions]) => (
+        {allNuancedEmotions.map(([baseEmotion, nuancedEmotions]) => (
           <React.Fragment key={baseEmotion}>
             <h2
               data-emotion-heading="true"
@@ -116,27 +128,31 @@ export function Emotions() {
             </h2>
 
             <div className="grid gap-5 px-2">
-              {nuancedEmotions.map((nuancedEmotion) => {
-                const { id, label } = nuancedEmotion;
-                const selected = selectedEmotions.includes(id);
+              {nuancedEmotions.map(({ id, ...nuancedEmotion }) => {
+                const selected = id in selectedEmotions;
                 const borderColor =
-                  emotionColors[baseEmotion as keyof typeof emotionColors];
+                  emotionColors[baseEmotion as BaseEmotion]?.[500] || "gray";
                 return (
-                  <div key={id} data-emotion-label={label}>
+                  <div key={id} data-emotion-label={id as NuancedEmotion}>
                     <EmotionCard
                       {...nuancedEmotion}
+                      id={id as NuancedEmotion}
                       borderColor={borderColor}
                       selected={selected}
                       onSelect={(emotionId) => {
                         if (selected) {
-                          setSelectedEmotions((prev) =>
-                            prev.filter((prevId) => prevId !== emotionId),
-                          );
+                          const copy = { ...selectedEmotions };
+                          delete copy[emotionId];
+                          setSelectedEmotions(copy);
                           return;
                         }
-                        setSelectedEmotions((prev) =>
-                          Array.from(new Set([...prev, emotionId])),
-                        );
+                        setSelectedEmotions((prev) => ({
+                          ...prev,
+                          [emotionId]: {
+                            emotion: emotionId,
+                            baseEmotion: baseEmotion as BaseEmotion,
+                          },
+                        }));
                       }}
                     />
                   </div>

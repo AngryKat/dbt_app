@@ -1,0 +1,1 @@
+export { SelectedEmotion } from "./SelectedEmotion";
