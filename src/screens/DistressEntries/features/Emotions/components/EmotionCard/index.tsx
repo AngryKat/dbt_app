@@ -36,14 +36,17 @@ export function EmotionCard({
 
   return (
     <article
-      className={`flex-1 border-[2px] border-border border-l-4 rounded-[20px] p-6 grid gap-5 shadow-sm cursor-pointer transition-all ${
-        selected ? "ring-2 ring-primary" : ""
+      className={`relative overflow-hidden flex-1 border-[2px] border-border rounded-[20px] p-6 grid gap-5 shadow-sm cursor-pointer transition-all ${
+        selected ? "border-primary" : ""
       }`}
-      style={{
-        borderLeftColor: borderColor,
-      }}
       onClick={handleCardClick}
     >
+      <div
+        className="absolute top-0 bottom-0 left-0 w-1.75"
+        style={{
+          backgroundColor: borderColor,
+        }}
+      ></div>
       <div className="flex flex-col gap-3 border-b border-border pb-4">
         <div className="flex items-center justify-between">
           <h3 className="text-2xl font-sans font-bold text-foreground tracking-tight">

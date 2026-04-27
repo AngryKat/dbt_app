@@ -41,7 +41,7 @@ export function SelectedEmotions({
   onClearAll,
 }: SelectedEmotionsProps) {
   return (
-    <div className="border-b border-border flex flex-col gap-3 sticky -top-[14px] left-0 right-0 z-10 bg-background px-2 py-4">
+    <div className="border-b border-border flex flex-col gap-3 sticky -top-[14px] left-0 right-0 z-10 bg-background px-2 pt-4">
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-muted-foreground font-body">
           Selected ({selectedEmotions.length}):
@@ -53,7 +53,7 @@ export function SelectedEmotions({
           Clear all
         </button>
       </div>
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 -mx-4 px-4 hide-scrollbar">
+      <div className="flex items-center gap-2 overflow-x-auto -mx-4 px-4 hide-scrollbar pb-3">
         {selectedEmotions.map((emotionId) => {
           const emotionData = findEmotionById(emotionId);
           if (!emotionData) return null;
