@@ -73,7 +73,7 @@ export function Emotions() {
     <div className="relative h-screen flex flex-col overflow-hidden m-[-14px]">
       <header
         ref={headerRef}
-        className="@container/header flex items-center gap-4 sticky top-0 left-0 right-0 border-b border-border p-4 z-10 mt-[-14px] bg-background"
+        className="@container/header flex items-center gap-4 sticky top-0 left-0 right-0 p-4 z-10 mt-[-14px] bg-background"
       >
         <BackButton backUrl="/distress-entry" />
         <div className="mr-auto grow @container">
