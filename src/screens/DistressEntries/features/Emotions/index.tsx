@@ -3,7 +3,6 @@ import { BackButton } from "@/components/ui/BackButton";
 import { EmotionCard } from "./components/EmotionCard";
 import { SelectedEmotions } from "./components/SelectedEmotions";
 import nuancedEmotions from "@/data/nuancedEmotions";
-import { SearchInput } from "@/components/ui/SearchInput";
 import { emotionColors } from "./constants/emotion-color-map";
 import type {
   BaseEmotion,
@@ -11,9 +10,28 @@ import type {
   NuancedEmotion,
   SelectedEmotion,
 } from "./types";
-
+import { SearchEmotionInput } from "./components/SearchEmotionInput";
+const allNuancedEmotions = Object.entries(nuancedEmotions);
+const flatNuancedEmotions = allNuancedEmotions
+  .map(([baseEmotion, nuancedEmotions]) =>
+    nuancedEmotions.map((emotion) => ({
+      ...emotion,
+      baseEmotion,
+    })),
+  )
+  .flat();
 export function Emotions() {
-  const [searchTerm, setSearchTerm] = React.useState("");
+  const [searchedEmotions, setSearchedEmotions] = React.useState<
+    {
+      baseEmotion: string;
+      id: string;
+      label: string;
+      description: string;
+      feelsLike: string;
+      thinking: string;
+      check: string;
+    }[]
+  >(flatNuancedEmotions);
   const [selectedEmotions, setSelectedEmotions] = React.useState<
     Record<Emotion, SelectedEmotion>
   >({} as Record<Emotion, SelectedEmotion>);
@@ -21,24 +39,17 @@ export function Emotions() {
   const h2AboveViewport = !!h2HeaderText;
 
   const headerRef = React.useRef<HTMLElement>(null);
-  const allNuancedEmotions = Object.entries(nuancedEmotions);
 
-  React.useEffect(() => {
-    if (!searchTerm) return;
-    const timer = setTimeout(() => {
-      const term = searchTerm.toLowerCase();
-      const allCards = document.querySelectorAll<HTMLElement>(
-        "[data-emotion-label]",
-      );
-      for (const card of allCards) {
-        if (card.dataset.emotionLabel?.toLowerCase().includes(term)) {
-          card.scrollIntoView({ behavior: "smooth", block: "center" });
-          break;
-        }
-      }
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [searchTerm]);
+  const onSearch = (searchTerm: string) => {
+    if (!searchTerm) {
+      setSearchedEmotions(flatNuancedEmotions);
+      return;
+    }
+    const foundEmotions = flatNuancedEmotions.filter((emotion) =>
+      emotion.label.toLowerCase().includes(searchTerm),
+    );
+    setSearchedEmotions(foundEmotions);
+  };
 
   React.useEffect(() => {
     const headerHeight = headerRef.current?.offsetHeight ?? 0;
@@ -92,16 +103,7 @@ export function Emotions() {
           </div>
         </div>
         <div>
-          <SearchInput
-            classNames={{
-              inputGroup:
-                "overflow-hidden @min-md/header:w-[200px] w-0 focus-within:w-[200px]  transition-width duration-400 ease-out",
-            }}
-            id="search-emotions-input"
-            placeholder="Search emotion"
-            value={searchTerm}
-            onChange={setSearchTerm}
-          />
+          <SearchEmotionInput onSearch={onSearch} />
         </div>
       </header>
       <main className="flex-1 flex flex-col overflow-y-auto px-[14px] py-6 relative">
@@ -118,21 +120,22 @@ export function Emotions() {
             setSelectedEmotions({} as Record<Emotion, SelectedEmotion>)
           }
         />
-        {allNuancedEmotions.map(([baseEmotion, nuancedEmotions]) => (
-          <React.Fragment key={baseEmotion}>
-            <h2
-              data-emotion-heading="true"
-              className="text-4xl capitalize py-6 font-heading font-black text-foreground tracking-tight"
-            >
-              {baseEmotion}
-            </h2>
+        <div className="max-w-[80ch] mx-auto w-full">
+          {searchedEmotions.map(({ id, baseEmotion, ...nuancedEmotion }) => {
+            const selected = id in selectedEmotions;
+            const borderColor =
+              emotionColors[baseEmotion as BaseEmotion]?.[500] || "gray";
+            return (
+              <React.Fragment key={id}>
+                {/* <h2
+                data-emotion-heading="true"
+                className="text-4xl capitalize py-6 font-heading font-black text-foreground tracking-tight"
+              >
+                {baseEmotion}
+              </h2> */}
 
-            <div className="grid gap-5 px-2">
-              {nuancedEmotions.map(({ id, ...nuancedEmotion }) => {
-                const selected = id in selectedEmotions;
-                const borderColor =
-                  emotionColors[baseEmotion as BaseEmotion]?.[500] || "gray";
-                return (
+                <div className="grid gap-5 px-2">
+                  {/* {nuancedEmotions.map(({ id, ...nuancedEmotion }) => { */}
                   <div key={id} data-emotion-label={id as NuancedEmotion}>
                     <EmotionCard
                       {...nuancedEmotion}
@@ -156,11 +159,13 @@ export function Emotions() {
                       }}
                     />
                   </div>
-                );
-              })}
-            </div>
-          </React.Fragment>
-        ))}
+                  {/* ); */}
+                  {/* })} */}
+                </div>
+              </React.Fragment>
+            );
+          })}
+        </div>
       </main>
     </div>
   );
