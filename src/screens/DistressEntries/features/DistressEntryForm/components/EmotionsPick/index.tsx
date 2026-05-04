@@ -19,7 +19,7 @@ import {
 } from "@/components/shadcn/combobox";
 import { emotions as emotionsData } from "@/data";
 
-interface Emotion {
+interface BaseEmotion {
   id: string;
   label: string;
   category: string;
@@ -39,7 +39,7 @@ const emotionCategoryMap: Record<string, string> = {
   shame: "Shame",
 };
 
-const EMOTIONS_DATA: Emotion[] = Object.values(emotionsData).flatMap(
+const EMOTIONS_DATA: BaseEmotion[] = Object.values(emotionsData).flatMap(
   (emotionData, index) => {
     const categoryKey = Object.keys(emotionCategoryMap)[index];
     const category = emotionCategoryMap[categoryKey];
@@ -89,7 +89,7 @@ export function EmotionsPick({ value, onChange }: EmotionsPickProps) {
   };
 
   // Flexible search with multiple strategies
-  const matchesSearch = (emotion: Emotion, searchTerm: string): boolean => {
+  const matchesSearch = (emotion: BaseEmotion, searchTerm: string): boolean => {
     const term = searchTerm.toLowerCase().trim();
     if (!term) return true;
 

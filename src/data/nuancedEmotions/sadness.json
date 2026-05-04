@@ -1,0 +1,258 @@
+[
+  {
+    "id": "sadness",
+    "label": "Sadness",
+    "description": "General feeling of loss, hurt, or heaviness.",
+    "feelsLike": "Heaviness, softness, sinking.",
+    "thinking": "Something feels painful.",
+    "check": "Do I feel down or tender?"
+  },
+  {
+    "id": "despair",
+    "label": "Despair",
+    "description": "Sadness with hopelessness.",
+    "feelsLike": "Dark \"nothing can improve.\"",
+    "thinking": "What's the point?",
+    "check": "Is hopelessness central?"
+  },
+  {
+    "id": "grief",
+    "label": "Grief",
+    "description": "Sadness related to meaningful loss (person, dream, identity, phase of life).",
+    "feelsLike": "Aching absence.",
+    "thinking": "I miss what was.",
+    "check": "Is this mourning?"
+  },
+  {
+    "id": "misery",
+    "label": "Misery",
+    "description": "Intense ongoing unhappiness or suffering.",
+    "feelsLike": "Emotional wretchedness.",
+    "thinking": "This feels awful.",
+    "check": "Does \"sad\" feel too mild?"
+  },
+  {
+    "id": "agony",
+    "label": "Agony",
+    "description": "Extreme emotional pain.",
+    "feelsLike": "Raw torment.",
+    "thinking": "This hurts unbearably.",
+    "check": "Does it feel searing?"
+  },
+  {
+    "id": "disappointment",
+    "label": "Disappointment",
+    "description": "Sadness when reality falls short of hope.",
+    "feelsLike": "Deflation.",
+    "thinking": "I hoped for more.",
+    "check": "Is this about unmet expectation?"
+  },
+  {
+    "id": "homesickness",
+    "label": "Homesickness",
+    "description": "Sadness mixed with longing for home, familiarity, belonging.",
+    "feelsLike": "Aching nostalgia.",
+    "thinking": "I want to be where I feel held.",
+    "check": "Is this longing for home or rootedness?"
+  },
+  {
+    "id": "neglect",
+    "label": "Neglect",
+    "description": "Feeling unseen, uncared for, emotionally overlooked.",
+    "feelsLike": "Emptiness, invisibility.",
+    "thinking": "No one notices my needs.",
+    "check": "Is hurt coming from being uncared for?"
+  },
+  {
+    "id": "alienation",
+    "label": "Alienation",
+    "description": "Feeling estranged or cut off from others.",
+    "feelsLike": "Separation, not fitting.",
+    "thinking": "I'm outside of belonging.",
+    "check": "Is disconnection central?"
+  },
+  {
+    "id": "discontentment",
+    "label": "Discontentment",
+    "description": "Low-grade dissatisfaction tinged with sadness.",
+    "feelsLike": "Quiet \"something is missing.\"",
+    "thinking": "This isn't fulfilling.",
+    "check": "Is it more unsettled than deeply sad?"
+  },
+  {
+    "id": "pity",
+    "label": "Pity",
+    "description": "Sadness or tenderness for suffering (your own or another's).",
+    "feelsLike": "Sorrowful concern.",
+    "thinking": "That's painful.",
+    "check": "Is this compassionate sadness?"
+  },
+  {
+    "id": "anguish",
+    "label": "Anguish",
+    "description": "Deep distress; sorrow mixed with torment.",
+    "feelsLike": "Wrenching emotional pain.",
+    "thinking": "I can barely bear this.",
+    "check": "Is the sadness acute and agonizing?"
+  },
+  {
+    "id": "dismay",
+    "label": "Dismay",
+    "description": "Sadness mixed with alarm or discouragement.",
+    "feelsLike": "Sinking disheartenment.",
+    "thinking": "Oh no…",
+    "check": "Is there sadness plus troubled surprise?"
+  },
+  {
+    "id": "hurt",
+    "label": "Hurt",
+    "description": "Emotional pain from being wounded, often relationally.",
+    "feelsLike": "Tenderness, sting.",
+    "thinking": "That hurt me.",
+    "check": "Is pain from injury or betrayal central?"
+  },
+  {
+    "id": "rejection",
+    "label": "Rejection",
+    "description": "Pain of being excluded, dismissed, unwanted.",
+    "feelsLike": "Aching personal wound.",
+    "thinking": "I wasn't chosen.",
+    "check": "Is this sadness about not being accepted?"
+  },
+  {
+    "id": "crushed",
+    "label": "Crushed",
+    "description": "Feeling emotionally flattened by disappointment, loss, or rejection.",
+    "feelsLike": "Collapse.",
+    "thinking": "I'm devastated.",
+    "check": "Does it feel like something in me got broken?"
+  },
+  {
+    "id": "displeasure",
+    "label": "Displeasure",
+    "description": "Mild dissatisfaction or unhappiness.",
+    "feelsLike": "Subtle negative feeling.",
+    "thinking": "I don't like this.",
+    "check": "Is this only mild unhappiness?"
+  },
+  {
+    "id": "insecurity",
+    "label": "Insecurity",
+    "description": "Sadness/fear around inadequacy or not feeling safe in oneself or relationships.",
+    "feelsLike": "Vulnerability, self-doubt.",
+    "thinking": "Maybe I'm not enough.",
+    "check": "Is the sadness tied to self-worth or uncertainty?"
+  },
+  {
+    "id": "sorrow",
+    "label": "Sorrow",
+    "description": "Deep, dignified sadness; often grief-like.",
+    "feelsLike": "Solemn ache.",
+    "thinking": "There is deep sadness here.",
+    "check": "Does it feel profound but not chaotic?"
+  },
+  {
+    "id": "defeat",
+    "label": "Defeat",
+    "description": "Sadness of giving up or feeling beaten.",
+    "feelsLike": "Collapsed effort.",
+    "thinking": "I've lost.",
+    "check": "Is discouragement central?"
+  },
+  {
+    "id": "distraught",
+    "label": "Distraught",
+    "description": "Deeply upset and emotionally disorganized.",
+    "feelsLike": "Grief plus overwhelm.",
+    "thinking": "I'm beside myself.",
+    "check": "Is sadness throwing me off balance?"
+  },
+  {
+    "id": "disconnected",
+    "label": "Disconnected",
+    "description": "Feeling emotionally cut off from self, others, or life.",
+    "feelsLike": "Distance, numb separation.",
+    "thinking": "I can't reach anything.",
+    "check": "Does sadness show up as absence?"
+  },
+  {
+    "id": "suffering",
+    "label": "Suffering",
+    "description": "Broad experience of ongoing pain (emotional or more).",
+    "feelsLike": "Burdened hurting.",
+    "thinking": "This is hard to bear.",
+    "check": "Does this feel bigger than a single emotion?"
+  },
+  {
+    "id": "dejection",
+    "label": "Dejection",
+    "description": "Discouraged, low-spirited sadness.",
+    "feelsLike": "Drooping inside.",
+    "thinking": "I feel deflated.",
+    "check": "Is this subdued discouragement?"
+  },
+  {
+    "id": "gloom",
+    "label": "Gloom",
+    "description": "Dark, heavy mood.",
+    "feelsLike": "Clouded sadness.",
+    "thinking": "Everything feels dim.",
+    "check": "Is this mood-like heaviness?"
+  },
+  {
+    "id": "loneliness",
+    "label": "Loneliness",
+    "description": "Sadness from lacking meaningful connection.",
+    "feelsLike": "Aching aloneness.",
+    "thinking": "I feel alone.",
+    "check": "Is connection what feels missing?"
+  },
+  {
+    "id": "unhappiness",
+    "label": "Unhappiness",
+    "description": "General non-wellbeing; broad sadness or dissatisfaction.",
+    "feelsLike": "Not okay overall.",
+    "thinking": "I'm not happy.",
+    "check": "Is it broad and nonspecific?"
+  },
+  {
+    "id": "depression",
+    "label": "Depression",
+    "description": "Heavy low mood, numbness, hopelessness, or emptiness (can be an emotion word or a clinical condition, depending context).",
+    "feelsLike": "Weighted down or emotionally blunted.",
+    "thinking": "Everything feels hard.",
+    "check": "Does this feel persistent and pervasive?"
+  },
+  {
+    "id": "glumness",
+    "label": "Glumness",
+    "description": "Dull, subdued gloom.",
+    "feelsLike": "Quietly downcast.",
+    "thinking": "I feel kind of bleak.",
+    "check": "Is this softer than gloom?"
+  },
+  {
+    "id": "melancholy",
+    "label": "Melancholy",
+    "description": "Reflective, wistful sadness; sometimes bittersweet.",
+    "feelsLike": "Gentle ache.",
+    "thinking": "There's beauty and sadness here.",
+    "check": "Is this tender rather than crushing?"
+  },
+  {
+    "id": "alone",
+    "label": "Alone",
+    "description": "Feeling by yourself emotionally or physically.",
+    "feelsLike": "Solitude that may hurt.",
+    "thinking": "It's just me.",
+    "check": "Is this loneliness specifically?"
+  },
+  {
+    "id": "woe",
+    "label": "Woe",
+    "description": "Old-fashioned word for deep sorrow or trouble-laden sadness.",
+    "feelsLike": "Burdened sorrow.",
+    "thinking": "I feel full of sorrow.",
+    "check": "Does it feel poetic, weighty, grief-like?"
+  }
+]

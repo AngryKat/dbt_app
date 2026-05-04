@@ -32,6 +32,7 @@ const RAW_RUNTIME_STATE =
           ["@eslint/js", "npm:9.39.4"],\
           ["@fontsource-variable/geist", "npm:5.2.8"],\
           ["@fontsource-variable/ibm-plex-sans", "npm:5.2.8"],\
+          ["@fontsource/ibm-plex-sans", "npm:5.2.8"],\
           ["@tailwindcss/typography", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:0.5.19"],\
           ["@tailwindcss/vite", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:4.2.4"],\
           ["@testing-library/dom", "npm:10.4.1"],\
@@ -861,6 +862,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/@fontsource-variable-ibm-plex-sans-npm-5.2.8-6329f6db52-10c0.zip/node_modules/@fontsource-variable/ibm-plex-sans/",\
         "packageDependencies": [\
           ["@fontsource-variable/ibm-plex-sans", "npm:5.2.8"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@fontsource/ibm-plex-sans", [\
+      ["npm:5.2.8", {\
+        "packageLocation": "../../../.yarn/berry/cache/@fontsource-ibm-plex-sans-npm-5.2.8-c948c6fe63-10c0.zip/node_modules/@fontsource/ibm-plex-sans/",\
+        "packageDependencies": [\
+          ["@fontsource/ibm-plex-sans", "npm:5.2.8"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4676,6 +4686,7 @@ const RAW_RUNTIME_STATE =
           ["@eslint/js", "npm:9.39.4"],\
           ["@fontsource-variable/geist", "npm:5.2.8"],\
           ["@fontsource-variable/ibm-plex-sans", "npm:5.2.8"],\
+          ["@fontsource/ibm-plex-sans", "npm:5.2.8"],\
           ["@tailwindcss/typography", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:0.5.19"],\
           ["@tailwindcss/vite", "virtual:00c9ca97d807e29cfb37ea8d981c48a8bf5c96c759239c40c455a63f253c5cd7244ce362b9d6ce37d0b88ecb6820090683d7dc1f950b4839a6416c49cac6cb1f#npm:4.2.4"],\
           ["@testing-library/dom", "npm:10.4.1"],\

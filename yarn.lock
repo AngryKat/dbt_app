@@ -594,6 +594,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource/ibm-plex-sans@npm:^5.2.8":
+  version: 5.2.8
+  resolution: "@fontsource/ibm-plex-sans@npm:5.2.8"
+  checksum: 10c0/3cdb45d9dd54f9b4ec0d5912215bbc5ef5a89cea99cc28d46fa5cf6ebee457f94183f42be5994b61b6cdacec0fe67d697b6642678823dc0cc7e7b58180e86211
+  languageName: node
+  linkType: hard
+
 "@hono/node-server@npm:^1.19.9":
   version: 1.19.14
   resolution: "@hono/node-server@npm:1.19.14"
@@ -3470,6 +3477,7 @@ __metadata:
     "@eslint/js": "npm:^9.39.4"
     "@fontsource-variable/geist": "npm:^5.2.8"
     "@fontsource-variable/ibm-plex-sans": "npm:^5.2.8"
+    "@fontsource/ibm-plex-sans": "npm:^5.2.8"
     "@tailwindcss/typography": "npm:^0.5.19"
     "@tailwindcss/vite": "npm:^4.2.4"
     "@testing-library/dom": "npm:^10.4.1"
