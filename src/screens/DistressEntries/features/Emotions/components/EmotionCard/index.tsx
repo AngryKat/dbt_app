@@ -10,7 +10,6 @@ type OptionalProps = Partial<{
   children: ReactNode;
   selected: boolean;
   onSelect: (id: NuancedEmotion) => void;
-  borderColor: string;
 }>;
 
 type EmotionCardProps = {
@@ -31,7 +30,6 @@ export function EmotionCard({
   check,
   selected = false,
   onSelect,
-  borderColor,
 }: EmotionCardProps) {
   const selectButtonRef = useRef<HTMLButtonElement>(null);
   const handleCardClick = useClickDelegation(() => {
