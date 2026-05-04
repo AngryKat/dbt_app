@@ -36,20 +36,26 @@ export function SelectedEmotions({
         </button>
       </div>
       <div className="flex items-center gap-2 overflow-x-auto -mx-4 px-4 hide-scrollbar pb-3">
-        {selectedEmotions.map((selectedEmotion) => {
-          const { emotion, baseEmotion } = selectedEmotion;
-          const colorScheme = emotionColors[baseEmotion];
-          return (
-            <SelectedEmotion
-              key={emotion}
-              onRemoveEmotion={onRemoveEmotion}
-              onClick={() => handleScrollToEmotion(emotion)}
-              baseEmotion={baseEmotion}
-              emotion={emotion}
-              colorScheme={colorScheme}
-            />
-          );
-        })}
+        {selectedEmotions.length ? (
+          selectedEmotions.map((selectedEmotion) => {
+            const { emotion, baseEmotion } = selectedEmotion;
+            const colorScheme = emotionColors[baseEmotion];
+            return (
+              <SelectedEmotion
+                key={emotion}
+                onRemoveEmotion={onRemoveEmotion}
+                onClick={() => handleScrollToEmotion(emotion)}
+                baseEmotion={baseEmotion}
+                emotion={emotion}
+                colorScheme={colorScheme}
+              />
+            );
+          })
+        ) : (
+          <p className="text-sm text-muted-foreground italic">
+            No emotions selected
+          </p>
+        )}
       </div>
     </div>
   );
