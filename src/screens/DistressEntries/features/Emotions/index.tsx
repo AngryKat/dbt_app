@@ -1,35 +1,45 @@
 import React from "react";
 import { BackButton } from "@/components/ui/BackButton";
 import { EmotionCard } from "./components/EmotionCard";
+import { SelectedEmotions } from "./components/SelectedEmotions";
 import nuancedEmotions from "@/data/nuancedEmotions";
-import { SearchInput } from "@/components/ui/SearchInput";
-import { emotionColors } from "./constants/emotion-color-map";
-
+import type {
+  BaseEmotion,
+  Emotion,
+  NuancedEmotion,
+  SelectedEmotion,
+} from "./types";
+import { SearchEmotionInput } from "./components/SearchEmotionInput";
+const allNuancedEmotions = Object.entries(nuancedEmotions);
+const flatNuancedEmotions = allNuancedEmotions
+  .map(([baseEmotion, nuancedEmotions]) =>
+    nuancedEmotions.map((emotion) => ({
+      ...emotion,
+      baseEmotion,
+    })),
+  )
+  .flat();
 export function Emotions() {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [selectedEmotions, setSelectedEmotions] = React.useState<string[]>([]);
+  const [searchedEmotions, setSearchedEmotions] =
+    React.useState<typeof flatNuancedEmotions>(flatNuancedEmotions);
+  const [selectedEmotions, setSelectedEmotions] = React.useState<
+    Record<Emotion, SelectedEmotion>
+  >({} as Record<Emotion, SelectedEmotion>);
   const [h2HeaderText, setH2HeaderText] = React.useState("");
   const h2AboveViewport = !!h2HeaderText;
 
   const headerRef = React.useRef<HTMLElement>(null);
-  const allEmotions = Object.entries(nuancedEmotions);
 
-  React.useEffect(() => {
-    if (!searchTerm) return;
-    const timer = setTimeout(() => {
-      const term = searchTerm.toLowerCase();
-      const allCards = document.querySelectorAll<HTMLElement>(
-        "[data-emotion-label]",
-      );
-      for (const card of allCards) {
-        if (card.dataset.emotionLabel?.toLowerCase().includes(term)) {
-          card.scrollIntoView({ behavior: "smooth", block: "center" });
-          break;
-        }
-      }
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [searchTerm]);
+  const onSearch = (searchTerm: string) => {
+    if (!searchTerm) {
+      setSearchedEmotions(flatNuancedEmotions);
+      return;
+    }
+    const foundEmotions = flatNuancedEmotions.filter((emotion) =>
+      emotion.label.toLowerCase().includes(searchTerm),
+    );
+    setSearchedEmotions(foundEmotions);
+  };
 
   React.useEffect(() => {
     const headerHeight = headerRef.current?.offsetHeight ?? 0;
@@ -64,7 +74,7 @@ export function Emotions() {
     <div className="relative h-screen flex flex-col overflow-hidden m-[-14px]">
       <header
         ref={headerRef}
-        className="@container/header flex items-center gap-4 sticky top-0 left-0 right-0 border-b border-border p-4 z-10 mt-[-14px] bg-background"
+        className="@container/header flex items-center gap-4 sticky top-0 left-0 right-0 p-4 z-10 mt-[-14px] bg-background"
       >
         <BackButton backUrl="/distress-entry" />
         <div className="mr-auto grow @container">
@@ -83,58 +93,60 @@ export function Emotions() {
           </div>
         </div>
         <div>
-          <SearchInput
-            classNames={{
-              inputGroup:
-                "overflow-hidden @min-md/header:w-[200px] w-0 focus-within:w-[200px]  transition-width duration-400 ease-out",
-            }}
-            id="search-emotions-input"
-            placeholder="Search emotion"
-            value={searchTerm}
-            onChange={setSearchTerm}
-          />
+          <SearchEmotionInput onSearch={onSearch} />
         </div>
       </header>
-      <main className="flex-1 flex flex-col overflow-y-auto px-[14px] py-6">
-        {allEmotions.map(([baseEmotion, nuancedEmotions]) => (
-          <React.Fragment key={baseEmotion}>
-            <h2
-              data-emotion-heading="true"
-              className="text-4xl capitalize py-6 font-heading font-black text-foreground tracking-tight"
-            >
-              {baseEmotion}
-            </h2>
-
-            <div className="grid gap-5 px-2">
-              {nuancedEmotions.map((nuancedEmotion) => {
-                const { id, label } = nuancedEmotion;
-                const selected = selectedEmotions.includes(id);
-                const borderColor =
-                  emotionColors[baseEmotion as keyof typeof emotionColors];
-                return (
-                  <div key={id} data-emotion-label={label}>
-                    <EmotionCard
-                      {...nuancedEmotion}
-                      borderColor={borderColor}
-                      selected={selected}
-                      onSelect={(emotionId) => {
-                        if (selected) {
-                          setSelectedEmotions((prev) =>
-                            prev.filter((prevId) => prevId !== emotionId),
-                          );
-                          return;
-                        }
-                        setSelectedEmotions((prev) =>
-                          Array.from(new Set([...prev, emotionId])),
-                        );
-                      }}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </React.Fragment>
-        ))}
+      <main className="flex-1 flex flex-col overflow-y-auto px-[14px]  relative">
+        <SelectedEmotions
+          selectedEmotions={Object.values(selectedEmotions)}
+          onRemoveEmotion={(emotionId) => {
+            setSelectedEmotions((prev) => {
+              const copy = { ...prev };
+              delete copy[emotionId];
+              return copy;
+            });
+          }}
+          onClearAll={() =>
+            setSelectedEmotions({} as Record<Emotion, SelectedEmotion>)
+          }
+        />
+        <div className="max-w-[90ch] mx-auto w-full py-6">
+          <div
+            className="grid gap-5 px-2"
+            style={{
+              gridTemplateColumns:
+                "repeat(auto-fill, minmax(min(30ch, 100%), 1fr))",
+              gridTemplateRows: "auto auto auto auto auto",
+            }}
+          >
+            {searchedEmotions.map(({ id, baseEmotion, ...nuancedEmotion }) => {
+              const selected = id in selectedEmotions;
+              return (
+                <EmotionCard
+                  {...nuancedEmotion}
+                  key={id}
+                  id={id as NuancedEmotion}
+                  selected={selected}
+                  onSelect={(emotionId) => {
+                    if (selected) {
+                      const copy = { ...selectedEmotions };
+                      delete copy[emotionId];
+                      setSelectedEmotions(copy);
+                      return;
+                    }
+                    setSelectedEmotions((prev) => ({
+                      ...prev,
+                      [emotionId]: {
+                        emotion: emotionId,
+                        baseEmotion: baseEmotion as BaseEmotion,
+                      },
+                    }));
+                  }}
+                />
+              );
+            })}
+          </div>
+        </div>
       </main>
     </div>
   );
