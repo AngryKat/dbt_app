@@ -106,7 +106,7 @@ export function Emotions() {
           <SearchEmotionInput onSearch={onSearch} />
         </div>
       </header>
-      <main className="flex-1 flex flex-col overflow-y-auto px-[14px] py-6 relative">
+      <main className="flex-1 flex flex-col overflow-y-auto px-[14px]  relative">
         <SelectedEmotions
           selectedEmotions={Object.values(selectedEmotions)}
           onRemoveEmotion={(emotionId) => {
@@ -120,21 +120,27 @@ export function Emotions() {
             setSelectedEmotions({} as Record<Emotion, SelectedEmotion>)
           }
         />
-        <div className="max-w-[80ch] mx-auto w-full">
-          {searchedEmotions.map(({ id, baseEmotion, ...nuancedEmotion }) => {
-            const selected = id in selectedEmotions;
-            const borderColor =
-              emotionColors[baseEmotion as BaseEmotion]?.[500] || "gray";
-            return (
-              <React.Fragment key={id}>
-                {/* <h2
+        <div className="max-w-[90ch] mx-auto w-full py-6">
+          <div
+            className="grid gap-5 px-2"
+            style={{
+              gridTemplateColumns:
+                "repeat(auto-fill, minmax(min(25ch, 100%), 1fr))",
+            }}
+          >
+            {searchedEmotions.map(({ id, baseEmotion, ...nuancedEmotion }) => {
+              const selected = id in selectedEmotions;
+              const borderColor =
+                emotionColors[baseEmotion as BaseEmotion]?.[500] || "gray";
+              return (
+                <React.Fragment key={id}>
+                  {/* <h2
                 data-emotion-heading="true"
                 className="text-4xl capitalize py-6 font-heading font-black text-foreground tracking-tight"
               >
                 {baseEmotion}
               </h2> */}
 
-                <div className="grid gap-5 px-2">
                   {/* {nuancedEmotions.map(({ id, ...nuancedEmotion }) => { */}
                   <div key={id} data-emotion-label={id as NuancedEmotion}>
                     <EmotionCard
@@ -161,10 +167,10 @@ export function Emotions() {
                   </div>
                   {/* ); */}
                   {/* })} */}
-                </div>
-              </React.Fragment>
-            );
-          })}
+                </React.Fragment>
+              );
+            })}
+          </div>
         </div>
       </main>
     </div>

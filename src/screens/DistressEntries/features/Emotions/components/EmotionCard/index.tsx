@@ -43,15 +43,9 @@ export function EmotionCard({
       className="relative overflow-hidden flex-1 border-[2px] border-border rounded-[20px] p-6 grid gap-5 shadow-sm cursor-pointer"
       onClick={handleCardClick}
     >
-      <div
-        className="absolute top-0 bottom-0 left-0 w-1.75"
-        style={{
-          backgroundColor: borderColor,
-        }}
-      ></div>
       <div className="flex flex-col gap-3 border-b border-border pb-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-2xl font-sans font-bold text-foreground tracking-tight">
+          <h3 className="text-2xl font-sans font-medium text-foreground tracking-tight">
             {label}
           </h3>
           <button

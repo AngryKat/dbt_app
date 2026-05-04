@@ -23,7 +23,7 @@ export function SelectedEmotions({
     }
   };
   return (
-    <div className="border-b border-border flex flex-col gap-3 sticky -top-[14px] left-0 right-0 z-10 bg-background px-4 pt-4 -mx-[14px]">
+    <div className="border-b border-border flex flex-col gap-3 sticky top-0 left-0 right-0 z-10 bg-background px-4 pt-4 -mx-[14px]">
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-muted-foreground font-body">
           Selected ({selectedEmotions.length}):
