@@ -20,17 +20,8 @@ const flatNuancedEmotions = allNuancedEmotions
   )
   .flat();
 export function Emotions() {
-  const [searchedEmotions, setSearchedEmotions] = React.useState<
-    {
-      baseEmotion: string;
-      id: string;
-      label: string;
-      description: string;
-      feelsLike: string;
-      thinking: string;
-      check: string;
-    }[]
-  >(flatNuancedEmotions);
+  const [searchedEmotions, setSearchedEmotions] =
+    React.useState<typeof flatNuancedEmotions>(flatNuancedEmotions);
   const [selectedEmotions, setSelectedEmotions] = React.useState<
     Record<Emotion, SelectedEmotion>
   >({} as Record<Emotion, SelectedEmotion>);
