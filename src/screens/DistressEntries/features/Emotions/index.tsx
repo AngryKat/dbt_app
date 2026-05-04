@@ -3,7 +3,6 @@ import { BackButton } from "@/components/ui/BackButton";
 import { EmotionCard } from "./components/EmotionCard";
 import { SelectedEmotions } from "./components/SelectedEmotions";
 import nuancedEmotions from "@/data/nuancedEmotions";
-import { emotionColors } from "./constants/emotion-color-map";
 import type {
   BaseEmotion,
   Emotion,
@@ -125,49 +124,34 @@ export function Emotions() {
             className="grid gap-5 px-2"
             style={{
               gridTemplateColumns:
-                "repeat(auto-fill, minmax(min(25ch, 100%), 1fr))",
+                "repeat(auto-fill, minmax(min(30ch, 100%), 1fr))",
+              gridTemplateRows: "auto auto auto auto auto",
             }}
           >
             {searchedEmotions.map(({ id, baseEmotion, ...nuancedEmotion }) => {
               const selected = id in selectedEmotions;
-              const borderColor =
-                emotionColors[baseEmotion as BaseEmotion]?.[500] || "gray";
               return (
-                <React.Fragment key={id}>
-                  {/* <h2
-                data-emotion-heading="true"
-                className="text-4xl capitalize py-6 font-heading font-black text-foreground tracking-tight"
-              >
-                {baseEmotion}
-              </h2> */}
-
-                  {/* {nuancedEmotions.map(({ id, ...nuancedEmotion }) => { */}
-                  <div key={id} data-emotion-label={id as NuancedEmotion}>
-                    <EmotionCard
-                      {...nuancedEmotion}
-                      id={id as NuancedEmotion}
-                      borderColor={borderColor}
-                      selected={selected}
-                      onSelect={(emotionId) => {
-                        if (selected) {
-                          const copy = { ...selectedEmotions };
-                          delete copy[emotionId];
-                          setSelectedEmotions(copy);
-                          return;
-                        }
-                        setSelectedEmotions((prev) => ({
-                          ...prev,
-                          [emotionId]: {
-                            emotion: emotionId,
-                            baseEmotion: baseEmotion as BaseEmotion,
-                          },
-                        }));
-                      }}
-                    />
-                  </div>
-                  {/* ); */}
-                  {/* })} */}
-                </React.Fragment>
+                <EmotionCard
+                  {...nuancedEmotion}
+                  key={id}
+                  id={id as NuancedEmotion}
+                  selected={selected}
+                  onSelect={(emotionId) => {
+                    if (selected) {
+                      const copy = { ...selectedEmotions };
+                      delete copy[emotionId];
+                      setSelectedEmotions(copy);
+                      return;
+                    }
+                    setSelectedEmotions((prev) => ({
+                      ...prev,
+                      [emotionId]: {
+                        emotion: emotionId,
+                        baseEmotion: baseEmotion as BaseEmotion,
+                      },
+                    }));
+                  }}
+                />
               );
             })}
           </div>
