@@ -73,6 +73,7 @@ export function EmotionsMultiselect() {
       <PopoverContent
         className="w-[--radix-popover-trigger-width] p-0"
         align="start"
+        side="bottom"
       >
         <Command>
           <CommandInput placeholder="Search emotions..." />
