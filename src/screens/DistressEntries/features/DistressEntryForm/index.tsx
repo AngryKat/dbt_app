@@ -8,12 +8,12 @@ import { Label } from "@/components/shadcn/label";
 import {
   DateTimePick,
   StressLevelSelect,
-  EmotionsRedirectCardLink,
   SituationSelect,
   ThoughtsSelect,
   BodilyFeelingsSelect,
   BehaviorSelect,
 } from "./components";
+import { EmotionsMultiselect } from "../Emotions/components/EmotionsMultiselect";
 
 type DistressEntryFormData = {
   date: Date;
@@ -96,7 +96,12 @@ export function DistressEntryForm() {
         />
       </div>
       {/* Emotions */}
-      <EmotionsRedirectCardLink />
+      <div className="grid w-full gap-2">
+        <Label htmlFor="emotions" className="text-base">
+          What are your emotions?
+        </Label>
+        <EmotionsMultiselect />
+      </div>
       {/* <div className="grid w-full gap-2">
         <Label className="text-base">Emotions</Label>
         <EmotionsRedirectCardLink />

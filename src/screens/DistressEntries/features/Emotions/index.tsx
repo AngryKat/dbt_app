@@ -9,7 +9,6 @@ import type {
   NuancedEmotion,
   SelectedEmotion,
 } from "./types";
-import { SearchEmotionInput } from "./components/SearchEmotionInput";
 const allNuancedEmotions = Object.entries(nuancedEmotions);
 const flatNuancedEmotions = allNuancedEmotions
   .map(([baseEmotion, nuancedEmotions]) =>
@@ -91,9 +90,6 @@ export function Emotions() {
               </h2>
             )}
           </div>
-        </div>
-        <div>
-          <SearchEmotionInput onSearch={onSearch} />
         </div>
       </header>
       <main className="flex-1 flex flex-col overflow-y-auto px-[14px]  relative">
