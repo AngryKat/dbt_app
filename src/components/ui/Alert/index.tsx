@@ -10,6 +10,7 @@ import {
   OctagonAlert,
   TriangleAlert,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type Variant = "default" | "destructive" | "success" | "warning" | "info";
 
@@ -47,9 +48,14 @@ export function Alert({
   title,
   description,
   alertAction,
+  className,
+  ...props
 }: AlertProps) {
   return (
-    <ShadcnAlert className={classNameVariantMap[variant]}>
+    <ShadcnAlert
+      className={cn(classNameVariantMap[variant], className)}
+      {...props}
+    >
       {iconVariantMap[variant] /* You can change the variant here */}
       <AlertTitle>{title}</AlertTitle>
       <AlertDescription>{description}</AlertDescription>
