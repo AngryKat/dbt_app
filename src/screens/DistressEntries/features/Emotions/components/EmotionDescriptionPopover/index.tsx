@@ -13,13 +13,8 @@ type OptionalProps = Partial<{
   onSelect: (id: NuancedEmotion) => void;
 }>;
 
-type EmotionCardProps = {
+type EmotionDescriptionPopoverProps = {
   id: NuancedEmotion;
-  label: string;
-  description: string;
-  feelsLike: string;
-  thinking: string;
-  check: string;
   trigger: ReactNode;
 } & OptionalProps;
 
@@ -60,20 +55,18 @@ function Content({ feelsLike, thinking, check }) {
 }
 
 export function EmotionDescriptionPopover({
-  feelsLike,
-  thinking,
-  check,
+  id,
   trigger,
-  label,
-}: EmotionCardProps) {
+}: EmotionDescriptionPopoverProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
       <PopoverContent>
-        <article>
+        <>Hello</>
+        {/* <article>
           <h3 className="text-lg font-semibold mb-2">{label}</h3>
           <Content feelsLike={feelsLike} thinking={thinking} check={check} />
-        </article>
+        </article> */}
       </PopoverContent>
     </Popover>
   );

@@ -1,1 +1,0 @@
-export { SelectedEmotion } from "./SelectedEmotion";
