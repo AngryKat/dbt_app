@@ -16,20 +16,14 @@ import {
   PopoverTrigger,
 } from "@/components/shadcn/popover";
 import { cn } from "@/lib/utils";
-import { emotions } from "@/data";
+import nuancedEmotions from "@/data/nuancedEmotions";
+import { EmotionDescriptionPopover } from "../EmotionDescriptionPopover";
+
+const allNuancedEmotions = Object.entries(nuancedEmotions);
 
 export function EmotionsMultiselect() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState<string[]>([]);
-
-  const emotionGroups = React.useMemo(
-    () =>
-      emotions.map((group) => ({
-        emotion: group.emotion,
-        words: group.words,
-      })),
-    [],
-  );
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -70,21 +64,17 @@ export function EmotionsMultiselect() {
           <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent
-        className="w-[--radix-popover-trigger-width] p-0"
-        align="start"
-        side="bottom"
-      >
+      <PopoverContent className="p-0" align="start" side="bottom">
         <Command>
           <CommandInput placeholder="Search emotions..." />
           <CommandList>
             <CommandEmpty>No emotion found.</CommandEmpty>
-            {emotionGroups.map((group) => (
-              <CommandGroup key={group.emotion} heading={group.emotion}>
-                {group.words.map((word) => (
+            {allNuancedEmotions.map(([baseEmotion, nuancedEmotions]) => (
+              <CommandGroup key={baseEmotion} heading={baseEmotion}>
+                {nuancedEmotions.map((emotion) => (
                   <CommandItem
-                    key={word}
-                    value={word}
+                    key={emotion.id}
+                    value={emotion.label}
                     onSelect={(currentValue) =>
                       setValue((prev) =>
                         prev.includes(currentValue)
@@ -94,26 +84,31 @@ export function EmotionsMultiselect() {
                     }
                     className="flex items-center gap-2 [&>svg:last-child]:hidden"
                   >
-                    <span className="flex items-center gap-2">
+                    <span className="grid grid-cols-[auto_1fr] gap-2 items-center">
                       <Check
                         className={cn(
                           "size-4 shrink-0",
-                          value.includes(word) ? "opacity-100" : "opacity-0",
+                          value.includes(emotion.label)
+                            ? "opacity-100"
+                            : "opacity-0",
                         )}
                       />
-                      {word}
+                      <span className="font-semibold">{emotion.label}</span>
+                      <span className="col-start-2">{emotion.description}</span>
                     </span>
-                    <Button
-                      className="size-6 shrink-0 ml-auto"
-                      size="icon"
-                      variant="ghost"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        console.log("action:", word);
-                      }}
-                    >
-                      <ExternalLink className="size-4" />
-                    </Button>
+                    <EmotionDescriptionPopover
+                      {...emotion}
+                      trigger={
+                        <Button
+                          className="size-6 shrink-0 ml-auto"
+                          size="icon"
+                          variant="ghost"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ExternalLink className="size-4" />
+                        </Button>
+                      }
+                    />
                   </CommandItem>
                 ))}
               </CommandGroup>
