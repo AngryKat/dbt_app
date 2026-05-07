@@ -1,139 +1,203 @@
+export const BaseEmotionEnum = {
+  anger: 'anger',
+  disgust: 'disgust',
+  envy: 'envy',
+  fear: 'fear',
+  happiness: 'happiness',
+  jealousy: 'jealousy',
+  love: 'love',
+  sadness: 'sadness',
+  shame: 'shame',
+  guilt: 'guilt',
+} as const;
 
-export type BaseEmotion =
-  | "anger"
-  | "disgust"
-  | "fear"
-  | "sadness"
-  | "happiness"
-  | "love"
-  | "jealousy"
-  | "shame";
+export type BaseEmotionEnum = typeof BaseEmotionEnum[keyof typeof BaseEmotionEnum];
 
-export type NuancedEmotion = // Anger
-  | "aggravation"
-  | "agitation"
-  | "annoyance"
-  | "bitterness"
-  | "exasperation"
-  | "ferocity"
-  | "frustration"
-  | "fury"
-  | "grouchiness"
-  | "grumpiness"
-  | "hostility"
-  | "indignation"
-  | "irritation"
-  | "outrage"
-  | "rage"
-  | "vengefulness"
-  | "wrath"
+export type BaseEmotion = {
+  id: string;
+  key: BaseEmotionEnum;
+  label: string | null;
+  createdAt: string;
+};
+
+export const NuancedEmotionEnum = {
+  // Anger
+  anger: 'anger',
+  aggravation: 'aggravation',
+  agitation: 'agitation',
+  annoyance: 'annoyance',
+  bitterness: 'bitterness',
+  exasperation: 'exasperation',
+  ferocity: 'ferocity',
+  frustration: 'frustration',
+  fury: 'fury',
+  grouchiness: 'grouchiness',
+  grumpiness: 'grumpiness',
+  hostility: 'hostility',
+  indignation: 'indignation',
+  irritation: 'irritation',
+  outrage: 'outrage',
+  rage: 'rage',
+  vengefulness: 'vengefulness',
+  wrath: 'wrath',
   // Disgust
-  | "abhorrence"
-  | "antipathy"
-  | "aversion"
-  | "condescension"
-  | "contempt"
-  | "dislike"
-  | "derision"
-  | "disdain"
-  | "distaste"
-  | "hate"
-  | "loathing"
-  | "repugnance"
+  disgust: 'disgust',
+  abhorrence: 'abhorrence',
+  antipathy: 'antipathy',
+  aversion: 'aversion',
+  condescension: 'condescension',
+  contempt: 'contempt',
+  dislike: 'dislike',
+  derision: 'derision',
+  disdain: 'disdain',
+  distaste: 'distaste',
+  hate: 'hate',
+  loathing: 'loathing',
+  repugnance: 'repugnance',
+  repelled: 'repelled',
+  repulsion: 'repulsion',
+  resentment: 'resentment',
+  revolted: 'revolted',
+  scorn: 'scorn',
+  sickened: 'sickened',
+  spite: 'spite',
+  vile: 'vile',
   // Fear
-  | "anxiety"
-  | "apprehension"
-  | "dread"
-  | "edginess"
-  | "fright"
-  | "horror"
-  | "hysteria"
-  | "jumpiness"
-  | "nervousness"
-  | "overwhelmed"
-  | "panic"
-  | "shock"
+  fear: 'fear',
+  anxiety: 'anxiety',
+  apprehension: 'apprehension',
+  dread: 'dread',
+  edginess: 'edginess',
+  fright: 'fright',
+  horror: 'horror',
+  hysteria: 'hysteria',
+  jumpiness: 'jumpiness',
+  nervousness: 'nervousness',
+  overwhelmed: 'overwhelmed',
+  panic: 'panic',
+  shock: 'shock',
+  tenseness: 'tenseness',
+  terror: 'terror',
+  uneasiness: 'uneasiness',
+  worry: 'worry',
   // Happiness
-  | "joy"
-  | "enjoyment"
-  | "relief"
-  | "amusement"
-  | "enthrallment"
-  | "hope"
-  | "satisfaction"
-  | "bliss"
-  | "enthusiasm"
-  | "jolliness"
-  | "thrill"
-  | "cheerfulness"
+  happiness: 'happiness',
+  joy: 'joy',
+  enjoyment: 'enjoyment',
+  relief: 'relief',
+  amusement: 'amusement',
+  enthrallment: 'enthrallment',
+  hope: 'hope',
+  satisfaction: 'satisfaction',
+  bliss: 'bliss',
+  enthusiasm: 'enthusiasm',
+  jolliness: 'jolliness',
+  thrill: 'thrill',
+  cheerfulness: 'cheerfulness',
+  euphoria: 'euphoria',
+  joviality: 'joviality',
+  triumph: 'triumph',
+  contentment: 'contentment',
+  excitement: 'excitement',
+  jubilation: 'jubilation',
+  zaniness: 'zaniness',
+  delight: 'delight',
+  exhilaration: 'exhilaration',
+  optimism: 'optimism',
+  zest: 'zest',
+  eagerness: 'eagerness',
   // Sadness
-  | "despair"
-  | "grief"
-  | "misery"
-  | "agony"
-  | "disappointment"
-  | "homesickness"
-  | "neglect"
-  | "alienation"
-  | "discontentment"
-  | "pity"
-  | "anguish"
-  | "dismay"
-  // Love
-  | "adoration"
-  | "affection"
-  | "arousal"
-  | "attraction"
-  | "caring"
-  | "charmed"
-  | "compassion"
-  | "desire"
-  | "enchantment"
-  | "fondness"
-  | "infatuation"
-  | "kindness"
-  | "liking"
-  | "limerence"
-  | "longing"
-  | "lust"
-  | "passion"
-  | "sentimentality"
-  | "sympathy"
-  | "tenderness"
-  | "warmth"
-  // Jealousy
-  | "jealous"
-  | "cautious"
-  | "clinging"
-  | "clutching"
-  | "defensive"
-  | "mistrustful"
-  | "fear-of-loss"
-  | "possessive"
-  | "rivalrous"
-  | "suspicious"
-  | "self-protective"
-  | "wary"
-  | "watchful"
+  sadness: 'sadness',
+  despair: 'despair',
+  grief: 'grief',
+  misery: 'misery',
+  agony: 'agony',
+  disappointment: 'disappointment',
+  homesickness: 'homesickness',
+  neglect: 'neglect',
+  alienation: 'alienation',
+  discontentment: 'discontentment',
+  pity: 'pity',
+  anguish: 'anguish',
+  dismay: 'dismay',
+  hurt: 'hurt',
+  rejection: 'rejection',
+  crushed: 'crushed',
+  displeasure: 'displeasure',
+  insecurity: 'insecurity',
+  sorrow: 'sorrow',
+  defeat: 'defeat',
+  distraught: 'distraught',
+  disconnected: 'disconnected',
+  suffering: 'suffering',
+  dejection: 'dejection',
+  gloom: 'gloom',
+  loneliness: 'loneliness',
+  unhappiness: 'unhappiness',
+  depression: 'depression',
+  glumness: 'glumness',
+  melancholy: 'melancholy',
+  alone: 'alone',
   // Shame
-  | "contrition"
-  | "culpability"
-  | "discomposure"
-  | "embarrassment"
-  | "humiliation"
-  | "mortification"
-  | "self-consciousness"
-  | "shyness";
+  shame: 'shame',
+  contrition: 'contrition',
+  culpability: 'culpability',
+  discomposure: 'discomposure',
+  embarrassment: 'embarrassment',
+  humiliation: 'humiliation',
+  mortification: 'mortification',
+  selfConsciousness: 'self-consciousness',
+  shyness: 'shyness',
+  // Love
+  love: 'love',
+  adoration: 'adoration',
+  affection: 'affection',
+  arousal: 'arousal',
+  attraction: 'attraction',
+  caring: 'caring',
+  charmed: 'charmed',
+  compassion: 'compassion',
+  desire: 'desire',
+  enchantment: 'enchantment',
+  fondness: 'fondness',
+  infatuation: 'infatuation',
+  kindness: 'kindness',
+  liking: 'liking',
+  limerence: 'limerence',
+  longing: 'longing',
+  lust: 'lust',
+  passion: 'passion',
+  sentimentality: 'sentimentality',
+  sympathy: 'sympathy',
+  tenderness: 'tenderness',
+  warmth: 'warmth',
+  // Jealousy
+  jealous: 'jealous',
+  cautious: 'cautious',
+  clinging: 'clinging',
+  clutching: 'clutching',
+  defensive: 'defensive',
+  mistrustful: 'mistrustful',
+  fearOfLoss: 'fear-of-loss',
+  possessive: 'possessive',
+  rivalrous: 'rivalrous',
+  suspicious: 'suspicious',
+  selfProtective: 'self-protective',
+  wary: 'wary',
+  watchful: 'watchful',
+} as const;
 
-export type Emotion = BaseEmotion | NuancedEmotion;
+export type NuancedEmotionEnum = typeof NuancedEmotionEnum[keyof typeof NuancedEmotionEnum];
 
-export type ColorScheme = {
-  100: string;
-  200: string;
-  500: string;
+export type NuancedEmotion = {
+  id: string;
+  key: NuancedEmotionEnum;
+  label: string | null;
+  description: string | null;
+  feelsLike: string | null;
+  thinking: string | null;
+  check: string | null;
+  baseEmotion?: string | null | Partial<BaseEmotion>;
 };
 
-export type SelectedEmotion = {
-  emotion: Emotion;
-  baseEmotion: BaseEmotion;
-};
+export type EmotionsOptions = Record<BaseEmotionEnum, { baseEmotionLabel: string, emotions: Pick<NuancedEmotion, "description" | "id" | "label">[] }>;
