@@ -56,7 +56,7 @@ export function Alert({
       className={cn(classNameVariantMap[variant], className)}
       {...props}
     >
-      {iconVariantMap[variant] /* You can change the variant here */}
+      {iconVariantMap[variant]}
       <AlertTitle>{title}</AlertTitle>
       <AlertDescription>{description}</AlertDescription>
       {alertAction && <AlertAction>{alertAction}</AlertAction>}
