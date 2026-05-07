@@ -36,7 +36,11 @@ export function EmotionsMultiselect() {
           )}
         />
       </PopoverTrigger>
-      <PopoverContent className="p-0" align="start" side="bottom">
+      <PopoverContent
+        className="p-0 min-w-[clamp(12.5rem,2.484rem+40.064vw,28.125rem)]"
+        align="start"
+        side="bottom"
+      >
         <Command>
           <CommandInput placeholder="Search emotions..." />
           <EmotionsOptionsList

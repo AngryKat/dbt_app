@@ -28,26 +28,13 @@ export function EmotionDescriptionPopover({
   label,
   trigger,
 }: EmotionDescriptionPopoverProps) {
-  const { data, isLoading, isError } = useNuancedEmotionDetails(id);
-  const { feelsLike = "", thinking = "", check = "" } = data || {};
   return (
     <Popover>
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
       <PopoverContent>
         <article>
           <h3 className="text-lg font-semibold mb-2">{label}</h3>
-
-          {isError ? (
-            <Alert title="Error occurred" variant="destructive" />
-          ) : isLoading ? (
-            <Loader label="Loading details" />
-          ) : (
-            <EmotionDescriptionPopoverContent
-              feelsLike={feelsLike}
-              thinking={thinking}
-              check={check}
-            />
-          )}
+          <EmotionDescriptionPopoverContent id={id} />
         </article>
       </PopoverContent>
     </Popover>
