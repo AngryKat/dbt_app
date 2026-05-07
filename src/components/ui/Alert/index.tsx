@@ -5,37 +5,42 @@ import {
   AlertTitle,
 } from "@/components/shadcn/alert";
 import {
-  CircleCheckBig,
+  CheckCheckIcon,
   InfoIcon,
   OctagonAlert,
   TriangleAlert,
 } from "lucide-react";
 
-type Variant =
-  | "default"
-  | "destructive"
-  | "outline"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "info";
+type Variant = "default" | "destructive" | "success" | "warning" | "info";
 
 const iconVariantMap: Record<Variant, React.ReactNode> = {
   default: null,
   destructive: <OctagonAlert />,
-  outline: null,
-  secondary: null,
-  success: <CircleCheckBig />,
+  success: <CheckCheckIcon />,
   warning: <TriangleAlert />,
   info: <InfoIcon />,
 };
 
+const classNameVariantMap: Record<Variant, string> = {
+  default: "",
+  destructive: "bg-destructive/10 text-destructive border-none",
+  success:
+    "border-none bg-green-600/10 text-green-600 dark:bg-green-400/10 dark:text-green-400",
+  warning:
+    "border-none bg-amber-600/10 text-amber-600 dark:bg-amber-400/10 dark:text-amber-400",
+  info: "border-none bg-sky-600/10 text-sky-600 dark:bg-sky-400/10 dark:text-sky-400",
+};
+
+type OptionalProps = Partial<{
+  variant: Variant;
+  description: string;
+  alertAction: React.ReactNode;
+}>;
+
 type AlertProps = {
-  variant?: Variant;
   title: string;
-  description?: string;
-  alertAction?: React.ReactNode;
-} & React.ComponentProps<typeof ShadcnAlert>;
+} & OptionalProps &
+  React.ComponentProps<typeof ShadcnAlert>;
 
 export function Alert({
   variant = "default",
@@ -44,7 +49,7 @@ export function Alert({
   alertAction,
 }: AlertProps) {
   return (
-    <ShadcnAlert>
+    <ShadcnAlert className={classNameVariantMap[variant]}>
       {iconVariantMap[variant] /* You can change the variant here */}
       <AlertTitle>{title}</AlertTitle>
       <AlertDescription>{description}</AlertDescription>

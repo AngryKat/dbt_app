@@ -6,9 +6,9 @@ import {
   PopoverTrigger,
 } from "@/components/shadcn/popover";
 import { useNuancedEmotionDetails } from "../../hooks/useNuancedEmotionDetails";
-import { Spinner } from "@/components/shadcn/spinner";
 import { Alert } from "@/components/ui/Alert";
 import { EmotionDescriptionPopoverContent } from "./components/EmotionDescriptionPopoverContent";
+import { Loader } from "@/components/ui/Loader";
 
 type OptionalProps = Partial<{
   icon: string;
@@ -36,10 +36,11 @@ export function EmotionDescriptionPopover({
       <PopoverContent>
         <article>
           <h3 className="text-lg font-semibold mb-2">{label}</h3>
+
           {isError ? (
             <Alert title="Error occurred" variant="destructive" />
           ) : isLoading ? (
-            <Spinner />
+            <Loader label="Loading details" />
           ) : (
             <EmotionDescriptionPopoverContent
               feelsLike={feelsLike}

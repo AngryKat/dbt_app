@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { EmotionDescriptionPopover } from "../../EmotionDescriptionPopover";
 import { useEmotionsOptions } from "../../../hooks/useEmotionsOptions";
 import { Spinner } from "@/components/shadcn/spinner";
+import { Loader } from "@/components/ui/Loader";
 
 export function EmotionsOptionsList({
   value,
@@ -26,7 +27,7 @@ export function EmotionsOptionsList({
         {isError ? (
           "Error while getting options"
         ) : isLoading ? (
-          <Spinner />
+          <Loader label="Loading emotions list" />
         ) : (
           "No emotion found."
         )}
@@ -41,7 +42,7 @@ export function EmotionsOptionsList({
                 onSelect={() => {}}
                 className="flex items-center gap-2 [&>svg:last-child]:hidden"
               >
-                <span className="grid grid-cols-[auto_1fr] gap-2 items-center">
+                <span className="grid grid-cols-[auto_1fr] gap-y-1 gap-x-2 items-center">
                   <Check
                     className={cn(
                       "size-4 shrink-0",
