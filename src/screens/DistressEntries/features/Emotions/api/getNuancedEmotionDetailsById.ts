@@ -1,12 +1,14 @@
 import { supabase } from "@/api/supabase-client";
 
-export function getNuancedEmotionById(id: string) {
-  return supabase
+export async function getNuancedEmotionDetailsById(id: string) {
+  return await supabase
     .from('nuanced_emotions')
     .select(`
     id,
     label,
-    description,
+    feels_like,
+    thinking,
+    check
   `)
     .eq('id', id)
     .single();

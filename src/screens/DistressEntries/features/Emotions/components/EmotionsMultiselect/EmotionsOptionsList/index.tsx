@@ -51,8 +51,9 @@ export function EmotionsOptionsList({
                   <span className="font-semibold">{emotion.label}</span>
                   <span className="col-start-2">{emotion.description}</span>
                 </span>
-                {/* <EmotionDescriptionPopover
-                  {...emotion}
+                <EmotionDescriptionPopover
+                  id={emotion.id}
+                  label={emotion.label || ""}
                   trigger={
                     <Button
                       className="size-6 shrink-0 ml-auto"
@@ -63,7 +64,7 @@ export function EmotionsOptionsList({
                       <ExternalLink className="size-4" />
                     </Button>
                   }
-                /> */}
+                />
               </CommandItem>
             ))}
           </CommandGroup>
