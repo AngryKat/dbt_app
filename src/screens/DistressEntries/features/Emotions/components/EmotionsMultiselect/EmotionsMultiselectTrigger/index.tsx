@@ -8,7 +8,7 @@ type EmotionsMultiselectTriggerProps = {
   open: boolean;
   value: string[];
   options: EmotionsOptions | undefined;
-  onClear: (id: string) => void;
+  onClear: (e: React.MouseEvent, id: string) => void;
 } & React.ComponentPropsWithoutRef<typeof Button>;
 
 export function EmotionsMultiselectTrigger({
@@ -52,7 +52,7 @@ export function EmotionsMultiselectTrigger({
               <span
                 role="button"
                 aria-label={`Remove ${selectedOption.label}`}
-                onClick={() => onClear(selectedOption.id)}
+                onClick={(e) => onClear(e, selectedOption.id)}
                 className="cursor-pointer opacity-60 hover:opacity-100"
               >
                 <X className="size-3" />

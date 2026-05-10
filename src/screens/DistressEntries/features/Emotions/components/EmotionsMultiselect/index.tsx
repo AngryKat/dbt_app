@@ -23,7 +23,7 @@ export function EmotionsMultiselect({
   const { data, isLoading, isError } = useEmotionsOptions();
 
   const [open, setOpen] = React.useState(false);
-  const onClearButtonClick = (v: string) => (e: React.MouseEvent) => {
+  const onClearButtonClick = (e: React.MouseEvent, v: string) => {
     e.stopPropagation();
     onChange(value.filter((item) => item !== v));
   };
