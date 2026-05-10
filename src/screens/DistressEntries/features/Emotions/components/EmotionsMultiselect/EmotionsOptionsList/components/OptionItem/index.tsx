@@ -1,7 +1,7 @@
 import { Check, ExternalLink } from "lucide-react";
 
 import { Button } from "@/components/shadcn/button";
-import { CommandItem } from "@/components/shadcn/command";
+import { ComboboxItem } from "@/components/shadcn/combobox";
 import { cn } from "@/lib/utils";
 import { EmotionDescriptionPopover } from "../../../../EmotionDescriptionPopover";
 
@@ -9,29 +9,19 @@ type OptionItemProps = {
   id: string;
   label: string;
   description: string;
-  checked: boolean;
-  onSelect: (id: string) => void;
 };
 
-export function OptionItem({
-  id,
-  label,
-  checked,
-  description,
-  onSelect,
-}: OptionItemProps) {
+export function OptionItem({ id, label, description }: OptionItemProps) {
   return (
-    <CommandItem
-      key={id}
+    <ComboboxItem
       value={id}
-      onSelect={onSelect}
-      className="flex items-center gap-2 [&>svg:last-child]:hidden"
+      hideIndicator
+      className="group flex items-center gap-2"
     >
       <span className="grid grid-cols-[auto_1fr] gap-y-1 gap-x-2 items-center">
         <Check
           className={cn(
-            "size-4 shrink-0",
-            checked ? "opacity-100" : "opacity-0",
+            "size-4 shrink-0 opacity-0 group-data-[checked=true]:opacity-100",
           )}
         />
         <span className="font-semibold">{label}</span>
@@ -51,6 +41,6 @@ export function OptionItem({
           </Button>
         }
       />
-    </CommandItem>
+    </ComboboxItem>
   );
 }
