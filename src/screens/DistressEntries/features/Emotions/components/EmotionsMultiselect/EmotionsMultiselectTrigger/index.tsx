@@ -1,43 +1,56 @@
 import { ChevronsUpDown } from "lucide-react";
 
 import { Button } from "@/components/shadcn/button";
+import type { EmotionsOptions } from "../../../types";
+import React from "react";
+
+type EmotionsMultiselectTriggerProps = {
+  open: boolean;
+  value: string[];
+  options: EmotionsOptions | undefined;
+  clearButton: (v: string) => React.ReactNode;
+} & React.ComponentPropsWithoutRef<typeof Button>;
 
 export function EmotionsMultiselectTrigger({
-  open,
   value,
   clearButton,
+  options,
   ...props
-}) {
+}: EmotionsMultiselectTriggerProps) {
+  console.log({ value, options });
+  const selectedOptions = React.useMemo(() => {
+    const allEmotions = Object.values(options || {}).flatMap(
+      ({ emotions }) => emotions,
+    );
+    return value
+      .map((selectedValue) =>
+        allEmotions.find((emotion) => emotion.id === selectedValue),
+      )
+      .filter(
+        (emotion): emotion is NonNullable<typeof emotion> =>
+          emotion !== null && emotion !== undefined,
+      );
+  }, [value, options]);
+
   return (
     <Button
       {...props}
       variant="outline"
-      className="h-auto min-h-9 w-full justify-between pl-3 pr-2 py-1.5"
+      className="h-auto w-full justify-between pl-3 pr-2 py-1.5 hover:bg-transparent hover:text-current hover:opacity-100 data-[state=open]:bg-transparent data-[state=open]:text-current data-[state=open]:opacity-80"
     >
       <span className="flex flex-wrap gap-1">
-        {value.length === 0 ? (
+        {selectedOptions.length === 0 ? (
           <span className="text-muted-foreground font-normal">
             Select emotions...
           </span>
         ) : (
-          value.map((v) => (
+          selectedOptions.map((selectedOption) => (
             <span
-              key={v}
+              key={selectedOption.id}
               className="inline-flex items-center gap-1 rounded-md bg-muted px-1.5 py-0.5 text-xs font-medium"
             >
-              {v}
-              {clearButton(v)}
-              {/* <span
-                    role="button"
-                    aria-label={`Remove ${v}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setValue((prev) => prev.filter((item) => item !== v));
-                    }}
-                    className="cursor-pointer opacity-60 hover:opacity-100"
-                  >
-                    <X className="size-3" />
-                  </span> */}
+              {selectedOption.label}
+              {clearButton(selectedOption.id)}
             </span>
           ))
         )}

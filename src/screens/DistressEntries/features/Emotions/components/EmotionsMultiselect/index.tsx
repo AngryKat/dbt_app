@@ -9,13 +9,24 @@ import {
 } from "@/components/shadcn/popover";
 import { EmotionsMultiselectTrigger } from "./EmotionsMultiselectTrigger";
 import { EmotionsOptionsList } from "./EmotionsOptionsList";
+import { useEmotionsOptions } from "../../hooks/useEmotionsOptions";
+import { Loader } from "@/components/ui/Loader";
 
-export function EmotionsMultiselect() {
+type EmotionsMultiselectProps = {
+  value: string[];
+  onChange: (value: string[]) => void;
+};
+
+export function EmotionsMultiselect({
+  value,
+  onChange,
+}: EmotionsMultiselectProps) {
+  const { data, isLoading, isError } = useEmotionsOptions();
+
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState<string[]>([]);
   const onClearButtonClick = (v: string) => (e: React.MouseEvent) => {
     e.stopPropagation();
-    setValue((prev) => prev.filter((item) => item !== v));
+    onChange(value.filter((item) => item !== v));
   };
 
   return (
@@ -34,6 +45,7 @@ export function EmotionsMultiselect() {
               <X className="size-3" />
             </span>
           )}
+          options={data}
         />
       </PopoverTrigger>
       <PopoverContent
@@ -45,58 +57,18 @@ export function EmotionsMultiselect() {
           <CommandInput placeholder="Search emotions..." />
           <EmotionsOptionsList
             value={value}
-            onChange={(value) => {
-              setValue(value);
-              setOpen(false);
-            }}
+            onChange={onChange}
+            options={data}
+            commandEmpty={
+              isError ? (
+                "Error while getting options"
+              ) : isLoading ? (
+                <Loader label="Loading emotions list" />
+              ) : (
+                "No emotion found."
+              )
+            }
           />
-          {/* <CommandList>
-            <CommandEmpty>No emotion found.</CommandEmpty>
-            {allNuancedEmotions.map(([baseEmotion, nuancedEmotions]) => (
-              <CommandGroup key={baseEmotion} heading={baseEmotion}>
-                {nuancedEmotions.map((emotion) => (
-                  <CommandItem
-                    key={emotion.id}
-                    value={emotion.label}
-                    onSelect={(currentValue) =>
-                      setValue((prev) =>
-                        prev.includes(currentValue)
-                          ? prev.filter((v) => v !== currentValue)
-                          : [...prev, currentValue],
-                      )
-                    }
-                    className="flex items-center gap-2 [&>svg:last-child]:hidden"
-                  >
-                    <span className="grid grid-cols-[auto_1fr] gap-2 items-center">
-                      <Check
-                        className={cn(
-                          "size-4 shrink-0",
-                          value.includes(emotion.label)
-                            ? "opacity-100"
-                            : "opacity-0",
-                        )}
-                      />
-                      <span className="font-semibold">{emotion.label}</span>
-                      <span className="col-start-2">{emotion.description}</span>
-                    </span>
-                    <EmotionDescriptionPopover
-                      {...emotion}
-                      trigger={
-                        <Button
-                          className="size-6 shrink-0 ml-auto"
-                          size="icon"
-                          variant="ghost"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <ExternalLink className="size-4" />
-                        </Button>
-                      }
-                    />
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            ))}
-          </CommandList> */}
         </Command>
       </PopoverContent>
     </Popover>

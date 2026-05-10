@@ -10,6 +10,7 @@ type OptionItemProps = {
   label: string;
   description: string;
   checked: boolean;
+  onSelect: (id: string) => void;
 };
 
 export function OptionItem({
@@ -17,12 +18,13 @@ export function OptionItem({
   label,
   checked,
   description,
+  onSelect,
 }: OptionItemProps) {
   return (
     <CommandItem
       key={id}
       value={id}
-      onSelect={() => {}}
+      onSelect={onSelect}
       className="flex items-center gap-2 [&>svg:last-child]:hidden"
     >
       <span className="grid grid-cols-[auto_1fr] gap-y-1 gap-x-2 items-center">

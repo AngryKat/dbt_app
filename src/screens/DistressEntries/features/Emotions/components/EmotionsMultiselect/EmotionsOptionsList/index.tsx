@@ -3,35 +3,37 @@ import {
   CommandGroup,
   CommandList,
 } from "@/components/shadcn/command";
-import { useEmotionsOptions } from "../../../hooks/useEmotionsOptions";
-import { Loader } from "@/components/ui/Loader";
 import { OptionItem } from "./components/OptionItem";
+import type { EmotionsOptions } from "../../../types";
 
 export function EmotionsOptionsList({
   value,
   onChange,
+  options,
+  commandEmpty = "No emotion found.",
 }: {
   value: string[];
   onChange: (value: string[]) => void;
+  options: EmotionsOptions | undefined;
+  commandEmpty?: React.ReactNode;
 }) {
-  const { data, isLoading, isError } = useEmotionsOptions();
   return (
     <CommandList>
-      <CommandEmpty>
-        {isError ? (
-          "Error while getting options"
-        ) : isLoading ? (
-          <Loader label="Loading emotions list" />
-        ) : (
-          "No emotion found."
-        )}
-      </CommandEmpty>
-      {Object.entries(data || []).map(
+      <CommandEmpty>{commandEmpty}</CommandEmpty>
+      {Object.entries(options || []).map(
         ([baseEmotion, { baseEmotionLabel, emotions }]) => (
           <CommandGroup key={baseEmotion} heading={baseEmotionLabel}>
             {emotions.map((emotion) => (
               <OptionItem
-                checked={false}
+                key={emotion.id}
+                onSelect={(id) => {
+                  if (value.includes(id)) {
+                    onChange(value.filter((item) => item !== id));
+                  } else {
+                    onChange([...value, id]);
+                  }
+                }}
+                checked={value.includes(emotion.id)}
                 id={emotion.id}
                 label={emotion.label || ""}
                 description={emotion.description || ""}
