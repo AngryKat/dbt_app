@@ -1,45 +1,40 @@
+import * as React from "react";
 import {
-  CommandEmpty,
-  CommandGroup,
-  CommandList,
-} from "@/components/shadcn/command";
-import { useEmotionsOptions } from "../../../hooks/useEmotionsOptions";
-import { Loader } from "@/components/ui/Loader";
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxLabel,
+  ComboboxList,
+} from "@/components/shadcn/combobox";
 import { OptionItem } from "./components/OptionItem";
+import type { EmotionsOptions } from "../../../types";
 
 export function EmotionsOptionsList({
-  value,
-  onChange,
+  options,
+  commandEmpty = "No emotion found.",
 }: {
-  value: string[];
-  onChange: (value: string[]) => void;
+  options: EmotionsOptions | undefined;
+  commandEmpty?: React.ReactNode;
 }) {
-  const { data, isLoading, isError } = useEmotionsOptions();
   return (
-    <CommandList>
-      <CommandEmpty>
-        {isError ? (
-          "Error while getting options"
-        ) : isLoading ? (
-          <Loader label="Loading emotions list" />
-        ) : (
-          "No emotion found."
+    <>
+      <ComboboxEmpty>{commandEmpty}</ComboboxEmpty>
+      <ComboboxList>
+        {Object.entries(options || []).map(
+          ([baseEmotion, { baseEmotionLabel, emotions }]) => (
+            <ComboboxGroup key={baseEmotion}>
+              <ComboboxLabel>{baseEmotionLabel}</ComboboxLabel>
+              {emotions.map((emotion) => (
+                <OptionItem
+                  key={emotion.id}
+                  id={emotion.id}
+                  label={emotion.label || ""}
+                  description={emotion.description || ""}
+                />
+              ))}
+            </ComboboxGroup>
+          ),
         )}
-      </CommandEmpty>
-      {Object.entries(data || []).map(
-        ([baseEmotion, { baseEmotionLabel, emotions }]) => (
-          <CommandGroup key={baseEmotion} heading={baseEmotionLabel}>
-            {emotions.map((emotion) => (
-              <OptionItem
-                checked={false}
-                id={emotion.id}
-                label={emotion.label || ""}
-                description={emotion.description || ""}
-              />
-            ))}
-          </CommandGroup>
-        ),
-      )}
-    </CommandList>
+      </ComboboxList>
+    </>
   );
 }

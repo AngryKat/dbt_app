@@ -39,7 +39,7 @@ export function DistressEntryForm() {
         place: "",
         situation: "",
         stressLevel: 0,
-        emotions: [],
+        emotions: [] as string[],
         thoughts: "",
         behavior: "",
         bodilyFeelings: "",
@@ -100,7 +100,13 @@ export function DistressEntryForm() {
         <Label htmlFor="emotions" className="text-base">
           What are your emotions?
         </Label>
-        <EmotionsMultiselect />
+        <Controller
+          name="emotions"
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <EmotionsMultiselect value={value} onChange={onChange} />
+          )}
+        />
       </div>
       {/* <div className="grid w-full gap-2">
         <Label className="text-base">Emotions</Label>
