@@ -1,4 +1,4 @@
-import { ChevronsUpDown } from "lucide-react";
+import { ChevronsUpDown, X } from "lucide-react";
 
 import { Button } from "@/components/shadcn/button";
 import type { EmotionsOptions } from "../../../types";
@@ -8,16 +8,15 @@ type EmotionsMultiselectTriggerProps = {
   open: boolean;
   value: string[];
   options: EmotionsOptions | undefined;
-  clearButton: (v: string) => React.ReactNode;
+  onClear: (id: string) => void;
 } & React.ComponentPropsWithoutRef<typeof Button>;
 
 export function EmotionsMultiselectTrigger({
   value,
-  clearButton,
+  onClear,
   options,
   ...props
 }: EmotionsMultiselectTriggerProps) {
-  console.log({ value, options });
   const selectedOptions = React.useMemo(() => {
     const allEmotions = Object.values(options || {}).flatMap(
       ({ emotions }) => emotions,
@@ -50,7 +49,14 @@ export function EmotionsMultiselectTrigger({
               className="inline-flex items-center gap-1 rounded-md bg-muted px-1.5 py-0.5 text-xs font-medium"
             >
               {selectedOption.label}
-              {clearButton(selectedOption.id)}
+              <span
+                role="button"
+                aria-label={`Remove ${selectedOption.label}`}
+                onClick={() => onClear(selectedOption.id)}
+                className="cursor-pointer opacity-60 hover:opacity-100"
+              >
+                <X className="size-3" />
+              </span>
             </span>
           ))
         )}

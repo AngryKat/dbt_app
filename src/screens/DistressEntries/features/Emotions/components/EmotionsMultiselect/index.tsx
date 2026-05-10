@@ -1,5 +1,4 @@
 import * as React from "react";
-import { X } from "lucide-react";
 
 import { Command, CommandInput } from "@/components/shadcn/command";
 import {
@@ -35,16 +34,7 @@ export function EmotionsMultiselect({
         <EmotionsMultiselectTrigger
           open={open}
           value={value}
-          clearButton={(v) => (
-            <span
-              role="button"
-              aria-label={`Remove ${v}`}
-              onClick={onClearButtonClick(v)}
-              className="cursor-pointer opacity-60 hover:opacity-100"
-            >
-              <X className="size-3" />
-            </span>
-          )}
+          onClear={onClearButtonClick}
           options={data}
         />
       </PopoverTrigger>
