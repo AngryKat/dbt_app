@@ -45,14 +45,14 @@ export function EmotionsMultiselect({
     if (!searchQuery.trim()) return data;
 
     const query = searchQuery.toLowerCase();
-    const filtered = {} as typeof data;
+    const filtered = {} as NonNullable<typeof data>;
 
     Object.entries(data || {}).forEach(([key, group]) => {
       const matchedEmotions = group.emotions.filter((emotion) =>
         emotion.label?.toLowerCase().includes(query)
       );
 
-      if (matchedEmotions.length > 0 && filtered) {
+      if (matchedEmotions.length > 0) {
         filtered[key as BaseEmotionEnum] = {
           ...group,
           emotions: matchedEmotions,
@@ -60,7 +60,7 @@ export function EmotionsMultiselect({
       }
     });
 
-    return Object.keys(filtered ?? {}).length > 0 ? filtered : undefined;
+    return Object.keys(filtered).length > 0 ? filtered : undefined;
   }, [data, searchQuery]);
 
   return (
