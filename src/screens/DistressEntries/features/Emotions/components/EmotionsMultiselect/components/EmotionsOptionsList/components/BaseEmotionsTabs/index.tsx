@@ -25,13 +25,11 @@ export function BaseEmotionsTabs({
     <Tabs
       value={activeTab || ""}
       onValueChange={handleTabChange}
-      className="px-2 py-1.5"
+      className="px-2 py-1.5 w-full overflow-x-auto"
     >
       <TabsList
-        className="grid w-full gap-1 p-1"
-        style={{
-          gridTemplateColumns: `repeat(auto-fit, minmax(60px, 1fr))`,
-        }}
+        className="flex flex-nowrap gap-1 p-1"
+
       >
         {Object.entries(options).map(([baseEmotion, { baseEmotionLabel }]) => (
           <TabsTrigger key={baseEmotion} value={baseEmotion} className="text-xs">

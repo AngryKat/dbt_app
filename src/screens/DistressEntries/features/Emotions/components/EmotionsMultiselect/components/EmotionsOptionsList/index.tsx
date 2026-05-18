@@ -20,9 +20,10 @@ export function EmotionsOptionsList({
   openDetailForId?: string;
   onDetailOpenChange?: (id: string | undefined) => void;
 }) {
+  const baseEmotionsKeys = Object.keys(options ?? {});
   const hasOptions = options && Object.keys(options).length > 0;
-  const [activeTabState, setActiveTabState] = React.useState<string | undefined>();
-  const activeTab = activeTabState ?? (options ? Object.keys(options ?? {})[0] : undefined);
+  const [activeTabState, setActiveTabState] = React.useState<string>("");
+  const activeTab = baseEmotionsKeys.includes(activeTabState) ? activeTabState : baseEmotionsKeys[0];
   const groupRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
   const listRef = React.useRef<HTMLDivElement | null>(null);
   // When true, the user explicitly clicked a tab — scroll should not override it.
