@@ -18,11 +18,6 @@ export function OptionItem({ id, label, description }: OptionItemProps) {
       className="group flex items-center gap-2"
     >
       <span className="flex flex-col">
-        {/* <Check
-          className={cn(
-            "size-4 shrink-0 opacity-0 group-aria-selected:opacity-100",
-          )}
-        /> */}
         <span className="font-semibold">{label}</span>
         <span>{description}</span>
       </span>
