@@ -31,7 +31,7 @@ export function EmotionDescriptionPopover({
   return (
     <Popover>
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <article>
           <h3 className="text-lg font-semibold mb-2">{label}</h3>
           <EmotionDescriptionPopoverContent id={id} />
