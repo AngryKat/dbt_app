@@ -24,6 +24,7 @@ export function EmotionsMultiselect({
   onChange,
   id,
 }: EmotionsMultiselectProps) {
+  const [searchQuery, setSearchQuery] = React.useState("");
   const { data, isLoading, isError } = useEmotionsOptions();
   const anchorRef = useComboboxAnchor();
 
@@ -36,6 +37,28 @@ export function EmotionsMultiselect({
     () => allEmotions.map((e) => e.id),
     [allEmotions],
   );
+
+  const filteredEmotions = React.useMemo(() => {
+    if (!searchQuery.trim()) return data;
+    
+    const query = searchQuery.toLowerCase();
+    const filtered: typeof data = {};
+    
+    Object.entries(data || {}).forEach(([key, group]) => {
+      const matchedEmotions = group.emotions.filter((emotion) =>
+        emotion.label?.toLowerCase().includes(query)
+      );
+      
+      if (matchedEmotions.length > 0) {
+        filtered[key] = {
+          ...group,
+          emotions: matchedEmotions,
+        };
+      }
+    });
+    
+    return Object.keys(filtered).length > 0 ? filtered : undefined;
+  }, [data, searchQuery]);
 
   return (
     <Combobox
@@ -54,7 +77,12 @@ export function EmotionsMultiselect({
                   {allEmotions.find((e) => e.id === id)?.label ?? id}
                 </ComboboxChip>
               ))}
-              <ComboboxChipsInput id={id} placeholder="Select emotions" />
+              <ComboboxChipsInput
+                id={id}
+                placeholder="Search emotions"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
             </React.Fragment>
           )}
         </ComboboxValue>
@@ -66,12 +94,14 @@ export function EmotionsMultiselect({
         className="min-w-[clamp(12.5rem,2.484rem+40.064vw,28.125rem)]"
       >
         <EmotionsOptionsList
-          options={data}
+          options={filteredEmotions}
           commandEmpty={
             isError ? (
               "Error while getting options"
             ) : isLoading ? (
               <Loader label="Loading emotions list" />
+            ) : searchQuery.trim() && !filteredEmotions ? (
+              "No emotions match your search."
             ) : (
               "No emotion found."
             )
