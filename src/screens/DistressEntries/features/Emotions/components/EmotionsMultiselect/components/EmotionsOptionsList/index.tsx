@@ -21,9 +21,8 @@ export function EmotionsOptionsList({
   onDetailOpenChange?: (id: string | undefined) => void;
 }) {
   const hasOptions = options && Object.keys(options).length > 0;
-  const [activeTab, setActiveTab] = React.useState<string | undefined>(() =>
-    options ? Object.keys(options)[0] : undefined
-  );
+  const [activeTabState, setActiveTabState] = React.useState<string | undefined>();
+  const activeTab = activeTabState ?? (options ? Object.keys(options ?? {})[0] : undefined);
   const groupRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
   const listRef = React.useRef<HTMLDivElement | null>(null);
   // When true, the user explicitly clicked a tab — scroll should not override it.
@@ -31,7 +30,7 @@ export function EmotionsOptionsList({
 
   const handleTabChange = (tabValue: string) => {
     tabClickedRef.current = true;
-    setActiveTab(tabValue);
+    setActiveTabState(tabValue);
   };
 
   const handleUserScroll = () => {
@@ -69,7 +68,7 @@ export function EmotionsOptionsList({
     });
 
     if (visibleGroup) {
-      setActiveTab(visibleGroup);
+      setActiveTabState(visibleGroup);
     }
   };
 
