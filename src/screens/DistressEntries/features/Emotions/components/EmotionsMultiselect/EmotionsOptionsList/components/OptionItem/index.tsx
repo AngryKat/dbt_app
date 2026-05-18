@@ -6,7 +6,6 @@ import { ComboboxItem } from "@/components/shadcn/combobox";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/shadcn/tooltip";
 import { EmotionDescriptionPopover } from "../../../../EmotionDescriptionPopover";

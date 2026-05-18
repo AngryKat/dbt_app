@@ -91,7 +91,7 @@ export function EmotionsMultiselect({
                   if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
                     e.preventDefault();
                     if (highlightedIdRef.current) {
-                      setOpenDetailForId(highlightedIdRef.current);
+                      setOpenDetailForId(openDetailForId === highlightedIdRef.current ? undefined : highlightedIdRef.current);
                     }
                   }
                 }}
