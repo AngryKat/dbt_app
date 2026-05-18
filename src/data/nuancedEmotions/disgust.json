@@ -1,0 +1,170 @@
+[
+  {
+    "id": "disgust",
+    "label": "Disgust",
+    "description": "A general feeling that something is unpleasant, offensive, contaminated, or wrong.",
+    "feelsLike": "Recoiling, \"ugh,\" wanting away.",
+    "thinking": "That's gross / wrong / disturbing.",
+    "check": "Do I want distance from this?"
+  },
+  {
+    "id": "abhorrence",
+    "label": "Abhorrence",
+    "description": "Deep moral or emotional disgust; strong revulsion toward something seen as horrific or evil.",
+    "feelsLike": "Horror + disgust.",
+    "thinking": "I find that utterly unacceptable.",
+    "check": "Does this feel like profound moral rejection?"
+  },
+  {
+    "id": "antipathy",
+    "label": "Antipathy",
+    "description": "A settled, persistent negative feeling toward someone or something.",
+    "feelsLike": "Enduring opposition or aversion.",
+    "thinking": "I have a deep dislike for this.",
+    "check": "Does this feel longstanding rather than immediate?"
+  },
+  {
+    "id": "aversion",
+    "label": "Aversion",
+    "description": "A strong impulse to avoid something unpleasant.",
+    "feelsLike": "Pull away, resistance.",
+    "thinking": "I really don't want anything to do with that.",
+    "check": "Is avoidance the main feeling?"
+  },
+  {
+    "id": "condescension",
+    "label": "Condescension",
+    "description": "Seeing someone as beneath you; dismissive superiority.",
+    "feelsLike": "Patronizing judgment.",
+    "thinking": "They're so clueless.",
+    "check": "Is there superiority mixed in?"
+  },
+  {
+    "id": "contempt",
+    "label": "Contempt",
+    "description": "Disgust mixed with disrespect; seeing someone or something as beneath regard.",
+    "feelsLike": "Cold rejection.",
+    "thinking": "They're beneath respect.",
+    "check": "Is there disgust plus devaluation?"
+  },
+  {
+    "id": "dislike",
+    "label": "Dislike",
+    "description": "Mild negative feeling; simple non-preference or disapproval.",
+    "feelsLike": "\"Not for me.\"",
+    "thinking": "I don't care for this.",
+    "check": "Is this mild rather than intense?"
+  },
+  {
+    "id": "derision",
+    "label": "Derision",
+    "description": "Mocking contempt; disgust expressed through ridicule.",
+    "feelsLike": "Scorn with sneering.",
+    "thinking": "That's pathetic.",
+    "check": "Does it come out as mockery?"
+  },
+  {
+    "id": "disdain",
+    "label": "Disdain",
+    "description": "Cool, superior disapproval; often quieter than contempt.",
+    "feelsLike": "Dismissive looking-down.",
+    "thinking": "That's beneath me.",
+    "check": "Is this contempt in a colder form?"
+  },
+  {
+    "id": "distaste",
+    "label": "Distaste",
+    "description": "Mild disgust or disapproval.",
+    "feelsLike": "Subtle \"ew\" or moral discomfort.",
+    "thinking": "That leaves a bad taste.",
+    "check": "Is it gentle disgust, not strong revulsion?"
+  },
+  {
+    "id": "hate",
+    "label": "Hate",
+    "description": "Intense enduring hostility or rejection. Can include disgust, anger, hurt.",
+    "feelsLike": "Hard, consuming negativity.",
+    "thinking": "I can't stand this.",
+    "check": "Does this feel broader than disgust alone?"
+  },
+  {
+    "id": "loathing",
+    "label": "Loathing",
+    "description": "Deep personal disgust, often visceral and emotional.",
+    "feelsLike": "Hatred with revulsion.",
+    "thinking": "I detest this.",
+    "check": "Does \"hate\" feel too weak?"
+  },
+  {
+    "id": "repugnance",
+    "label": "Repugnance",
+    "description": "Strong visceral or moral revulsion.",
+    "feelsLike": "Something feels deeply offensive.",
+    "thinking": "That is repulsive.",
+    "check": "Does it feel violating or offensive at a gut level?"
+  },
+  {
+    "id": "repelled",
+    "label": "Repelled",
+    "description": "Actively pushed away by something.",
+    "feelsLike": "Recoil.",
+    "thinking": "I want away from this.",
+    "check": "Is the sensation one of being pushed back?"
+  },
+  {
+    "id": "repulsion",
+    "label": "Repulsion",
+    "description": "A powerful sense of disgust causing recoil.",
+    "feelsLike": "Almost physical rejection.",
+    "thinking": "This turns my stomach.",
+    "check": "Does it feel bodily, visceral?"
+  },
+  {
+    "id": "resentment",
+    "label": "Resentment",
+    "description": "Stored anger over unfairness or hurt, often with bitterness.",
+    "feelsLike": "Simmering grievance.",
+    "thinking": "I still hold this against them.",
+    "check": "Is this more about injury than disgust?"
+  },
+  {
+    "id": "revolted",
+    "label": "Revolted",
+    "description": "Disgust so strong it feels shocking or sickening.",
+    "feelsLike": "Disturbed and appalled.",
+    "thinking": "I'm revolted by this.",
+    "check": "Does it feel like disgust at maximum intensity?"
+  },
+  {
+    "id": "scorn",
+    "label": "Scorn",
+    "description": "Openly expressed contempt; rejecting with ridicule or harsh judgment.",
+    "feelsLike": "Cutting dismissal.",
+    "thinking": "That deserves contempt.",
+    "check": "Is there a sneer in it?"
+  },
+  {
+    "id": "sickened",
+    "label": "Sickened",
+    "description": "Disgust so strong it feels nauseating emotionally or physically.",
+    "feelsLike": "Stomach-drop reaction.",
+    "thinking": "This makes me feel ill.",
+    "check": "Does disgust feel bodily?"
+  },
+  {
+    "id": "spite",
+    "label": "Spite",
+    "description": "Hostile bitterness that wants to wound, punish, or diminish.",
+    "feelsLike": "Petty sharpness.",
+    "thinking": "I want to get back at them.",
+    "check": "Is there a desire to hurt in return?"
+  },
+  {
+    "id": "vile",
+    "label": "Vile",
+    "description": "Usually describes the thing provoking disgust: morally foul, deeply nasty.",
+    "feelsLike": "Perceiving something as corrupt or foul.",
+    "thinking": "That is vile.",
+    "check": "Am I judging something as disgusting at a moral extreme?"
+  }
+]

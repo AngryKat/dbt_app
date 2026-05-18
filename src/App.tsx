@@ -1,13 +1,12 @@
-import "./App.css";
 import { Outlet } from "react-router";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@/api/tanstack-query-client";
 
 function App() {
   return (
-    <main className="p-[14px]">
-      <div className="flex min-h-svh flex-col items-center justify-center">
-        <Outlet />
-      </div>
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <Outlet />
+    </QueryClientProvider>
   );
 }
 

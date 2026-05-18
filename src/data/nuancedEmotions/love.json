@@ -1,0 +1,178 @@
+[
+  {
+    "id": "love",
+    "label": "Love",
+    "description": "Broad feeling of deep care, connection, valuing.",
+    "feelsLike": "Openness, warmth, belonging.",
+    "thinking": "I hold this/person dear.",
+    "check": "Does this feel bigger than liking or desire?"
+  },
+  {
+    "id": "adoration",
+    "label": "Adoration",
+    "description": "Love tinged with reverence or cherishing.",
+    "feelsLike": "Devoted admiration.",
+    "thinking": "I adore them.",
+    "check": "Is there almost worshipful fondness?"
+  },
+  {
+    "id": "affection",
+    "label": "Affection",
+    "description": "Gentle caring warmth.",
+    "feelsLike": "Soft closeness.",
+    "thinking": "I feel warmly toward them.",
+    "check": "Is this tender and uncomplicated?"
+  },
+  {
+    "id": "arousal",
+    "label": "Arousal",
+    "description": "Activated erotic or sensual energy (sometimes broader excitement too).",
+    "feelsLike": "Bodily charge.",
+    "thinking": "I feel turned on / activated.",
+    "check": "Is this primarily physiological desire?"
+  },
+  {
+    "id": "attraction",
+    "label": "Attraction",
+    "description": "Draw toward someone or something.",
+    "feelsLike": "Pull, interest, magnetism.",
+    "thinking": "I'm drawn to them.",
+    "check": "Is this about wanting closeness or contact?"
+  },
+  {
+    "id": "caring",
+    "label": "Caring",
+    "description": "Concern for another's wellbeing.",
+    "feelsLike": "Protective attentiveness.",
+    "thinking": "I want them okay.",
+    "check": "Is nurturing central?"
+  },
+  {
+    "id": "charmed",
+    "label": "Charmed",
+    "description": "Delighted, touched, captivated in a sweet way.",
+    "feelsLike": "Enchanted pleasure.",
+    "thinking": "That's so endearing.",
+    "check": "Is there affectionate delight?"
+  },
+  {
+    "id": "compassion",
+    "label": "Compassion",
+    "description": "Tender care in response to suffering.",
+    "feelsLike": "Soft concern with wish to help.",
+    "thinking": "I feel for them.",
+    "check": "Is suffering evoking warmth rather than pity alone?"
+  },
+  {
+    "id": "desire",
+    "label": "Desire",
+    "description": "Wanting, yearning, seeking union or experience.",
+    "feelsLike": "Leaning toward.",
+    "thinking": "I want this.",
+    "check": "Is longing or appetite central?"
+  },
+  {
+    "id": "enchantment",
+    "label": "Enchantment",
+    "description": "Being spellbound by beauty or fascination.",
+    "feelsLike": "Wonder-soaked attraction.",
+    "thinking": "I'm enchanted.",
+    "check": "Does it feel magical or captivated?"
+  },
+  {
+    "id": "fondness",
+    "label": "Fondness",
+    "description": "Warm, easy affectionate liking.",
+    "feelsLike": "Gentle appreciative warmth.",
+    "thinking": "I'm fond of them.",
+    "check": "Is it softer than love, deeper than liking?"
+  },
+  {
+    "id": "infatuation",
+    "label": "Infatuation",
+    "description": "Intense often idealized romantic fixation.",
+    "feelsLike": "Intoxicating preoccupation.",
+    "thinking": "I can't stop thinking about them.",
+    "check": "Is there intensity + idealization?"
+  },
+  {
+    "id": "kindness",
+    "label": "Kindness",
+    "description": "Warm benevolent goodwill.",
+    "feelsLike": "Gentle generosity.",
+    "thinking": "I want to be good to them.",
+    "check": "Is love showing up as benevolence?"
+  },
+  {
+    "id": "liking",
+    "label": "Liking",
+    "description": "Simple positive regard.",
+    "feelsLike": "Pleasant affinity.",
+    "thinking": "I like them.",
+    "check": "Is this lighter than affection?"
+  },
+  {
+    "id": "limerence",
+    "label": "Limerence",
+    "description": "Obsessive romantic yearning with longing for reciprocation.",
+    "feelsLike": "Consuming romantic preoccupation.",
+    "thinking": "Do they feel it too?",
+    "check": "Is there obsessive longing and uncertainty?"
+  },
+  {
+    "id": "longing",
+    "label": "Longing",
+    "description": "Ache for closeness, presence, or something absent.",
+    "feelsLike": "Reaching ache.",
+    "thinking": "I miss / want…",
+    "check": "Is absence central?"
+  },
+  {
+    "id": "lust",
+    "label": "Lust",
+    "description": "Strong sexual desire.",
+    "feelsLike": "Urgent sensual pull.",
+    "thinking": "I want them physically.",
+    "check": "Is this erotic more than relational?"
+  },
+  {
+    "id": "passion",
+    "label": "Passion",
+    "description": "Intense love, desire, or wholehearted emotional energy.",
+    "feelsLike": "Fire and aliveness.",
+    "thinking": "I feel intensely about this.",
+    "check": "Does it feel fervent?"
+  },
+  {
+    "id": "sentimentality",
+    "label": "Sentimentality",
+    "description": "Tender emotion colored by nostalgia or sweetness.",
+    "feelsLike": "Soft emotional glow.",
+    "thinking": "This moves me.",
+    "check": "Is memory or tenderness making you misty?"
+  },
+  {
+    "id": "sympathy",
+    "label": "Sympathy",
+    "description": "Feeling with someone in their pain or difficulty.",
+    "feelsLike": "Sorrowful concern.",
+    "thinking": "That must be hard.",
+    "check": "Is it compassionate resonance?"
+  },
+  {
+    "id": "tenderness",
+    "label": "Tenderness",
+    "description": "Vulnerable gentle loving softness.",
+    "feelsLike": "Delicate warmth.",
+    "thinking": "I want to hold this carefully.",
+    "check": "Does it feel especially soft and protective?"
+  },
+  {
+    "id": "warmth",
+    "label": "Warmth",
+    "description": "Felt emotional warmth, friendliness, loving openness.",
+    "feelsLike": "Inner glow.",
+    "thinking": "I feel warmly connected.",
+    "check": "Is warmth itself the feeling?"
+  }
+]
