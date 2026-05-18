@@ -46,7 +46,7 @@ export function EmotionDescriptionPopoverContent({
       </section>
 
       {/* Self-Check Section */}
-      <section className="bg-green-600/10 text-green-600 dark:bg-green-400/10 dark:text-green-400 border border-green-600 rounded-lg p-2 flex flex-col gap-1.5">
+      <section className="bg-teal-600/10 text-teal-600 dark:bg-teal-400/10 dark:text-teal-400 border border-teal-600 rounded-lg p-2 flex flex-col gap-1.5">
         <div className="flex items-center gap-2 text-teal-700">
           <span className="text-xs font-bold uppercase tracking-wider">
             Self-Check
