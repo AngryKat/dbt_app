@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getNuancedEmotionDetailsById } from "../../../api/getNuancedEmotionDetailsById"
+import { getNuancedEmotionDetailsById } from "../../../../../../../api/getNuancedEmotionDetailsById"
 
 export const useNuancedEmotionDetails = (id: string) => {
   return useQuery({

@@ -10,7 +10,7 @@ import {
   useComboboxAnchor,
 } from "@/components/shadcn/combobox";
 import { EmotionsOptionsList } from "./components/EmotionsOptionsList";
-import { useEmotionsOptions } from "./hooks/useEmotionsOptions";
+import { useEmotionsOptions } from "./components/EmotionDescriptionPopover/components/EmotionDescriptionPopoverContent/hooks/useEmotionsOptions";
 import { Loader } from "@/components/ui/Loader";
 
 type EmotionsMultiselectProps = {

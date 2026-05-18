@@ -1,6 +1,6 @@
 import { Alert } from "@/components/ui/Alert";
 import { Skeleton } from "@/components/shadcn/skeleton";
-import { useNuancedEmotionDetails } from "../../../../hooks/useNuancedEmotionDetails";
+import { useNuancedEmotionDetails } from "./hooks/useNuancedEmotionDetails";
 
 type EmotionDescriptionPopoverContentProps = {
   id: string;
