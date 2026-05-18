@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getBaseAndNuancedEmotions } from "../../../../../../../api/getBaseAndNuancedEmotions";
-import type { BaseEmotionEnum, EmotionsOptions } from "../../../../../../../types";
+import { getBaseAndNuancedEmotions } from "@/screens/DistressEntries/features/Emotions/api/getBaseAndNuancedEmotions";
+import type { BaseEmotionEnum, EmotionsOptions } from "@/screens/DistressEntries/features/Emotions/types";
 
 export const useEmotionsOptions = () => {
   return useQuery({
