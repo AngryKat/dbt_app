@@ -138,9 +138,8 @@ function ComboboxItem({
   children,
   indicatorPlacement = "end",
   ...props
-}: Omit<ComboboxPrimitive.Item.Props, "children"> & {
+}: ComboboxPrimitive.Item.Props & {
   indicatorPlacement?: "start" | "end"
-  children?: React.ReactNode
 }) {
   const isStart = indicatorPlacement === "start"
   
