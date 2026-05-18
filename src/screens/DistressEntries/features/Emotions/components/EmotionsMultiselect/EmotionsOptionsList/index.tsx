@@ -15,26 +15,30 @@ export function EmotionsOptionsList({
   options: EmotionsOptions | undefined;
   commandEmpty?: React.ReactNode;
 }) {
+  const hasOptions = options && Object.keys(options).length > 0;
+
   return (
     <>
-      <ComboboxEmpty>{commandEmpty}</ComboboxEmpty>
-      <ComboboxList>
-        {Object.entries(options || []).map(
-          ([baseEmotion, { baseEmotionLabel, emotions }]) => (
-            <ComboboxGroup key={baseEmotion}>
-              <ComboboxLabel>{baseEmotionLabel}</ComboboxLabel>
-              {emotions.map((emotion) => (
-                <OptionItem
-                  key={emotion.id}
-                  id={emotion.id}
-                  label={emotion.label || ""}
-                  description={emotion.description || ""}
-                />
-              ))}
-            </ComboboxGroup>
-          ),
-        )}
-      </ComboboxList>
+      {!hasOptions && <ComboboxEmpty>{commandEmpty}</ComboboxEmpty>}
+      {hasOptions && (
+        <ComboboxList>
+          {Object.entries(options).map(
+            ([baseEmotion, { baseEmotionLabel, emotions }]) => (
+              <ComboboxGroup key={baseEmotion}>
+                <ComboboxLabel>{baseEmotionLabel}</ComboboxLabel>
+                {emotions.map((emotion) => (
+                  <OptionItem
+                    key={emotion.id}
+                    id={emotion.id}
+                    label={emotion.label || ""}
+                    description={emotion.description || ""}
+                  />
+                ))}
+              </ComboboxGroup>
+            ),
+          )}
+        </ComboboxList>
+      )}
     </>
   );
 }
