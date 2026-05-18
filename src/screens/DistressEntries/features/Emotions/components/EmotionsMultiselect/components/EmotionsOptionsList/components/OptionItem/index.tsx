@@ -8,7 +8,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/shadcn/tooltip";
-import { EmotionDescriptionPopover } from "../../../../EmotionDescriptionPopover";
+import { EmotionDescriptionPopover } from "../../../EmotionDescriptionPopover";
 
 type OptionItemProps = {
   id: string;

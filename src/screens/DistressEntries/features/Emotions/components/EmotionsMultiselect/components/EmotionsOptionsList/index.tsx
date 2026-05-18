@@ -6,7 +6,7 @@ import {
   ComboboxList,
 } from "@/components/shadcn/combobox";
 import { OptionItem } from "./components/OptionItem";
-import type { EmotionsOptions } from "../../../types";
+import type { EmotionsOptions } from "../../../../types";
 
 export function EmotionsOptionsList({
   options,

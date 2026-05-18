@@ -5,7 +5,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/shadcn/popover";
-import { useNuancedEmotionDetails } from "../EmotionsMultiselect/hooks/useNuancedEmotionDetails";
+import { useNuancedEmotionDetails } from "../../hooks/useNuancedEmotionDetails";
 import { Alert } from "@/components/ui/Alert";
 import { EmotionDescriptionPopoverContent } from "./components/EmotionDescriptionPopoverContent";
 import { Loader } from "@/components/ui/Loader";
