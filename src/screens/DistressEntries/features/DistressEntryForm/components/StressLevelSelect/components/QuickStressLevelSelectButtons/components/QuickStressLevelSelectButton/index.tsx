@@ -7,6 +7,7 @@ type QuickStressLevelSelectButtonProps = {
   IconComponent: React.ComponentType<{ className?: string }>;
   selected: boolean;
   value: number;
+  color: string;
   onClick: (level: number) => void;
 };
 
@@ -16,6 +17,7 @@ export function QuickStressLevelSelectButton({
   IconComponent,
   selected,
   value,
+  color,
   onClick,
 }: QuickStressLevelSelectButtonProps) {
   const handleClick = () => {
@@ -25,10 +27,14 @@ export function QuickStressLevelSelectButton({
     <button
       type="button"
       onClick={handleClick}
+      style={{
+        backgroundColor: color,
+        color: "white",
+      }}
       className={`grid grid-rows-subgrid row-span-4 w-full p-2 rounded-lg font-semibold transition-all border-2 cursor-pointer ${
         selected
-          ? "border-primary bg-primary text-primary-foreground shadow-lg scale-105"
-          : "border-muted bg-muted/30 hover:bg-muted/50 hover:border-primary/50"
+          ? "border-primary shadow-lg scale-105"
+          : "hover:opacity-80"
       }`}
     >
       <div className="flex justify-center">
