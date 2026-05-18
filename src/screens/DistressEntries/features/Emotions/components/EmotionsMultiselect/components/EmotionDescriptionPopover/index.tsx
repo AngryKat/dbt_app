@@ -5,7 +5,7 @@ import {
   PopoverTrigger,
 } from "@/components/shadcn/popover";
 import { EmotionDescriptionPopoverContent } from "./components/EmotionDescriptionPopoverContent";
-import type { NuancedEmotion } from "../../../../types";
+import type { NuancedEmotion } from "@/screens/DistressEntries/features/Emotions/types";
 
 type OptionalProps = Partial<{
   icon: string;
