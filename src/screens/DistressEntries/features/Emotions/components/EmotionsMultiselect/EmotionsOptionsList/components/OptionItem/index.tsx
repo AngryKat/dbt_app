@@ -1,3 +1,4 @@
+import * as React from "react";
 import { ExternalLink } from "lucide-react";
 
 import { Button } from "@/components/shadcn/button";
@@ -14,9 +15,13 @@ type OptionItemProps = {
   id: string;
   label: string;
   description: string;
+  isDetailOpen?: boolean;
+  onDetailOpenChange?: (open: boolean) => void;
 };
 
-export function OptionItem({ id, label, description }: OptionItemProps) {
+export function OptionItem({ id, label, description, isDetailOpen, onDetailOpenChange }: OptionItemProps) {
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
   return (
     <ComboboxItem
       value={id}
@@ -27,30 +32,31 @@ export function OptionItem({ id, label, description }: OptionItemProps) {
         <span className="font-semibold">{label}</span>
         <span>{description}</span>
       </span>
-        <Tooltip>
-          <EmotionDescriptionPopover
-            id={id}
-            label={label || ""}
-            trigger={
-              <TooltipTrigger asChild>
-                <Button
-                  className="size-6 shrink-0 ml-auto"
-                  size="icon"
-                  variant="ghost"
-                  onClick={(e) => e.stopPropagation()}
-                  onKeyDown={(e) => {
-                    if (e.key === " ") e.stopPropagation();
-                  }}
-                >
-                  <ExternalLink className="size-4" />
-                </Button>
-              </TooltipTrigger>
-            }
-          />
-          <TooltipContent side="top">
-            Open details <kbd data-slot="kbd">Space</kbd>
-          </TooltipContent>
-        </Tooltip>
+      <Tooltip>
+        <EmotionDescriptionPopover
+          id={id}
+          label={label || ""}
+          open={isDetailOpen}
+          onOpenChange={onDetailOpenChange}
+          trigger={(
+            <TooltipTrigger asChild>
+              <Button
+                ref={buttonRef}
+                className="size-6 shrink-0 ml-auto"
+                size="icon"
+                variant="ghost"
+                aria-label={`Open details for ${label}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <ExternalLink className="size-4" />
+              </Button>
+            </TooltipTrigger>
+          )}
+        />
+        <TooltipContent side="top">
+          Open details (<kbd data-slot="kbd">⌘ Enter</kbd>)
+        </TooltipContent>
+      </Tooltip>
     </ComboboxItem>
   );
 }

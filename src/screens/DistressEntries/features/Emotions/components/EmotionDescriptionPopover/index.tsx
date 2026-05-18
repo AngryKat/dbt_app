@@ -15,6 +15,8 @@ type OptionalProps = Partial<{
   children: ReactNode;
   selected: boolean;
   onSelect: (id: NuancedEmotion) => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }>;
 
 type EmotionDescriptionPopoverProps = {
@@ -27,9 +29,11 @@ export function EmotionDescriptionPopover({
   id,
   label,
   trigger,
+  open,
+  onOpenChange,
 }: EmotionDescriptionPopoverProps) {
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={onOpenChange}>
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
       <PopoverContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <article>
