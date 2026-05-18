@@ -16,11 +16,13 @@ import { Loader } from "@/components/ui/Loader";
 type EmotionsMultiselectProps = {
   value: string[];
   onChange: (value: string[]) => void;
+  id?: string;
 };
 
 export function EmotionsMultiselect({
   value,
   onChange,
+  id,
 }: EmotionsMultiselectProps) {
   const { data, isLoading, isError } = useEmotionsOptions();
   const anchorRef = useComboboxAnchor();
@@ -52,7 +54,7 @@ export function EmotionsMultiselect({
                   {allEmotions.find((e) => e.id === id)?.label ?? id}
                 </ComboboxChip>
               ))}
-              <ComboboxChipsInput />
+              <ComboboxChipsInput id={id} placeholder="Select emotions" />
             </React.Fragment>
           )}
         </ComboboxValue>

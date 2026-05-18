@@ -104,7 +104,11 @@ export function DistressEntryForm() {
           name="emotions"
           control={control}
           render={({ field: { value, onChange } }) => (
-            <EmotionsMultiselect value={value} onChange={onChange} />
+            <EmotionsMultiselect
+              value={value}
+              onChange={onChange}
+              id="emotions"
+            />
           )}
         />
       </div>
