@@ -29,7 +29,7 @@ export function OptionItem({ id, label, description }: OptionItemProps) {
             className="size-6 shrink-0 ml-auto"
             size="icon"
             variant="ghost"
-            // onClick={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             <ExternalLink className="size-4" />
           </Button>
