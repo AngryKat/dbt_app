@@ -2,6 +2,12 @@ import { ExternalLink } from "lucide-react";
 
 import { Button } from "@/components/shadcn/button";
 import { ComboboxItem } from "@/components/shadcn/combobox";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/shadcn/tooltip";
 import { EmotionDescriptionPopover } from "../../../../EmotionDescriptionPopover";
 
 type OptionItemProps = {
@@ -21,20 +27,30 @@ export function OptionItem({ id, label, description }: OptionItemProps) {
         <span className="font-semibold">{label}</span>
         <span>{description}</span>
       </span>
-      <EmotionDescriptionPopover
-        id={id}
-        label={label || ""}
-        trigger={
-          <Button
-            className="size-6 shrink-0 ml-auto"
-            size="icon"
-            variant="ghost"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <ExternalLink className="size-4" />
-          </Button>
-        }
-      />
+        <Tooltip>
+          <EmotionDescriptionPopover
+            id={id}
+            label={label || ""}
+            trigger={
+              <TooltipTrigger asChild>
+                <Button
+                  className="size-6 shrink-0 ml-auto"
+                  size="icon"
+                  variant="ghost"
+                  onClick={(e) => e.stopPropagation()}
+                  onKeyDown={(e) => {
+                    if (e.key === " ") e.stopPropagation();
+                  }}
+                >
+                  <ExternalLink className="size-4" />
+                </Button>
+              </TooltipTrigger>
+            }
+          />
+          <TooltipContent side="top">
+            Open details <kbd data-slot="kbd">Space</kbd>
+          </TooltipContent>
+        </Tooltip>
     </ComboboxItem>
   );
 }
