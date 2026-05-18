@@ -4,8 +4,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/shadcn/popover";
+import { Button } from "@/components/shadcn/button";
 import { EmotionDescriptionPopoverContent } from "./components/EmotionDescriptionPopoverContent";
 import type { NuancedEmotion } from "@/screens/DistressEntries/features/Emotions/types";
+import { X } from "lucide-react";
 
 type OptionalProps = Partial<{
   icon: string;
@@ -34,7 +36,18 @@ export function EmotionDescriptionPopover({
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
       <PopoverContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <article>
-          <h3 className="text-lg font-semibold mb-2">{label}</h3>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-lg font-semibold">{label}</h3>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={(e) => { e.stopPropagation(); onOpenChange?.(false) }}
+              className="h-6 w-6 p-0"
+              aria-label={`Close ${label} description`}
+            >
+              <X />
+            </Button>
+          </div>
           <EmotionDescriptionPopoverContent id={id} />
         </article>
       </PopoverContent>
