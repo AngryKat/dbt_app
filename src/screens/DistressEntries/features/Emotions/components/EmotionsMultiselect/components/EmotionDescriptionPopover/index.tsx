@@ -1,14 +1,11 @@
 import type { ReactNode } from "react";
-import type { NuancedEmotion } from "../../types";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/shadcn/popover";
-import { useNuancedEmotionDetails } from "../EmotionsMultiselect/components/EmotionDescriptionPopover/components/EmotionDescriptionPopoverContent/hooks/useNuancedEmotionDetails";
-import { Alert } from "@/components/ui/Alert";
 import { EmotionDescriptionPopoverContent } from "./components/EmotionDescriptionPopoverContent";
-import { Loader } from "@/components/ui/Loader";
+import type { NuancedEmotion } from "@/screens/DistressEntries/features/Emotions/types";
 
 type OptionalProps = Partial<{
   icon: string;

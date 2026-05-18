@@ -6,14 +6,18 @@ import {
   ComboboxList,
 } from "@/components/shadcn/combobox";
 import { OptionItem } from "./components/OptionItem";
-import type { EmotionsOptions } from "../../../types";
+import type { EmotionsOptions } from "../../../../types";
 
 export function EmotionsOptionsList({
   options,
   commandEmpty = "No emotion found.",
+  openDetailForId,
+  onDetailOpenChange,
 }: {
   options: EmotionsOptions | undefined;
   commandEmpty?: React.ReactNode;
+  openDetailForId?: string;
+  onDetailOpenChange?: (id: string | undefined) => void;
 }) {
   const hasOptions = options && Object.keys(options).length > 0;
 
@@ -32,6 +36,10 @@ export function EmotionsOptionsList({
                     id={emotion.id}
                     label={emotion.label || ""}
                     description={emotion.description || ""}
+                    isDetailOpen={openDetailForId === emotion.id}
+                    onDetailOpenChange={(open) =>
+                      onDetailOpenChange?.(open ? emotion.id : undefined)
+                    }
                   />
                 ))}
               </ComboboxGroup>

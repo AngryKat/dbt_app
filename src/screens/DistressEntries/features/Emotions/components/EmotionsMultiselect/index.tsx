@@ -9,8 +9,8 @@ import {
   ComboboxValue,
   useComboboxAnchor,
 } from "@/components/shadcn/combobox";
-import { EmotionsOptionsList } from "./EmotionsOptionsList";
-import { useEmotionsOptions } from "../../hooks/useEmotionsOptions";
+import { EmotionsOptionsList } from "./components/EmotionsOptionsList";
+import { useEmotionsOptions } from "./components/EmotionDescriptionPopover/components/EmotionDescriptionPopoverContent/hooks/useEmotionsOptions";
 import { Loader } from "@/components/ui/Loader";
 
 type EmotionsMultiselectProps = {
@@ -27,6 +27,8 @@ export function EmotionsMultiselect({
   const [searchQuery, setSearchQuery] = React.useState("");
   const { data, isLoading, isError } = useEmotionsOptions();
   const anchorRef = useComboboxAnchor();
+  const highlightedIdRef = React.useRef<string | undefined>(undefined);
+  const [openDetailForId, setOpenDetailForId] = React.useState<string | undefined>(undefined);
 
   const allEmotions = React.useMemo(
     () => Object.values(data || {}).flatMap(({ emotions }) => emotions),
@@ -40,15 +42,15 @@ export function EmotionsMultiselect({
 
   const filteredEmotions = React.useMemo(() => {
     if (!searchQuery.trim()) return data;
-    
+
     const query = searchQuery.toLowerCase();
-    const filtered: typeof data = {};
-    
+    const filtered: typeof data = {} as typeof data;
+
     Object.entries(data || {}).forEach(([key, group]) => {
       const matchedEmotions = group.emotions.filter((emotion) =>
         emotion.label?.toLowerCase().includes(query)
       );
-      
+
       if (matchedEmotions.length > 0) {
         filtered[key] = {
           ...group,
@@ -56,7 +58,7 @@ export function EmotionsMultiselect({
         };
       }
     });
-    
+
     return Object.keys(filtered).length > 0 ? filtered : undefined;
   }, [data, searchQuery]);
 
@@ -67,6 +69,9 @@ export function EmotionsMultiselect({
       items={allEmotionIds}
       value={value}
       onValueChange={onChange}
+      onItemHighlighted={(itemValue) => {
+        highlightedIdRef.current = itemValue as string | undefined;
+      }}
     >
       <ComboboxChips ref={anchorRef} className="w-full">
         <ComboboxValue>
@@ -82,6 +87,14 @@ export function EmotionsMultiselect({
                 placeholder="Search emotions"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+                    e.preventDefault();
+                    if (highlightedIdRef.current) {
+                      setOpenDetailForId(openDetailForId === highlightedIdRef.current ? undefined : highlightedIdRef.current);
+                    }
+                  }
+                }}
               />
             </React.Fragment>
           )}
@@ -95,6 +108,8 @@ export function EmotionsMultiselect({
       >
         <EmotionsOptionsList
           options={filteredEmotions}
+          openDetailForId={openDetailForId}
+          onDetailOpenChange={setOpenDetailForId}
           commandEmpty={
             isError ? (
               "Error while getting options"
