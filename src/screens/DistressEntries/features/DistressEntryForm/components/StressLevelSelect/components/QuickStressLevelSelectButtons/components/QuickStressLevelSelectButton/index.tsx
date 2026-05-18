@@ -31,11 +31,10 @@ export function QuickStressLevelSelectButton({
         backgroundColor: color,
         color: "white",
       }}
-      className={`grid grid-rows-subgrid row-span-4 w-full p-2 rounded-lg font-semibold transition-all border-2 cursor-pointer ${
-        selected
-          ? "border-primary shadow-lg scale-105"
-          : "hover:opacity-80"
-      }`}
+      className={`grid grid-rows-subgrid row-span-4 w-full p-2 rounded-lg font-semibold transition-all border-2 cursor-pointer focus-visible:border-4 focus-visible:border-gray-100 ${selected
+        ? "border-primary shadow-lg scale-105"
+        : "hover:opacity-80"
+        }`}
     >
       <div className="flex justify-center">
         <IconComponent className="h-6 w-6" />
