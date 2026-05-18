@@ -12,6 +12,7 @@ import {
 import { EmotionsOptionsList } from "./components/EmotionsOptionsList";
 import { useEmotionsOptions } from "./components/EmotionDescriptionPopover/components/EmotionDescriptionPopoverContent/hooks/useEmotionsOptions";
 import { Loader } from "@/components/ui/Loader";
+import type { BaseEmotionEnum } from "../../types";
 
 type EmotionsMultiselectProps = {
   value: string[];
@@ -44,7 +45,7 @@ export function EmotionsMultiselect({
     if (!searchQuery.trim()) return data;
 
     const query = searchQuery.toLowerCase();
-    const filtered: typeof data = {} as typeof data;
+    const filtered = {} as NonNullable<typeof data>;
 
     Object.entries(data || {}).forEach(([key, group]) => {
       const matchedEmotions = group.emotions.filter((emotion) =>
@@ -52,7 +53,7 @@ export function EmotionsMultiselect({
       );
 
       if (matchedEmotions.length > 0) {
-        filtered[key] = {
+        filtered[key as BaseEmotionEnum] = {
           ...group,
           emotions: matchedEmotions,
         };
