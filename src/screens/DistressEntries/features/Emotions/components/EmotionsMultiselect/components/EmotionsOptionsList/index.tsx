@@ -5,9 +5,9 @@ import {
   ComboboxLabel,
   ComboboxList,
 } from "@/components/shadcn/combobox";
-import { Tabs, TabsList, TabsTrigger } from "@/components/shadcn/tabs";
 import { OptionItem } from "./components/OptionItem";
 import type { EmotionsOptions } from "../../../../types";
+import { BaseEmotionsTabs } from "./components/BaseEmotionsTabs";
 
 export function EmotionsOptionsList({
   options,
@@ -21,20 +21,28 @@ export function EmotionsOptionsList({
   onDetailOpenChange?: (id: string | undefined) => void;
 }) {
   const hasOptions = options && Object.keys(options).length > 0;
-  const [activeTab, setActiveTab] = React.useState<string | undefined>(() => Object.keys(options || {})[0]);
+  const [activeTab, setActiveTab] = React.useState<string | undefined>(() =>
+    options ? Object.keys(options)[0] : undefined
+  );
   const groupRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
   const listRef = React.useRef<HTMLDivElement | null>(null);
+  // When true, the user explicitly clicked a tab — scroll should not override it.
+  const tabClickedRef = React.useRef(false);
 
   const handleTabChange = (tabValue: string) => {
+    tabClickedRef.current = true;
     setActiveTab(tabValue);
-    const element = groupRefs.current[tabValue];
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  };
+
+  const handleUserScroll = () => {
+    // Any manual scroll gesture clears the click lock so tabs follow scroll again.
+    tabClickedRef.current = false;
   };
 
   const handleScroll = () => {
     if (!listRef.current) return;
+    // If the scroll was triggered by a tab click, ignore it.
+    if (tabClickedRef.current) return;
 
     const scrollContainer = listRef.current;
     const scrollTop = scrollContainer.scrollTop;
@@ -50,7 +58,6 @@ export function EmotionsOptionsList({
       const elementHeight = element.offsetHeight;
       const elementBottom = elementTop + elementHeight;
 
-      // Calculate how much of this element is visible in the viewport
       const visibleTop = Math.max(elementTop, scrollTop);
       const visibleBottom = Math.min(elementBottom, scrollTop + containerHeight);
       const visibility = Math.max(0, visibleBottom - visibleTop);
@@ -71,49 +78,46 @@ export function EmotionsOptionsList({
       {!hasOptions && <ComboboxEmpty>{commandEmpty}</ComboboxEmpty>}
       {hasOptions && (
         <div className="flex flex-col gap-2">
-          <Tabs value={activeTab || ""} onValueChange={handleTabChange} className="px-2 py-1.5">
-            <TabsList className="grid w-full gap-1 p-1" style={{
-              gridTemplateColumns: `repeat(auto-fit, minmax(60px, 1fr))`
-            }}>
-              {Object.entries(options).map(([baseEmotion, { baseEmotionLabel }]) => (
-                <TabsTrigger key={baseEmotion} value={baseEmotion} className="text-xs">
-                  {baseEmotionLabel}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            <ComboboxList
-              ref={listRef}
-              onScroll={handleScroll}
-              className="overflow-y-auto"
-            >
-              {Object.entries(options).map(
-                ([baseEmotion, { baseEmotionLabel, emotions }]) => (
-                  <div
-                    key={baseEmotion}
-                    ref={(el) => {
-                      if (el) groupRefs.current[baseEmotion] = el;
-                    }}
-                  >
-                    <ComboboxGroup>
-                      <ComboboxLabel>{baseEmotionLabel}</ComboboxLabel>
-                      {emotions.map((emotion) => (
-                        <OptionItem
-                          key={emotion.id}
-                          id={emotion.id}
-                          label={emotion.label || ""}
-                          description={emotion.description || ""}
-                          isDetailOpen={openDetailForId === emotion.id}
-                          onDetailOpenChange={(open) =>
-                            onDetailOpenChange?.(open ? emotion.id : undefined)
-                          }
-                        />
-                      ))}
-                    </ComboboxGroup>
-                  </div>
-                ),
-              )}
-            </ComboboxList>
-          </Tabs>
+          <BaseEmotionsTabs
+            options={options}
+            activeTab={activeTab}
+            onTabChange={handleTabChange}
+            groupRefs={groupRefs}
+          />
+          <ComboboxList
+            ref={listRef}
+            onScroll={handleScroll}
+            onWheel={handleUserScroll}
+            onTouchStart={handleUserScroll}
+            className="overflow-y-auto"
+          >
+            {Object.entries(options).map(
+              ([baseEmotion, { baseEmotionLabel, emotions }]) => (
+                <div
+                  key={baseEmotion}
+                  ref={(el) => {
+                    if (el) groupRefs.current[baseEmotion] = el;
+                  }}
+                >
+                  <ComboboxGroup>
+                    <ComboboxLabel>{baseEmotionLabel}</ComboboxLabel>
+                    {emotions.map((emotion) => (
+                      <OptionItem
+                        key={emotion.id}
+                        id={emotion.id}
+                        label={emotion.label || ""}
+                        description={emotion.description || ""}
+                        isDetailOpen={openDetailForId === emotion.id}
+                        onDetailOpenChange={(open) =>
+                          onDetailOpenChange?.(open ? emotion.id : undefined)
+                        }
+                      />
+                    ))}
+                  </ComboboxGroup>
+                </div>
+              ),
+            )}
+          </ComboboxList>
         </div>
       )}
     </>
