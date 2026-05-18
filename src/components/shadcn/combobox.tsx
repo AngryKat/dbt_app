@@ -140,29 +140,29 @@ function ComboboxList({ className, ...props }: ComboboxPrimitive.List.Props) {
 function ComboboxItem({
   className,
   children,
-  hideIndicator,
+  indicatorPlacement = "end",
   ...props
-}: ComboboxPrimitive.Item.Props & { hideIndicator?: boolean }) {
+}: ComboboxPrimitive.Item.Props & { indicatorPlacement?: "start" | "end"  }) {
+  const isStartPlacement = indicatorPlacement === "start";
+  
   return (
     <ComboboxPrimitive.Item
       data-slot="combobox-item"
       className={cn(
-        "relative flex w-full cursor-default items-center gap-2 rounded-md py-1 pl-1.5 text-sm outline-hidden select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground not-data-[variant=destructive]:data-highlighted:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        !hideIndicator && "pr-8",
+        "relative flex w-full cursor-default items-center gap-2 rounded-md py-1 text-sm outline-hidden select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground not-data-[variant=destructive]:data-highlighted:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        isStartPlacement ? "pl-8 pr-1.5" : "pr-8 pl-1.5",
         className,
       )}
       {...props}
     >
       {children}
-      {!hideIndicator && (
-        <ComboboxPrimitive.ItemIndicator
+      <ComboboxPrimitive.ItemIndicator
           render={
-            <span className="pointer-events-none absolute right-2 flex size-4 items-center justify-center" />
+            <span className={cn("pointer-events-none absolute flex size-4 items-center justify-center", isStartPlacement ? "left-2" : "right-2")} />
           }
         >
           <CheckIcon className="pointer-events-none" />
         </ComboboxPrimitive.ItemIndicator>
-      )}
     </ComboboxPrimitive.Item>
   );
 }
