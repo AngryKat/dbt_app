@@ -112,11 +112,6 @@ export function DistressEntryForm() {
           )}
         />
       </div>
-      {/* <div className="grid w-full gap-2">
-        <Label className="text-base">Emotions</Label>
-        <EmotionsRedirectCardLink />
-      </div> */}
-
       {/* Situation */}
       <div className="grid w-full gap-2">
         <Label htmlFor="situation" className="text-base">
