@@ -1,0 +1,115 @@
+import * as React from "react";
+
+import {
+  Combobox,
+  ComboboxChips,
+  ComboboxChip,
+  ComboboxChipsInput,
+  ComboboxContent,
+  ComboboxValue,
+  useComboboxAnchor,
+} from "@/components/shadcn/combobox";
+import { PromptingEventsOptionsList } from "./components/PromptingEventsOptionsList";
+import { usePromptingEventsOptions } from "../../hooks/usePromptingEventsOptions";
+import { Loader } from "@/components/ui/Loader";
+import type { BaseEmotionEnum } from "@/types/base-emotions";
+
+type PromptingEventsMultiselectProps = {
+  value: string[];
+  onChange: (value: string[]) => void;
+  id?: string;
+};
+
+export function PromptingEventsMultiselect({
+  value,
+  onChange,
+  id,
+}: PromptingEventsMultiselectProps) {
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const { data, isLoading, isError } = usePromptingEventsOptions();
+  const anchorRef = useComboboxAnchor();
+
+  const allEvents = React.useMemo(
+    () => Object.values(data || {}).flatMap(({ events }) => events),
+    [data],
+  );
+
+  const allEventIds = React.useMemo(
+    () => allEvents.map((e) => e.id),
+    [allEvents],
+  );
+
+  const filteredEvents = React.useMemo(() => {
+    if (!searchQuery.trim()) return data;
+
+    const query = searchQuery.toLowerCase();
+    const filtered = {} as NonNullable<typeof data>;
+
+    Object.entries(data || {}).forEach(([key, group]) => {
+      const matchedEvents = group.events.filter((event) =>
+        event.description.toLowerCase().includes(query),
+      );
+
+      if (matchedEvents.length > 0) {
+        filtered[key as BaseEmotionEnum] = {
+          ...group,
+          events: matchedEvents,
+        };
+      }
+    });
+
+    return Object.keys(filtered).length > 0 ? filtered : undefined;
+  }, [data, searchQuery]);
+
+  return (
+    <Combobox
+      multiple
+      autoHighlight
+      items={allEventIds}
+      value={value}
+      onValueChange={onChange}
+    >
+      <ComboboxChips ref={anchorRef} className="w-full">
+        <ComboboxValue>
+          {(values: string[]) => (
+            <React.Fragment>
+              {values.map((eventId) => (
+                <ComboboxChip key={eventId}>
+                  {allEvents.find((e) => e.id === eventId)?.description ??
+                    eventId}
+                </ComboboxChip>
+              ))}
+              <ComboboxChipsInput
+                id={id}
+                placeholder="Search prompting events"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </React.Fragment>
+          )}
+        </ComboboxValue>
+      </ComboboxChips>
+      <ComboboxContent
+        anchor={anchorRef}
+        align="start"
+        side="bottom"
+        className="min-w-[clamp(12.5rem,2.484rem+40.064vw,28.125rem)]"
+      >
+        <PromptingEventsOptionsList
+          options={filteredEvents}
+          commandEmpty={
+            isError ? (
+              "Error while getting options"
+            ) : isLoading ? (
+              <Loader label="Loading prompting events" />
+            ) : searchQuery.trim() && !filteredEvents ? (
+              "No prompting events match your search."
+            ) : (
+              "No prompting event found."
+            )
+          }
+        />
+      </ComboboxContent>
+    </Combobox>
+  );
+}

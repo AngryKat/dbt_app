@@ -8,17 +8,17 @@ import { Label } from "@/components/shadcn/label";
 import {
   DateTimePick,
   StressLevelSelect,
-  SituationSelect,
   ThoughtsSelect,
   BodilyFeelingsSelect,
   BehaviorSelect,
 } from "./components";
 import { EmotionsMultiselect } from "../Emotions/components/EmotionsMultiselect";
+import { PromptingEventsMultiselect } from "../PromptingEvents/components/PromptingEventsMultiselect";
 
 type DistressEntryFormData = {
   date: Date;
   place: string;
-  situation: string;
+  promptingEvents: string[];
   otherSituation?: string;
   stressLevel: number;
   emotions: string[];
@@ -37,7 +37,7 @@ export function DistressEntryForm() {
       defaultValues: {
         date: new Date(),
         place: "",
-        situation: "",
+        promptingEvents: [] as string[],
         stressLevel: 0,
         emotions: [] as string[],
         thoughts: "",
@@ -48,7 +48,6 @@ export function DistressEntryForm() {
       },
     });
 
-  const situation = watch("situation");
   const thoughts = watch("thoughts");
   const behavior = watch("behavior");
   const bodilyFeelings = watch("bodilyFeelings");
@@ -114,18 +113,18 @@ export function DistressEntryForm() {
       </div>
       {/* Situation */}
       <div className="grid w-full gap-2">
-        <Label htmlFor="situation" className="text-base">
+        <Label htmlFor="promptingEvents" className="text-base">
           What's going on?
         </Label>
         <Controller
-          name="situation"
+          name="promptingEvents"
           control={control}
-          render={({ field }) => <SituationSelect {...field} />}
+          render={({ field }) => <PromptingEventsMultiselect {...field} />}
         />
       </div>
 
-      {/* Other Situation */}
-      {situation === "Other" && (
+      Other Situation
+      {/* {situation === "Other" && (
         <div className="grid w-full gap-2">
           <Label htmlFor="otherSituation" className="text-base">
             Please describe the situation
@@ -142,7 +141,7 @@ export function DistressEntryForm() {
             )}
           />
         </div>
-      )}
+      )} */}
       {/* Thoughts */}
       <div className="grid w-full gap-2">
         <Label htmlFor="thoughts" className="text-base">
