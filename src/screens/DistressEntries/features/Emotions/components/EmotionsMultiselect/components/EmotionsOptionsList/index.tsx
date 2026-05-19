@@ -8,6 +8,7 @@ import {
 import { OptionItem } from "./components/OptionItem";
 import { BaseEmotionsTabs } from "@/components/ui/BaseEmotionsTabs";
 import type { EmotionsOptions } from "../../types";
+import { useTabsWithScroll } from "@/screens/DistressEntries/features/hooks/useTabsWithScroll";
 
 export function EmotionsOptionsList({
   options,
@@ -20,58 +21,15 @@ export function EmotionsOptionsList({
   openDetailForId?: string;
   onDetailOpenChange?: (id: string | undefined) => void;
 }) {
-  const baseEmotionsKeys = Object.keys(options ?? {});
   const hasOptions = options && Object.keys(options).length > 0;
-  const [activeTabState, setActiveTabState] = React.useState<string>("");
-  const activeTab = baseEmotionsKeys.includes(activeTabState) ? activeTabState : baseEmotionsKeys[0];
-  const groupRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
-  const listRef = React.useRef<HTMLDivElement | null>(null);
-  // When true, the user explicitly clicked a tab — scroll should not override it.
-  const tabClickedRef = React.useRef(false);
-
-  const handleTabChange = (tabValue: string) => {
-    tabClickedRef.current = true;
-    setActiveTabState(tabValue);
-  };
-
-  const handleUserScroll = () => {
-    // Any manual scroll gesture clears the click lock so tabs follow scroll again.
-    tabClickedRef.current = false;
-  };
-
-  const handleScroll = () => {
-    if (!listRef.current) return;
-    // If the scroll was triggered by a tab click, ignore it.
-    if (tabClickedRef.current) return;
-
-    const scrollContainer = listRef.current;
-    const scrollTop = scrollContainer.scrollTop;
-    const containerHeight = scrollContainer.clientHeight;
-
-    let visibleGroup: string | undefined;
-    let maxVisibility = 0;
-
-    Object.entries(groupRefs.current).forEach(([groupId, element]) => {
-      if (!element) return;
-
-      const elementTop = element.offsetTop;
-      const elementHeight = element.offsetHeight;
-      const elementBottom = elementTop + elementHeight;
-
-      const visibleTop = Math.max(elementTop, scrollTop);
-      const visibleBottom = Math.min(elementBottom, scrollTop + containerHeight);
-      const visibility = Math.max(0, visibleBottom - visibleTop);
-
-      if (visibility > maxVisibility) {
-        maxVisibility = visibility;
-        visibleGroup = groupId;
-      }
-    });
-
-    if (visibleGroup) {
-      setActiveTabState(visibleGroup);
-    }
-  };
+  const {
+    activeTab,
+    groupRefs,
+    listRef,
+    handleTabChange,
+    handleUserScroll,
+    handleScroll,
+  } = useTabsWithScroll(Object.keys(options ?? {}));
 
   return (
     <>
