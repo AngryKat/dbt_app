@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getBaseAndNuancedEmotions } from "@/screens/DistressEntries/features/Emotions/api/getBaseAndNuancedEmotions";
-import type { BaseEmotionEnum, EmotionsOptions } from "@/screens/DistressEntries/features/Emotions/types";
+import type { EmotionsOptions } from "@/screens/DistressEntries/features/Emotions/types";
+import type { BaseEmotionEnum } from "@/types/base-emotions";
 
 export const useEmotionsOptions = () => {
   return useQuery({
@@ -10,7 +11,7 @@ export const useEmotionsOptions = () => {
       const baseEmotionKey = nuanced.base_emotions?.key as BaseEmotionEnum;
       if (!baseEmotionKey) return acc
       if (!acc[baseEmotionKey]) acc[baseEmotionKey] = { baseEmotionLabel: nuanced.base_emotions?.label || "", emotions: [] }
-      acc[baseEmotionKey].emotions.push({
+      acc[baseEmotionKey].options.push({
         id: nuanced.id,
         label: nuanced.label,
         description: nuanced.description,
