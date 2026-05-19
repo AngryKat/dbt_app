@@ -11,5 +11,5 @@ export async function getPromptingEvents() {
       key,
       label
     )
-  `)
+  `).order('base_emotions(key)', { ascending: true })
 }

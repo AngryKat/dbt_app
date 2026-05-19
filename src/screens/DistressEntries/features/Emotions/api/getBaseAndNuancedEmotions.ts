@@ -12,5 +12,5 @@ export async function getBaseAndNuancedEmotions() {
       key,
       label
     )
-  `).order('label')
+  `).order('base_emotions(key)', { ascending: true })
 }
