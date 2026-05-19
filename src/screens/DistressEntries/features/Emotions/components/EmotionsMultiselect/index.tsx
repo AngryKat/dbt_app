@@ -32,7 +32,7 @@ export function EmotionsMultiselect({
   const [openDetailForId, setOpenDetailForId] = React.useState<string | undefined>(undefined);
 
   const allEmotions = React.useMemo(
-    () => Object.values(data || {}).flatMap(({ emotions }) => emotions),
+    () => data ? Object.values(data).flatMap(({ options }) => options) : [],
     [data],
   );
 

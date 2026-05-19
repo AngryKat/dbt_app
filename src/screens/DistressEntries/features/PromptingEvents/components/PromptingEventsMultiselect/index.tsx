@@ -12,7 +12,6 @@ import {
 import { PromptingEventsOptionsList } from "./components/PromptingEventsOptionsList";
 import { usePromptingEventsOptions } from "../../hooks/usePromptingEventsOptions";
 import { Loader } from "@/components/ui/Loader";
-import type { BaseEmotionEnum } from "@/types/base-emotions";
 
 type PromptingEventsMultiselectProps = {
   value: string[];
@@ -28,9 +27,9 @@ export function PromptingEventsMultiselect({
   const [searchQuery, setSearchQuery] = React.useState("");
   const { data, isLoading, isError } = usePromptingEventsOptions();
   const anchorRef = useComboboxAnchor();
-
+  console.log({ data })
   const allEvents = React.useMemo(
-    () => Object.values(data || {}).flatMap(({ events }) => events),
+    () => data ? Object.values(data).flatMap(({ options }) => options) : [],
     [data],
   );
 
@@ -39,27 +38,27 @@ export function PromptingEventsMultiselect({
     [allEvents],
   );
 
-  const filteredEvents = React.useMemo(() => {
-    if (!searchQuery.trim()) return data;
+  // const filteredEvents = React.useMemo(() => {
+  //   if (!searchQuery.trim()) return data;
 
-    const query = searchQuery.toLowerCase();
-    const filtered = {} as NonNullable<typeof data>;
+  //   const query = searchQuery.toLowerCase();
+  //   const filtered = {} as NonNullable<typeof data>;
 
-    Object.entries(data || {}).forEach(([key, group]) => {
-      const matchedEvents = group.events.filter((event) =>
-        event.description.toLowerCase().includes(query),
-      );
+  //   Object.entries(data || {}).forEach(([key, group]) => {
+  //     const matchedEvents = group.options.filter((event) =>
+  //       event.description.toLowerCase().includes(query),
+  //     );
 
-      if (matchedEvents.length > 0) {
-        filtered[key as BaseEmotionEnum] = {
-          ...group,
-          events: matchedEvents,
-        };
-      }
-    });
+  //     if (matchedEvents.length > 0) {
+  //       filtered[key as BaseEmotionEnum] = {
+  //         ...group,
+  //         events: matchedEvents,
+  //       };
+  //     }
+  //   });
 
-    return Object.keys(filtered).length > 0 ? filtered : undefined;
-  }, [data, searchQuery]);
+  //   return Object.keys(filtered).length > 0 ? filtered : undefined;
+  // }, [data, searchQuery]);
 
   return (
     <Combobox
@@ -96,13 +95,13 @@ export function PromptingEventsMultiselect({
         className="min-w-[clamp(12.5rem,2.484rem+40.064vw,28.125rem)]"
       >
         <PromptingEventsOptionsList
-          options={filteredEvents}
+          options={data}
           commandEmpty={
             isError ? (
               "Error while getting options"
             ) : isLoading ? (
               <Loader label="Loading prompting events" />
-            ) : searchQuery.trim() && !filteredEvents ? (
+            ) : searchQuery.trim() && !data ? (
               "No prompting events match your search."
             ) : (
               "No prompting event found."

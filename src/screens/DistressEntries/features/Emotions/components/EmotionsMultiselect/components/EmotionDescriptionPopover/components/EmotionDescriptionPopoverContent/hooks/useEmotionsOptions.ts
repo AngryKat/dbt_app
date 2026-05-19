@@ -10,7 +10,7 @@ export const useEmotionsOptions = () => {
     select: ({ data }: Awaited<ReturnType<typeof getBaseAndNuancedEmotions>>) => (data ?? []).reduce((acc, nuanced) => {
       const baseEmotionKey = nuanced.base_emotions?.key as BaseEmotionEnum;
       if (!baseEmotionKey) return acc
-      if (!acc[baseEmotionKey]) acc[baseEmotionKey] = { baseEmotionLabel: nuanced.base_emotions?.label || "", emotions: [] }
+      if (!acc[baseEmotionKey]) acc[baseEmotionKey] = { baseEmotionLabel: nuanced.base_emotions?.label || "", options: [] }
       acc[baseEmotionKey].options.push({
         id: nuanced.id,
         label: nuanced.label,
