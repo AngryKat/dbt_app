@@ -6,8 +6,8 @@ import {
   ComboboxList,
 } from "@/components/shadcn/combobox";
 import { OptionItem } from "./components/OptionItem";
-import type { EmotionsOptions } from "../../../../types";
-import { BaseEmotionsTabs } from "./components/BaseEmotionsTabs";
+import { BaseEmotionsTabs } from "@/components/ui/BaseEmotionsTabs";
+import type { EmotionsOptions } from "../../types";
 
 export function EmotionsOptionsList({
   options,
@@ -92,7 +92,7 @@ export function EmotionsOptionsList({
             className="overflow-y-auto"
           >
             {Object.entries(options).map(
-              ([baseEmotion, { baseEmotionLabel, emotions }]) => (
+              ([baseEmotion, { baseEmotionLabel, options: emotions }]) => (
                 <div
                   key={baseEmotion}
                   ref={(el) => {

@@ -6,8 +6,8 @@ import {
   ComboboxList,
 } from "@/components/shadcn/combobox";
 import { PromptingEventOptionItem } from "./components/PromptingEventOptionItem";
-import { BaseEmotionsTabs } from "./components/BaseEmotionsTabs";
 import type { PromptingEventsOptions } from "../../../../types";
+import { BaseEmotionsTabs } from "@/components/ui/BaseEmotionsTabs";
 
 export function PromptingEventsOptionsList({
   options,
@@ -90,7 +90,7 @@ export function PromptingEventsOptionsList({
             className="overflow-y-auto"
           >
             {Object.entries(options).map(
-              ([baseEmotion, { baseEmotionLabel, events }]) => (
+              ([baseEmotion, { baseEmotionLabel, options: events }]) => (
                 <div
                   key={baseEmotion}
                   ref={(el) => {

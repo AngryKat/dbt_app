@@ -35,6 +35,32 @@ export type Database = {
         }
         Relationships: []
       }
+      prompting_events: {
+        Row: {
+          id: string
+          base_emotion: string
+          description: string
+        }
+        Insert: {
+          id?: string
+          base_emotion: string
+          description: string
+        }
+        Update: {
+          id?: string
+          base_emotion?: string
+          description?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "prompting_events_base_emotion_fkey"
+            columns: ["base_emotion"]
+            isOneToOne: false
+            referencedRelation: "base_emotions"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       nuanced_emotions: {
         Row: {
           base_emotion: string | null
@@ -217,3 +243,4 @@ export const Constants = {
 
 export type BaseEmotionSchema = Database["public"]["Tables"]["base_emotions"]["Row"]
 export type NuancedEmotionSchema = Database["public"]["Tables"]["nuanced_emotions"]["Row"]
+export type PromptingEventSchema = Database["public"]["Tables"]["prompting_events"]["Row"]

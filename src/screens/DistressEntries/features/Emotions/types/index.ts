@@ -179,5 +179,3 @@ export type NuancedEmotion = {
   check: string | null;
   baseEmotion?: string | null | Partial<BaseEmotion>;
 };
-
-export type EmotionsOptions = OptionsWithBaseEmotions<Pick<NuancedEmotion, "description" | "id" | "label">>;

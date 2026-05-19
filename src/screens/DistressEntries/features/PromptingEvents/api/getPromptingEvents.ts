@@ -1,19 +1,15 @@
-import { emotions } from "@/data";
-import type { PromptingEventsOptions } from "../types";
-import type { BaseEmotionEnum } from "@/types/base-emotions";
+import { supabase } from "@/api/supabase-client";
 
-export function getPromptingEvents(): PromptingEventsOptions {
-  return Object.fromEntries(
-    emotions.map(({ emotion, promptingEvents }) => [
-      emotion as BaseEmotionEnum,
-      {
-        baseEmotionLabel:
-          emotion.charAt(0).toUpperCase() + emotion.slice(1),
-        events: promptingEvents.events.map((description) => ({
-          id: `${emotion}:${description}`,
-          description,
-        })),
-      },
-    ]),
-  ) as PromptingEventsOptions;
+export async function getPromptingEvents() {
+  return await supabase
+    .from('prompting_events')
+    .select(`
+    id,
+    description,
+    base_emotions (
+      id,
+      key,
+      label
+    )
+  `)
 }
