@@ -2,7 +2,6 @@
 import { useForm, Controller, type SubmitHandler } from "react-hook-form";
 
 import { Button } from "@/components/shadcn/button";
-import { Input } from "@/components/shadcn/input";
 import { Textarea } from "@/components/shadcn/textarea";
 import { Label } from "@/components/shadcn/label";
 import {
@@ -17,40 +16,29 @@ import { PromptingEventsMultiselect } from "../PromptingEvents/components/Prompt
 
 type DistressEntryFormData = {
   date: Date;
-  place: string;
   promptingEvents: string[];
-  otherSituation?: string;
   stressLevel: number;
   emotions: string[];
   thoughts: string;
-  otherThoughts?: string;
   behavior: string;
-  otherBehavior?: string;
   bodilyFeelings: string;
-  otherBodilyFeelings?: string;
   notes: string;
 };
 
 export function DistressEntryForm() {
-  const { control, handleSubmit, reset, watch } =
+  const { control, handleSubmit, reset } =
     useForm<DistressEntryFormData>({
       defaultValues: {
         date: new Date(),
-        place: "",
         promptingEvents: [] as string[],
         stressLevel: 0,
         emotions: [] as string[],
         thoughts: "",
         behavior: "",
         bodilyFeelings: "",
-        otherBodilyFeelings: "",
         notes: "",
       },
     });
-
-  const thoughts = watch("thoughts");
-  const behavior = watch("behavior");
-  const bodilyFeelings = watch("bodilyFeelings");
 
   const onSubmit: SubmitHandler<DistressEntryFormData> = (data) => {
     console.log(data);
@@ -69,19 +57,6 @@ export function DistressEntryForm() {
           name="date"
           control={control}
           render={({ field }) => <DateTimePick {...field} />}
-        />
-      </div>
-      {/* Place */}
-      <div className="grid w-full gap-2">
-        <Label htmlFor="place" className="text-base">
-          Where are you?
-        </Label>
-        <Controller
-          name="place"
-          control={control}
-          render={({ field }) => (
-            <Input id="place" placeholder="Enter your location" {...field} />
-          )}
         />
       </div>
       {/* Stress Level */}
@@ -133,27 +108,6 @@ export function DistressEntryForm() {
           render={({ field }) => <ThoughtsSelect {...field} />}
         />
       </div>
-
-      {/* Other Thoughts */}
-      {thoughts === "Other" && (
-        <div className="grid w-full gap-2">
-          <Label htmlFor="otherThoughts" className="text-base">
-            Please describe your thoughts
-          </Label>
-          <Controller
-            name="otherThoughts"
-            control={control}
-            render={({ field }) => (
-              <Textarea
-                id="otherThoughts"
-                placeholder="What thoughts are going through your head?"
-                {...field}
-              />
-            )}
-          />
-        </div>
-      )}
-
       {/* Bodily Feelings */}
       <div className="grid w-full gap-2">
         <Label className="text-base">Bodily Feelings</Label>
@@ -163,27 +117,6 @@ export function DistressEntryForm() {
           render={({ field }) => <BodilyFeelingsSelect {...field} />}
         />
       </div>
-
-      {/* Other Bodily Feelings */}
-      {bodilyFeelings === "Other" && (
-        <div className="grid w-full gap-2">
-          <Label htmlFor="otherBodilyFeelings" className="text-base">
-            Please describe what you feel in your body
-          </Label>
-          <Controller
-            name="otherBodilyFeelings"
-            control={control}
-            render={({ field }) => (
-              <Textarea
-                id="otherBodilyFeelings"
-                placeholder="What do you feel in your body?"
-                {...field}
-              />
-            )}
-          />
-        </div>
-      )}
-
       {/* Behavior */}
       <div className="grid w-full gap-2">
         <Label className="text-base">Behavior</Label>
@@ -193,27 +126,6 @@ export function DistressEntryForm() {
           render={({ field }) => <BehaviorSelect {...field} />}
         />
       </div>
-
-      {/* Other Behavior */}
-      {behavior === "Other" && (
-        <div className="grid w-full gap-2">
-          <Label htmlFor="otherBehavior" className="text-base">
-            Please describe your behavior
-          </Label>
-          <Controller
-            name="behavior"
-            control={control}
-            render={({ field }) => (
-              <Textarea
-                id="otherBehavior"
-                placeholder="How are you acting or what are you doing?"
-                {...field}
-              />
-            )}
-          />
-        </div>
-      )}
-
       {/* Notes */}
       <div className="grid w-full gap-2">
         <Label htmlFor="notes" className="text-base">
