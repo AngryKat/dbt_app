@@ -60,7 +60,7 @@ export function DistressEntryForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       onReset={() => reset()}
-      className="grid w-full max-w-md gap-6 mx-auto"
+      className="grid w-full max-w-[45ch] gap-6 mx-auto"
     >
       {/* Date & Time */}
       <div className="grid w-full gap-2">

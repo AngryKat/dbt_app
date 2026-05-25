@@ -12,6 +12,7 @@ import {
 import { PromptingEventsOptionsList } from "./components/PromptingEventsOptionsList";
 import { usePromptingEventsOptions } from "../../hooks/usePromptingEventsOptions";
 import { Loader } from "@/components/ui/Loader";
+import { Tooltip } from "@/components/ui/Tooltip";
 
 type PromptingEventsMultiselectProps = {
   value: string[];
@@ -27,7 +28,7 @@ export function PromptingEventsMultiselect({
   const [searchQuery, setSearchQuery] = React.useState("");
   const { data, isLoading, isError } = usePromptingEventsOptions();
   const anchorRef = useComboboxAnchor();
-  console.log({ data })
+
   const allEvents = React.useMemo(
     () => data ? Object.values(data).flatMap(({ options }) => options) : [],
     [data],
@@ -68,19 +69,25 @@ export function PromptingEventsMultiselect({
       value={value}
       onValueChange={onChange}
     >
-      <ComboboxChips ref={anchorRef} className="w-full">
+      <ComboboxChips ref={anchorRef} className="w-full max-w-full">
         <ComboboxValue>
           {(values: string[]) => (
             <React.Fragment>
-              {values.map((eventId) => (
-                <ComboboxChip key={eventId}>
-                  {allEvents.find((e) => e.id === eventId)?.description ??
-                    eventId}
-                </ComboboxChip>
-              ))}
+              {values.map((eventId) => {
+                const content = allEvents.find((e) => e.id === eventId)?.description ?? eventId;
+                return (
+                  <ComboboxChip key={eventId}>
+                    <Tooltip content={content}>
+                      <p className="max-w-[45ch] truncate">
+                        {content}
+                      </p>
+                    </Tooltip>
+                  </ComboboxChip>
+                )
+              })}
               <ComboboxChipsInput
                 id={id}
-                placeholder="Search prompting events"
+                placeholder="Search events"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
