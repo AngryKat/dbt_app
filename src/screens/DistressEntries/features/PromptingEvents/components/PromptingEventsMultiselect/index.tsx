@@ -13,6 +13,7 @@ import { PromptingEventsOptionsList } from "./components/PromptingEventsOptionsL
 import { usePromptingEventsOptions } from "../../hooks/usePromptingEventsOptions";
 import { Loader } from "@/components/ui/Loader";
 import { Tooltip } from "@/components/ui/Tooltip";
+import type { PromptingEventsOptions } from "../../types";
 
 type PromptingEventsMultiselectProps = {
   value: string[];
@@ -34,33 +35,31 @@ export function PromptingEventsMultiselect({
     [data],
   );
 
-  const filteredEvents = React.useMemo(() => {
-    if (!searchQuery.trim()) return data;
+  const filteredEvents: Partial<PromptingEventsOptions> = React.useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
 
-    const query = searchQuery.toLowerCase();
-    const filtered = {} as NonNullable<typeof data>;
+    const entries = (Object.entries(data || {}) as [keyof PromptingEventsOptions, PromptingEventsOptions[keyof PromptingEventsOptions]][]);
 
-    Object.entries(data || {}).forEach(([key, group]) => {
-      const matchedEvents = group.options.filter((event) =>
-        event.description.toLowerCase().includes(query),
-      );
-
-      if (matchedEvents.length > 0) {
-        filtered[key as BaseEmotionEnum] = {
-          ...group,
-          events: matchedEvents,
-        };
-      }
-    });
-
-    return Object.keys(filtered).length > 0 ? filtered : undefined;
+    return Object.fromEntries(
+      entries
+        .map(([key, val]) => ({
+          key,
+          value: {
+            baseEmotionLabel: val.baseEmotionLabel,
+            options: q
+              ? val.options.filter(opt => opt.description.toLowerCase().includes(q))
+              : val.options,
+          },
+        }))
+        .filter(({ value }) => value.options.length > 0)
+        .map(({ key, value }) => [key, value])
+    ) as Partial<PromptingEventsOptions>;
   }, [data, searchQuery]);
 
   return (
     <Combobox
       multiple
       autoHighlight
-      // items={allEvents}
       value={value}
       onValueChange={onChange}
     >

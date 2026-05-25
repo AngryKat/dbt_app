@@ -8,7 +8,7 @@ export function BaseEmotionsTabs<OptionsType>({
   onTabChange,
   groupRefs,
 }: {
-  options: OptionsWithBaseEmotions<OptionsType>;
+  options: Partial<OptionsWithBaseEmotions<OptionsType>>;
   activeTab: string | undefined;
   onTabChange: (tabValue: string) => void;
   groupRefs: React.MutableRefObject<Record<string, HTMLDivElement | null>>;
