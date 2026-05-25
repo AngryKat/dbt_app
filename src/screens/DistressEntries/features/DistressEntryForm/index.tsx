@@ -122,26 +122,6 @@ export function DistressEntryForm() {
           render={({ field }) => <PromptingEventsMultiselect {...field} />}
         />
       </div>
-
-      Other Situation
-      {/* {situation === "Other" && (
-        <div className="grid w-full gap-2">
-          <Label htmlFor="otherSituation" className="text-base">
-            Please describe the situation
-          </Label>
-          <Controller
-            name="otherSituation"
-            control={control}
-            render={({ field }) => (
-              <Textarea
-                id="otherSituation"
-                placeholder="Describe what's happening..."
-                {...field}
-              />
-            )}
-          />
-        </div>
-      )} */}
       {/* Thoughts */}
       <div className="grid w-full gap-2">
         <Label htmlFor="thoughts" className="text-base">
