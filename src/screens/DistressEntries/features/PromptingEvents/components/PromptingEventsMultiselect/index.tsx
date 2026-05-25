@@ -34,38 +34,33 @@ export function PromptingEventsMultiselect({
     [data],
   );
 
-  const allEventIds = React.useMemo(
-    () => allEvents.map((e) => e.id),
-    [allEvents],
-  );
+  const filteredEvents = React.useMemo(() => {
+    if (!searchQuery.trim()) return data;
 
-  // const filteredEvents = React.useMemo(() => {
-  //   if (!searchQuery.trim()) return data;
+    const query = searchQuery.toLowerCase();
+    const filtered = {} as NonNullable<typeof data>;
 
-  //   const query = searchQuery.toLowerCase();
-  //   const filtered = {} as NonNullable<typeof data>;
+    Object.entries(data || {}).forEach(([key, group]) => {
+      const matchedEvents = group.options.filter((event) =>
+        event.description.toLowerCase().includes(query),
+      );
 
-  //   Object.entries(data || {}).forEach(([key, group]) => {
-  //     const matchedEvents = group.options.filter((event) =>
-  //       event.description.toLowerCase().includes(query),
-  //     );
+      if (matchedEvents.length > 0) {
+        filtered[key as BaseEmotionEnum] = {
+          ...group,
+          events: matchedEvents,
+        };
+      }
+    });
 
-  //     if (matchedEvents.length > 0) {
-  //       filtered[key as BaseEmotionEnum] = {
-  //         ...group,
-  //         events: matchedEvents,
-  //       };
-  //     }
-  //   });
-
-  //   return Object.keys(filtered).length > 0 ? filtered : undefined;
-  // }, [data, searchQuery]);
+    return Object.keys(filtered).length > 0 ? filtered : undefined;
+  }, [data, searchQuery]);
 
   return (
     <Combobox
       multiple
       autoHighlight
-      items={allEventIds}
+      // items={allEvents}
       value={value}
       onValueChange={onChange}
     >
@@ -78,7 +73,7 @@ export function PromptingEventsMultiselect({
                 return (
                   <ComboboxChip key={eventId}>
                     <Tooltip content={content}>
-                      <p className="max-w-[45ch] truncate">
+                      <p className="max-w-[55ch] truncate">
                         {content}
                       </p>
                     </Tooltip>
@@ -87,7 +82,8 @@ export function PromptingEventsMultiselect({
               })}
               <ComboboxChipsInput
                 id={id}
-                placeholder="Search events"
+                className="min-w-fit"
+                placeholder="Search events..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -102,7 +98,7 @@ export function PromptingEventsMultiselect({
         className="min-w-[clamp(12.5rem,2.484rem+40.064vw,28.125rem)]"
       >
         <PromptingEventsOptionsList
-          options={data}
+          options={filteredEvents}
           commandEmpty={
             isError ? (
               "Error while getting options"
