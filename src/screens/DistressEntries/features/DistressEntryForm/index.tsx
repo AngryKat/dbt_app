@@ -94,7 +94,13 @@ export function DistressEntryForm() {
         <Controller
           name="promptingEvents"
           control={control}
-          render={({ field }) => <PromptingEventsMultiselect {...field} />}
+          render={({ field: { value, onChange } }) => (
+            <PromptingEventsMultiselect
+              value={value}
+              onChange={onChange}
+              id="promptingEvents"
+            />
+          )}
         />
       </div>
       {/* Thoughts */}
