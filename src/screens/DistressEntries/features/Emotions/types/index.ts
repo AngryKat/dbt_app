@@ -1,4 +1,4 @@
-import type { BaseEmotion, OptionsWithBaseEmotions } from "@/types/base-emotions";
+import type { BaseEmotion } from "@/types/base-emotions";
 
 export const NuancedEmotionEnum = {
   // Anger
