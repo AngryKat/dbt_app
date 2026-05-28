@@ -7,12 +7,12 @@ import { Label } from "@/components/shadcn/label";
 import {
   DateTimePick,
   StressLevelSelect,
-  BehaviorSelect,
 } from "./components";
 import { BiologicalChangesMultiselect } from "../BiologicalChanges/components/BiologicalChangesMultiselect";
 import { EmotionsMultiselect } from "../Emotions/components/EmotionsMultiselect";
 import { PromptingEventsMultiselect } from "../PromptingEvents/components/PromptingEventsMultiselect";
 import { InterpretationsMultiselect } from "../Interpretations/components/InterpretationsMultiselect";
+import { ReactionsMultiselect } from "../Reactions/components/ReactionsMultiselect";
 
 type DistressEntryFormData = {
   date: Date;
@@ -22,6 +22,7 @@ type DistressEntryFormData = {
   emotions: string[];
   behavior: string;
   biologicalChanges: string[];
+  reactions: string[];
   notes: string;
 };
 
@@ -36,6 +37,7 @@ export function DistressEntryForm() {
         emotions: [],
         behavior: "",
         biologicalChanges: [],
+        reactions: [],
         notes: "",
       } as DistressEntryFormData,
     });
@@ -135,13 +137,19 @@ export function DistressEntryForm() {
           )}
         />
       </div>
-      {/* Behavior */}
+      {/* Reactions */}
       <div className="grid w-full gap-2">
-        <Label className="text-base">Behavior</Label>
+        <Label htmlFor="reactions" className="text-base">Reactions</Label>
         <Controller
-          name="behavior"
+          name="reactions"
           control={control}
-          render={({ field }) => <BehaviorSelect {...field} />}
+          render={({ field: { value, onChange } }) => (
+            <ReactionsMultiselect
+              value={value}
+              onChange={onChange}
+              id="reactions"
+            />
+          )}
         />
       </div>
       {/* Notes */}
