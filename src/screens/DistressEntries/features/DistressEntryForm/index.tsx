@@ -7,9 +7,9 @@ import { Label } from "@/components/shadcn/label";
 import {
   DateTimePick,
   StressLevelSelect,
-  BodilyFeelingsSelect,
   BehaviorSelect,
 } from "./components";
+import { BiologicalChangesMultiselect } from "../BiologicalChanges/components/BiologicalChangesMultiselect";
 import { EmotionsMultiselect } from "../Emotions/components/EmotionsMultiselect";
 import { PromptingEventsMultiselect } from "../PromptingEvents/components/PromptingEventsMultiselect";
 import { InterpretationsMultiselect } from "../Interpretations/components/InterpretationsMultiselect";
@@ -21,7 +21,7 @@ type DistressEntryFormData = {
   stressLevel: number;
   emotions: string[];
   behavior: string;
-  bodilyFeelings: string;
+  biologicalChanges: string[];
   notes: string;
 };
 
@@ -35,7 +35,7 @@ export function DistressEntryForm() {
         stressLevel: 0,
         emotions: [],
         behavior: "",
-        bodilyFeelings: "",
+        biologicalChanges: [],
         notes: "",
       } as DistressEntryFormData,
     });
@@ -122,11 +122,17 @@ export function DistressEntryForm() {
       </div>
       {/* Bodily Feelings */}
       <div className="grid w-full gap-2">
-        <Label className="text-base">Bodily Feelings</Label>
+        <Label htmlFor="biologicalChanges" className="text-base">Biological changes</Label>
         <Controller
-          name="bodilyFeelings"
+          name="biologicalChanges"
           control={control}
-          render={({ field }) => <BodilyFeelingsSelect {...field} />}
+          render={({ field: { value, onChange } }) => (
+            <BiologicalChangesMultiselect
+              value={value}
+              onChange={onChange}
+              id="biologicalChanges"
+            />
+          )}
         />
       </div>
       {/* Behavior */}

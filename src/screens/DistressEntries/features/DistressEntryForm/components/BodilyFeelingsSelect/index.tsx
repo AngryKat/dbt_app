@@ -19,7 +19,7 @@ export function BodilyFeelingsSelect({
       value={value}
       onChange={onChange}
       label="How does your body feel?"
-      id="bodilyFeelings"
+      id="biologicalChanges"
       items={[
         { value: "Other", label: "Other" },
         ...allEmotionsData.map(({ emotion, biologicalChanges }) => ({
