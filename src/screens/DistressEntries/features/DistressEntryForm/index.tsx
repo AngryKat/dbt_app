@@ -72,7 +72,7 @@ export function DistressEntryForm() {
       {/* Emotions */}
       <div className="grid w-full gap-2">
         <Label htmlFor="emotions" className="text-base">
-          What are your emotions?
+          Emotions
         </Label>
         <Controller
           name="emotions"
@@ -89,7 +89,7 @@ export function DistressEntryForm() {
       {/* Situation */}
       <div className="grid w-full gap-2">
         <Label htmlFor="promptingEvents" className="text-base">
-          What's going on?
+          Promtping events
         </Label>
         <Controller
           name="promptingEvents"

@@ -11,9 +11,9 @@ import {
 } from "@/components/shadcn/combobox";
 import { PromptingEventsOptionsList } from "./components/PromptingEventsOptionsList";
 import { usePromptingEventsOptions } from "../../hooks/usePromptingEventsOptions";
-import { Loader } from "@/components/ui/Loader";
 import { Tooltip } from "@/components/ui/Tooltip";
-import type { PromptingEventsOptions } from "../../types";
+import { getFilteredEvents } from "./helpers/getFilteredEvents";
+import { getCommandEmpty } from "./helpers/getCommandEmpty";
 
 type PromptingEventsMultiselectProps = {
   value: string[];
@@ -35,27 +35,8 @@ export function PromptingEventsMultiselect({
     [data],
   );
 
-  const filteredEvents: Partial<PromptingEventsOptions> = React.useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
-
-    const entries = (Object.entries(data || {}) as [keyof PromptingEventsOptions, PromptingEventsOptions[keyof PromptingEventsOptions]][]);
-
-    return Object.fromEntries(
-      entries
-        .map(([key, val]) => ({
-          key,
-          value: {
-            baseEmotionLabel: val.baseEmotionLabel,
-            options: q
-              ? val.options.filter(opt => opt.description.toLowerCase().includes(q))
-              : val.options,
-          },
-        }))
-        .filter(({ value }) => value.options.length > 0)
-        .map(({ key, value }) => [key, value])
-    ) as Partial<PromptingEventsOptions>;
-  }, [data, searchQuery]);
-
+  const filteredEvents = React.useMemo(() => getFilteredEvents(searchQuery, data), [data, searchQuery]);
+  console.log({ filteredEvents, data, searchQuery });
   return (
     <Combobox
       multiple
@@ -99,15 +80,11 @@ export function PromptingEventsMultiselect({
         <PromptingEventsOptionsList
           options={filteredEvents}
           commandEmpty={
-            isError ? (
-              "Error while getting options"
-            ) : isLoading ? (
-              <Loader label="Loading prompting events" />
-            ) : searchQuery.trim() && !data ? (
-              "No prompting events match your search."
-            ) : (
-              "No prompting event found."
-            )
+            getCommandEmpty({
+              isError,
+              isLoading,
+              isSearchWithNoData: !!searchQuery.trim() && !Object.values(filteredEvents).length,
+            })
           }
         />
       </ComboboxContent>
