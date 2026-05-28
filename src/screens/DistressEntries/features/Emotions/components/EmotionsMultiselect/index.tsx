@@ -12,7 +12,7 @@ import {
 import { EmotionsOptionsList } from "./components/EmotionsOptionsList";
 import { useEmotionsOptions } from "./components/EmotionDescriptionPopover/components/EmotionDescriptionPopoverContent/hooks/useEmotionsOptions";
 import { Loader } from "@/components/ui/Loader";
-import type { BaseEmotionEnum } from "../../types";
+import type { BaseEmotionEnum } from "@/types/base-emotions";
 
 type EmotionsMultiselectProps = {
   value: string[];
@@ -32,7 +32,7 @@ export function EmotionsMultiselect({
   const [openDetailForId, setOpenDetailForId] = React.useState<string | undefined>(undefined);
 
   const allEmotions = React.useMemo(
-    () => Object.values(data || {}).flatMap(({ emotions }) => emotions),
+    () => data ? Object.values(data).flatMap(({ options }) => options) : [],
     [data],
   );
 
@@ -48,14 +48,14 @@ export function EmotionsMultiselect({
     const filtered = {} as NonNullable<typeof data>;
 
     Object.entries(data || {}).forEach(([key, group]) => {
-      const matchedEmotions = group.emotions.filter((emotion) =>
+      const matchedEmotions = group.options.filter((emotion) =>
         emotion.label?.toLowerCase().includes(query)
       );
 
       if (matchedEmotions.length > 0) {
         filtered[key as BaseEmotionEnum] = {
           ...group,
-          emotions: matchedEmotions,
+          options: matchedEmotions,
         };
       }
     });

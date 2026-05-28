@@ -8,7 +8,7 @@ import "./index.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <TooltipProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </TooltipProvider>
   </StrictMode>,
 );

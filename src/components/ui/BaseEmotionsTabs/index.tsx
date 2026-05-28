@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/shadcn/tabs";
-import type { EmotionsOptions } from "@/screens/DistressEntries/features/Emotions/types";
+import type { OptionsWithBaseEmotions } from "@/types/base-emotions";
 
-export function BaseEmotionsTabs({
+export function BaseEmotionsTabs<OptionsType>({
   options,
   activeTab,
   onTabChange,
   groupRefs,
 }: {
-  options: EmotionsOptions;
+  options: Partial<OptionsWithBaseEmotions<OptionsType>>;
   activeTab: string | undefined;
   onTabChange: (tabValue: string) => void;
   groupRefs: React.MutableRefObject<Record<string, HTMLDivElement | null>>;
@@ -27,12 +27,13 @@ export function BaseEmotionsTabs({
       onValueChange={handleTabChange}
       className="px-2 py-1.5 w-full overflow-x-auto"
     >
-      <TabsList
-        className="flex flex-nowrap gap-1 p-1"
-
-      >
+      <TabsList className="flex flex-nowrap gap-1 p-1">
         {Object.entries(options).map(([baseEmotion, { baseEmotionLabel }]) => (
-          <TabsTrigger key={baseEmotion} value={baseEmotion} className="text-xs">
+          <TabsTrigger
+            key={baseEmotion}
+            value={baseEmotion}
+            className="text-xs"
+          >
             {baseEmotionLabel}
           </TabsTrigger>
         ))}
