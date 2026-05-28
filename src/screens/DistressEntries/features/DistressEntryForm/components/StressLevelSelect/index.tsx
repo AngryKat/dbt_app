@@ -15,23 +15,21 @@ export function StressLevelSelect({
 }: StressLevelSelectProps) {
   return (
     <>
-      <div className="flex justify-between text-sm">
-        <Label htmlFor={name} className="text-base">
-          Stress level
-        </Label>
+      <Label htmlFor={name} className="text-base">
+        Stress level
+      </Label>
+      <QuickStressLevelSelectButtons value={value} onChange={onChange} />
+      <div className="flex justify-between text-sm gap-2.25 items-center mt-2.5">
+        <Slider
+          id={name}
+          min={0}
+          max={100}
+          step={1}
+          value={[value]}
+          onValueChange={([val]) => onChange(val)}
+        />
         <span className="text-muted-foreground">{value}%</span>
       </div>
-      <Slider
-        id={name}
-        min={0}
-        max={100}
-        step={1}
-        value={[value]}
-        onValueChange={([val]) => onChange(val)}
-      />
-
-      {/* Quick select buttons */}
-      <QuickStressLevelSelectButtons value={value} onChange={onChange} />
     </>
   );
 }
