@@ -9,33 +9,33 @@ import {
   ComboboxValue,
   useComboboxAnchor,
 } from "@/components/shadcn/combobox";
-import { PromptingEventsOptionsList } from "./components/PromptingEventsOptionsList";
-import { usePromptingEventsOptions } from "../../hooks/usePromptingEventsOptions";
-import { getFilteredEvents } from "./helpers/getFilteredEvents";
+import { InterpretationsOptionsList } from "./components/InterpretationsOptionsList";
+import { useInterpretationsOptions } from "../../hooks/useInterpretationsOptions";
+import { getFilteredInterpretations } from "./helpers/getFilteredInterpretations";
 import { getCommandEmpty } from "./helpers/getCommandEmpty";
 
-type PromptingEventsMultiselectProps = {
+type InterpretationsMultiselectProps = {
   value: string[];
   onChange: (value: string[]) => void;
   id?: string;
 };
 
-export function PromptingEventsMultiselect({
+export function InterpretationsMultiselect({
   value,
   onChange,
   id,
-}: PromptingEventsMultiselectProps) {
+}: InterpretationsMultiselectProps) {
   const [searchQuery, setSearchQuery] = React.useState("");
-  const { data, isLoading, isError } = usePromptingEventsOptions();
+  const { data, isLoading, isError } = useInterpretationsOptions();
   const anchorRef = useComboboxAnchor();
 
-  const allEvents = React.useMemo(
+  const allInterpretations = React.useMemo(
     () => data ? Object.values(data).flatMap(({ options }) => options) : [],
     [data],
   );
 
-  const filteredEvents = React.useMemo(() => getFilteredEvents(searchQuery, data), [data, searchQuery]);
-  console.log({ filteredEvents, data, searchQuery });
+  const filteredInterpretations = React.useMemo(() => getFilteredInterpretations(searchQuery, data), [data, searchQuery]);
+
   return (
     <Combobox
       multiple
@@ -47,10 +47,10 @@ export function PromptingEventsMultiselect({
         <ComboboxValue>
           {(values: string[]) => (
             <React.Fragment>
-              {values.map((eventId) => {
-                const content = allEvents.find((e) => e.id === eventId)?.description ?? eventId;
+              {values.map((interpretationId) => {
+                const content = allInterpretations.find((i) => i.id === interpretationId)?.description ?? interpretationId;
                 return (
-                  <ComboboxChip key={eventId}>
+                  <ComboboxChip key={interpretationId}>
                     <p className="max-w-[55ch] truncate">
                       {content}
                     </p>
@@ -60,7 +60,7 @@ export function PromptingEventsMultiselect({
               <ComboboxChipsInput
                 id={id}
                 className="min-w-fit"
-                placeholder="Search events..."
+                placeholder="Search interpretations..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -74,13 +74,13 @@ export function PromptingEventsMultiselect({
         side="bottom"
         className="min-w-[clamp(12.5rem,2.484rem+40.064vw,28.125rem)]"
       >
-        <PromptingEventsOptionsList
-          options={filteredEvents}
+        <InterpretationsOptionsList
+          options={filteredInterpretations}
           commandEmpty={
             getCommandEmpty({
               isError,
               isLoading,
-              isSearchWithNoData: !!searchQuery.trim() && !Object.values(filteredEvents).length,
+              isSearchWithNoData: !!searchQuery.trim() && !Object.values(filteredInterpretations).length,
             })
           }
         />
