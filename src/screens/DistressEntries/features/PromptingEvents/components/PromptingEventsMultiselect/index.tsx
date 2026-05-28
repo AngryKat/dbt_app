@@ -11,7 +11,6 @@ import {
 } from "@/components/shadcn/combobox";
 import { PromptingEventsOptionsList } from "./components/PromptingEventsOptionsList";
 import { usePromptingEventsOptions } from "../../hooks/usePromptingEventsOptions";
-import { Tooltip } from "@/components/ui/Tooltip";
 import { getFilteredEvents } from "./helpers/getFilteredEvents";
 import { getCommandEmpty } from "./helpers/getCommandEmpty";
 
@@ -52,11 +51,9 @@ export function PromptingEventsMultiselect({
                 const content = allEvents.find((e) => e.id === eventId)?.description ?? eventId;
                 return (
                   <ComboboxChip key={eventId}>
-                    <Tooltip content={content}>
-                      <p className="max-w-[55ch] truncate">
-                        {content}
-                      </p>
-                    </Tooltip>
+                    <p className="max-w-[55ch] truncate">
+                      {content}
+                    </p>
                   </ComboboxChip>
                 )
               })}

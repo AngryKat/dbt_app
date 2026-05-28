@@ -11,7 +11,6 @@ import {
 } from "@/components/shadcn/combobox";
 import { InterpretationsOptionsList } from "./components/InterpretationsOptionsList";
 import { useInterpretationsOptions } from "../../hooks/useInterpretationsOptions";
-import { Tooltip } from "@/components/ui/Tooltip";
 import { getFilteredInterpretations } from "./helpers/getFilteredInterpretations";
 import { getCommandEmpty } from "./helpers/getCommandEmpty";
 
@@ -52,11 +51,9 @@ export function InterpretationsMultiselect({
                 const content = allInterpretations.find((i) => i.id === interpretationId)?.description ?? interpretationId;
                 return (
                   <ComboboxChip key={interpretationId}>
-                    <Tooltip content={content}>
-                      <p className="max-w-[55ch] truncate">
-                        {content}
-                      </p>
-                    </Tooltip>
+                    <p className="max-w-[55ch] truncate">
+                      {content}
+                    </p>
                   </ComboboxChip>
                 )
               })}
