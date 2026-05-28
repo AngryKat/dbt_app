@@ -7,19 +7,19 @@ import { Label } from "@/components/shadcn/label";
 import {
   DateTimePick,
   StressLevelSelect,
-  ThoughtsSelect,
   BodilyFeelingsSelect,
   BehaviorSelect,
 } from "./components";
 import { EmotionsMultiselect } from "../Emotions/components/EmotionsMultiselect";
 import { PromptingEventsMultiselect } from "../PromptingEvents/components/PromptingEventsMultiselect";
+import { InterpretationsMultiselect } from "../Interpretations/components/InterpretationsMultiselect";
 
 type DistressEntryFormData = {
   date: Date;
   promptingEvents: string[];
+  interpretations: string[];
   stressLevel: number;
   emotions: string[];
-  thoughts: string;
   behavior: string;
   bodilyFeelings: string;
   notes: string;
@@ -30,14 +30,14 @@ export function DistressEntryForm() {
     useForm<DistressEntryFormData>({
       defaultValues: {
         date: new Date(),
-        promptingEvents: [] as string[],
+        promptingEvents: [],
+        interpretations: [],
         stressLevel: 0,
-        emotions: [] as string[],
-        thoughts: "",
+        emotions: [],
         behavior: "",
         bodilyFeelings: "",
         notes: "",
-      },
+      } as DistressEntryFormData,
     });
 
   const onSubmit: SubmitHandler<DistressEntryFormData> = (data) => {
@@ -105,13 +105,19 @@ export function DistressEntryForm() {
       </div>
       {/* Thoughts */}
       <div className="grid w-full gap-2">
-        <Label htmlFor="thoughts" className="text-base">
-          Thoughts
+        <Label htmlFor="interpretations" className="text-base">
+          Interpretations
         </Label>
         <Controller
-          name="thoughts"
+          name="interpretations"
           control={control}
-          render={({ field }) => <ThoughtsSelect {...field} />}
+          render={({ field: { value, onChange } }) => (
+            <InterpretationsMultiselect
+              value={value}
+              onChange={onChange}
+              id="interpretations"
+            />
+          )}
         />
       </div>
       {/* Bodily Feelings */}
