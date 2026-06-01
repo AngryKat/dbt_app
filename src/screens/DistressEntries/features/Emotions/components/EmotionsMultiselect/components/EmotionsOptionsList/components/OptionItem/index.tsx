@@ -16,21 +16,22 @@ type OptionItemProps = {
   description: string;
   isDetailOpen?: boolean;
   onDetailOpenChange?: (open: boolean) => void;
+  ref?: React.Ref<HTMLLIElement>;
 };
 
-export function OptionItem({ id, label, description, isDetailOpen, onDetailOpenChange }: OptionItemProps) {
+export function OptionItem({ id, label, ref, description, isDetailOpen, onDetailOpenChange }: OptionItemProps) {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
-    <ComboboxItem
-      value={id}
-      indicatorPlacement="start"
-      className="group flex items-center gap-2"
+    <li
+      ref={ref}
+      className="group grid"
+      style={{
+        gridTemplateColumns: "minmax(0, 1fr) auto",
+      }}
     >
-      <span className="flex flex-col">
-        <span className="font-semibold">{label}</span>
-        <span>{description}</span>
-      </span>
+      <span className="font-semibold block">{label}</span>
+
       <Tooltip>
         <EmotionDescriptionPopover
           id={id}
@@ -41,7 +42,7 @@ export function OptionItem({ id, label, description, isDetailOpen, onDetailOpenC
             <TooltipTrigger asChild>
               <Button
                 ref={buttonRef}
-                className="size-6 shrink-0 ml-auto"
+                className="size-6 shrink-0"
                 size="icon"
                 variant="ghost"
                 aria-label={`Open details for ${label}`}
@@ -56,6 +57,8 @@ export function OptionItem({ id, label, description, isDetailOpen, onDetailOpenC
           Open details (<kbd data-slot="kbd">⌘ Enter</kbd>)
         </TooltipContent>
       </Tooltip>
-    </ComboboxItem>
+      <span className="block">{description}</span>
+
+    </li>
   );
 }

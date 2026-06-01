@@ -29,7 +29,7 @@ export function InterpretationsOptionsList({
 
   return (
     <>
-      {!hasOptions && <ComboboxEmpty>{commandEmpty}</ComboboxEmpty>}
+      {!hasOptions && <p>{commandEmpty}</p>}
       {hasOptions && (
         <div className="flex flex-col gap-2">
           <BaseEmotionsTabs
