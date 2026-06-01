@@ -16,24 +16,21 @@ type DateTimePickProps = {
 export function DateTimePick({ value, onChange }: DateTimePickProps) {
   const [open, setOpen] = useState(false);
   const [timePickerOpen, setTimePickerOpen] = useState(false);
-  const [date, setDate] = useState(value);
-  const hours = getHours(date);
-  const minutes = getMinutes(date);
-  const dateDay = format(date, 'd');
-  const dateMonth = format(date, 'MMMM');
-  const dayName = format(date, 'EEEE');
-  const timeFormatted = format(date, 'HH:mm');
+  const hours = getHours(value);
+  const minutes = getMinutes(value);
+  const dateDay = format(value, 'd');
+  const dateMonth = format(value, 'MMMM');
+  const dayName = format(value, 'EEEE');
+  const timeFormatted = format(value, 'HH:mm');
 
   const handleDateSelect = (selectedDate: Date | undefined) => {
     if (!selectedDate) return;
     const dateWithPreservedTime = setMinutes(setHours(selectedDate, hours), minutes);
-    setDate(dateWithPreservedTime);
     onChange(dateWithPreservedTime);
   };
 
   const handleTimeChange = (newHours: number, newMinutes: number) => {
-    const newDate = setMinutes(setHours(date, newHours), newMinutes);
-    setDate(newDate);
+    const newDate = setMinutes(setHours(value, newHours), newMinutes);
     onChange(newDate);
   };
 
@@ -92,7 +89,7 @@ export function DateTimePick({ value, onChange }: DateTimePickProps) {
             </Popover>
           </div>
           <PopoverContent className="w-auto mx-2">
-            <Calendar mode="single" selected={date} onSelect={handleDateSelect} />
+            <Calendar mode="single" selected={value} onSelect={handleDateSelect} />
           </PopoverContent>
         </Popover>
       </Field>
