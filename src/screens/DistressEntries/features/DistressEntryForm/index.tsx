@@ -86,8 +86,8 @@ export function DistressEntryForm() {
         {/* Accordion for all inputs */}
         <Accordion type="multiple" className="grid gap-3">
           {/* Emotions */}
-          <AccordionItem value="emotions" className="px-5 border border-border rounded-lg overflow-hidden bg-card">
-            <AccordionTrigger>
+          <AccordionItem value="emotions" className="border border-border rounded-lg overflow-hidden bg-card">
+            <AccordionTrigger className="px-5">
               <Label htmlFor="emotions" className="text-base">
                 Emotions
               </Label>
@@ -108,8 +108,8 @@ export function DistressEntryForm() {
           </AccordionItem>
 
           {/* Prompting Events */}
-          <AccordionItem value="promptingEvents" className="px-5 border border-border rounded-lg overflow-hidden bg-card">
-            <AccordionTrigger>
+          <AccordionItem value="promptingEvents" className="border border-border rounded-lg overflow-hidden bg-card">
+            <AccordionTrigger className="px-5">
               <Label htmlFor="promptingEvents" className="text-base">
                 Promtping events
               </Label>
@@ -130,8 +130,8 @@ export function DistressEntryForm() {
           </AccordionItem>
 
           {/* Interpretations */}
-          <AccordionItem value="interpretations" className="px-5 border border-border rounded-lg overflow-hidden bg-card">
-            <AccordionTrigger>
+          <AccordionItem value="interpretations" className="border border-border rounded-lg overflow-hidden bg-card">
+            <AccordionTrigger className="px-5">
               <Label htmlFor="interpretations" className="text-base">
                 Interpretations
               </Label>
@@ -152,8 +152,8 @@ export function DistressEntryForm() {
           </AccordionItem>
 
           {/* Biological Changes */}
-          <AccordionItem value="biologicalChanges" className="px-5 border border-border rounded-lg overflow-hidden bg-card">
-            <AccordionTrigger>
+          <AccordionItem value="biologicalChanges" className="border border-border rounded-lg overflow-hidden bg-card">
+            <AccordionTrigger className="px-5">
               <Label htmlFor="biologicalChanges" className="text-base">
                 Biological changes
               </Label>
@@ -174,8 +174,8 @@ export function DistressEntryForm() {
           </AccordionItem>
 
           {/* Reactions */}
-          <AccordionItem value="reactions" className="px-5 border border-border rounded-lg overflow-hidden bg-card">
-            <AccordionTrigger>
+          <AccordionItem value="reactions" className="border border-border rounded-lg overflow-hidden bg-card">
+            <AccordionTrigger className="px-5">
               <Label htmlFor="reactions" className="text-base">
                 Reactions
               </Label>
@@ -196,8 +196,8 @@ export function DistressEntryForm() {
           </AccordionItem>
 
           {/* Notes */}
-          <AccordionItem value="notes" className="px-5 border border-border rounded-lg overflow-hidden bg-card">
-            <AccordionTrigger>
+          <AccordionItem value="notes" className="border border-border rounded-lg overflow-hidden bg-card">
+            <AccordionTrigger className="px-5">
               <Label htmlFor="notes" className="text-base">
                 Notes
               </Label>
