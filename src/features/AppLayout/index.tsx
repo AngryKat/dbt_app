@@ -6,8 +6,11 @@ export function AppLayout({
   children: React.ReactNode
 }) {
   return (
-    <main>
+    <>
       <AppHeader />
-      {children}
-    </main>)
+      <main>
+        {children}
+      </main>
+    </>
+  )
 }
