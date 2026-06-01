@@ -57,10 +57,9 @@ export function DistressEntryForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       onReset={() => reset()}
-      className="grid grid-cols-2 w-full gap-6"
+      className="grid grid-cols-8 w-full gap-6"
     >
-      {/* Stress Level - spans 2 columns */}
-      <Card className="col-span-2 grid w-full gap-2 p-5">
+      <Card className="col-span-8 grid w-full gap-2 p-5">
 
         <div >
           <Controller
@@ -74,8 +73,7 @@ export function DistressEntryForm() {
       </Card>
 
       {/* First Column - Date & Time */}
-      <div className="grid w-full gap-2">
-        <Label className="text-base">Date & Time</Label>
+      <div className="grid w-full gap-2 col-span-2">
         <Controller
           name="date"
           control={control}
@@ -84,7 +82,7 @@ export function DistressEntryForm() {
       </div>
 
       {/* Second Column - Rest of fields */}
-      <div className="grid w-full gap-6">
+      <div className="grid w-full gap-6 col-span-6">
         {/* Accordion for all inputs */}
         <Accordion type="multiple" className="grid gap-3">
           {/* Emotions */}
