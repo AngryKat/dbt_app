@@ -92,7 +92,7 @@ export function DistressEntryForm() {
                 Emotions
               </Label>
             </AccordionTrigger>
-            <AccordionContent className="h-fit overflow-auto">
+            <AccordionContent className="h-[25rem] overflow-auto">
               <Controller
                 name="emotions"
                 control={control}

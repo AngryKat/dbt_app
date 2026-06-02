@@ -31,7 +31,7 @@ export function EmotionsOptionsList({
               {activeTab === 'all' && (
                 <li key={`${baseEmotion}-label`}>
 
-                  <Label className="text-sm font-medium pt-2">{baseEmotionLabel}</Label>
+                  <Label className="uppercase text-sm font-medium pt-2">{baseEmotionLabel}</Label>
                 </li >
               )
               }

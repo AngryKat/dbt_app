@@ -48,10 +48,8 @@ export function EmotionsMultiselect({ value, onChange, id }: EmotionsMultiselect
     return { [activeTab]: entry } as NonNullable<typeof filteredEmotions>;
   }, [filteredEmotions, activeTab]);
 
-  console.log({ filteredEmotions, data });
-
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full px-4 gap-4">
       <Label htmlFor="emotions-search" className="sr-only">Search emotions</Label>
       <Input
         id="emotions-search"
@@ -68,7 +66,7 @@ export function EmotionsMultiselect({ value, onChange, id }: EmotionsMultiselect
         showAllTab
       />
 
-      <div className="overflow-y-auto flex-1 max-h-[300px]">
+      <div className="overflow-y-auto flex-1 max-h-[300px] px-2">
         <EmotionsOptionsList
           options={filteredByTabOptions}
           activeTab={activeTab}
