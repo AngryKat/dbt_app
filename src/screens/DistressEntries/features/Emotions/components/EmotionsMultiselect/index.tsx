@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { EmotionsOptionsList } from './components/EmotionsOptionsList';
 import { useEmotionsOptions } from './components/EmotionDescriptionPopover/components/EmotionDescriptionPopoverContent/hooks/useEmotionsOptions';
+import { SelectedEmotions } from '../SelectedEmotions';
 import { Loader } from '@/components/ui/Loader';
 import type { BaseEmotionEnum } from '@/types/base-emotions';
 import { Input } from '@/components/shadcn/input';
@@ -13,11 +14,15 @@ type EmotionsMultiselectProps = {
   id?: string;
 };
 
-export function EmotionsMultiselect({ value, onChange, id }: EmotionsMultiselectProps) {
+export function EmotionsMultiselect({ value, onChange }: EmotionsMultiselectProps) {
   const [searchQuery, setSearchQuery] = React.useState('');
   const { data, isLoading, isError } = useEmotionsOptions();
   const [openDetailForId, setOpenDetailForId] = React.useState<string | undefined>(undefined);
   const [activeTab, setActiveTab] = React.useState<string>('all');
+
+  const handleRemove = (emotionId: string) => {
+    onChange(value.filter((id) => id !== emotionId));
+  };
 
   const filteredEmotions = React.useMemo(() => {
     if (!searchQuery.trim()) return data;
@@ -59,18 +64,22 @@ export function EmotionsMultiselect({ value, onChange, id }: EmotionsMultiselect
         className="mt-2"
       />
 
-      <BaseEmotionsTabs
-        options={filteredEmotions ?? {}}
+      <SelectedEmotions value={value} allEmotionOptions={data} onRemove={handleRemove} />
+
+      {filteredEmotions && !searchQuery && <BaseEmotionsTabs
+        options={filteredEmotions}
         activeTab={activeTab}
         onTabChange={setActiveTab}
         showAllTab
-      />
+      />}
 
       <div className="overflow-y-auto flex-1 max-h-[300px] px-2">
         <EmotionsOptionsList
           options={filteredByTabOptions}
           activeTab={activeTab}
           openDetailForId={openDetailForId}
+          selectedIds={value}
+          onChange={(emotionIds) => onChange(emotionIds)}
           onDetailOpenChange={setOpenDetailForId}
           commandEmpty={
             isError ? (

@@ -6,10 +6,11 @@ import { cn } from '@/lib/utils';
 
 export function EmotionsOptionsList({
   options,
-  activeTab,
   commandEmpty = 'No emotion found.',
   openDetailForId,
   onDetailOpenChange,
+  onChange,
+  selectedIds = [],
   className
 }: {
   options: EmotionsOptions | undefined;
@@ -17,24 +18,30 @@ export function EmotionsOptionsList({
   commandEmpty?: React.ReactNode;
   openDetailForId?: string;
   className?: string;
+  onChange: (ids: string[]) => void;
+  selectedIds?: string[];
   onDetailOpenChange?: (id: string | undefined) => void;
 }) {
   const hasOptions = options && Object.keys(options).length > 0;
+
+  const handleSelect = (id: string) => {
+    if (selectedIds.includes(id)) {
+      onChange(selectedIds.filter((selectedId) => selectedId !== id));
+    } else {
+      onChange([...selectedIds, id]);
+    }
+  };
 
   return (
     <div className={cn(className)}>
       {!hasOptions && <p>{commandEmpty}</p>}
       {hasOptions && (
-        <ul className="flex flex-col gap-4">
+        <ul className="flex flex-col">
           {options && Object.entries(options).map(([baseEmotion, { baseEmotionLabel, options: emotions }]) => (
             <React.Fragment key={baseEmotion}>
-              {activeTab === 'all' && (
-                <li key={`${baseEmotion}-label`}>
-
-                  <Label className="uppercase text-sm font-medium pt-2">{baseEmotionLabel}</Label>
-                </li >
-              )
-              }
+              <li key={`${baseEmotion}-label`}>
+                <Label className="uppercase text-sm font-medium pt-2 pl-2.5">{baseEmotionLabel}</Label>
+              </li >
               {
                 emotions.map((emotion) => (
                   <OptionItem
@@ -43,6 +50,8 @@ export function EmotionsOptionsList({
                     label={emotion.label || ''}
                     description={emotion.description || ''}
                     isDetailOpen={openDetailForId === emotion.id}
+                    isSelected={selectedIds.includes(emotion.id)}
+                    onSelect={handleSelect}
                     onDetailOpenChange={(open) =>
                       onDetailOpenChange?.(open ? emotion.id : undefined)
                     }
