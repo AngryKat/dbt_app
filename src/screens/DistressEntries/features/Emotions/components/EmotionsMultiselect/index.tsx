@@ -47,11 +47,11 @@ export function EmotionsMultiselect({ value, onChange }: EmotionsMultiselectProp
   }, [data, searchQuery]);
 
   const filteredByTabOptions = React.useMemo(() => {
-    if (!filteredEmotions || activeTab === 'all') return filteredEmotions;
+    if (!filteredEmotions || activeTab === 'all' || searchQuery.trim()) return filteredEmotions;
     const entry = filteredEmotions[activeTab as BaseEmotionEnum];
     if (!entry) return undefined;
     return { [activeTab]: entry } as NonNullable<typeof filteredEmotions>;
-  }, [filteredEmotions, activeTab]);
+  }, [filteredEmotions, activeTab, searchQuery]);
 
   return (
     <div className="flex flex-col h-full px-4 gap-4">
