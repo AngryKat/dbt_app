@@ -29,7 +29,7 @@ export function ReactionsOptionsList({
 
   return (
     <>
-      {!hasOptions && <ComboboxEmpty>{commandEmpty}</ComboboxEmpty>}
+      {!hasOptions && commandEmpty}
       {hasOptions && (
         <div className="flex flex-col gap-2">
           <BaseEmotionsTabs

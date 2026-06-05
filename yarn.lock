@@ -3178,6 +3178,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/date-fns@npm:^2.6.3":
+  version: 2.6.3
+  resolution: "@types/date-fns@npm:2.6.3"
+  dependencies:
+    date-fns: "npm:*"
+  checksum: 10c0/ad39324ad26b1ec4f9e1fd66536ef5a1090f9a00f4d5cbb0cb4c20caa731b98d3fd7f28e08ed0a0225cf2aea2d2a157722cf6c9954aa6133d510d4452345e803
+  languageName: node
+  linkType: hard
+
 "@types/deep-eql@npm:*":
   version: 4.0.2
   resolution: "@types/deep-eql@npm:4.0.2"
@@ -4123,6 +4132,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:*":
+  version: 4.4.0
+  resolution: "date-fns@npm:4.4.0"
+  checksum: 10c0/988f0a13db183f5dfc85c36bbb6847a9c135a9225888bbea4005876ec15539a8613c21a07370a4e7ea543918d5a1cafb423c528b42cdbbde5fdfddb178126b21
+  languageName: node
+  linkType: hard
+
 "date-fns@npm:^4.1.0":
   version: 4.2.0
   resolution: "date-fns@npm:4.2.0"
@@ -4147,6 +4163,7 @@ __metadata:
     "@tanstack/react-query": "npm:^5.100.9"
     "@testing-library/dom": "npm:^10.4.1"
     "@testing-library/react": "npm:^16.3.2"
+    "@types/date-fns": "npm:^2.6.3"
     "@types/node": "npm:^25.6.0"
     "@types/react": "npm:^19.2.14"
     "@types/react-dom": "npm:^19.2.3"
@@ -4162,6 +4179,7 @@ __metadata:
     globals: "npm:^17.5.0"
     lucide-react: "npm:^1.8.0"
     postcss: "npm:^8.5.10"
+    prettier: "npm:^3.8.3"
     radix-ui: "npm:^1.4.3"
     react: "npm:^19.2.5"
     react-day-picker: "npm:^9.14.0"
@@ -6541,6 +6559,15 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: 10c0/b00d617431e7886c520a6f498a2e14c75ec58f6d93ba48c3b639cf241b54232d90daa05d83a9e9b9fef6baa63cb7e1e4602c2372fea5bc169668401eb127d0cd
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^3.8.3":
+  version: 3.8.3
+  resolution: "prettier@npm:3.8.3"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 10c0/754816fd7593eb80f6376d7476d463e832c38a12f32775a82683adb6e35b772b1f484d65f19401507b983a8c8a7cd5a4a9f12006bd56491e8f35503473f77473
   languageName: node
   linkType: hard
 
