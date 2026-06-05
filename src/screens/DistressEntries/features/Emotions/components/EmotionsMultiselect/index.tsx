@@ -11,7 +11,6 @@ import { Label } from '@/components/shadcn/label';
 type EmotionsMultiselectProps = {
   value: string[];
   onChange: (value: string[]) => void;
-  id?: string;
 };
 
 export function EmotionsMultiselect({ value, onChange }: EmotionsMultiselectProps) {
