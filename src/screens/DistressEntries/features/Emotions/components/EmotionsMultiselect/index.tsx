@@ -71,7 +71,7 @@ export function EmotionsMultiselect({ value, onChange }: EmotionsMultiselectProp
         showAllTab
       />}
 
-      <div className="overflow-y-auto flex-1 max-h-[300px] px-2">
+      <div id="emotions-options-scroll-container" className="overflow-y-auto flex-1 max-h-[300px] px-2">
         <EmotionsOptionsList
           options={filteredByTabOptions}
           activeTab={activeTab}

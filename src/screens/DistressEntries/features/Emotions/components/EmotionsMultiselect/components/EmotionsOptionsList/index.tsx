@@ -21,14 +21,20 @@ export function EmotionsOptionsList({
   const [openDetailForId, setOpenDetailForId] = React.useState<string | undefined>(undefined);
 
   React.useEffect(() => {
+    const scrollContainer = document.getElementById('emotions-options-scroll-container');
+
     const handleScroll = () => {
-      console.log("scrolling")
-      setOpenDetailForId(undefined);
+      if (openDetailForId) {
+        setOpenDetailForId(undefined);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll);
+      return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    }
+  }, [openDetailForId]);
+
   const hasOptions = options && Object.keys(options).length > 0;
 
   const handleSelect = (id: string) => {
