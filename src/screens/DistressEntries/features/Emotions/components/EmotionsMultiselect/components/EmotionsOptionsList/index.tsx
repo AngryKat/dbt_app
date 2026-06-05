@@ -7,8 +7,6 @@ import { cn } from '@/lib/utils';
 export function EmotionsOptionsList({
   options,
   commandEmpty = 'No emotion found.',
-  openDetailForId,
-  onDetailOpenChange,
   onChange,
   selectedIds = [],
   className
@@ -16,12 +14,21 @@ export function EmotionsOptionsList({
   options: EmotionsOptions | undefined;
   activeTab: string;
   commandEmpty?: React.ReactNode;
-  openDetailForId?: string;
   className?: string;
   onChange: (ids: string[]) => void;
   selectedIds?: string[];
-  onDetailOpenChange?: (id: string | undefined) => void;
 }) {
+  const [openDetailForId, setOpenDetailForId] = React.useState<string | undefined>(undefined);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      console.log("scrolling")
+      setOpenDetailForId(undefined);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const hasOptions = options && Object.keys(options).length > 0;
 
   const handleSelect = (id: string) => {
@@ -53,7 +60,7 @@ export function EmotionsOptionsList({
                     isSelected={selectedIds.includes(emotion.id)}
                     onSelect={handleSelect}
                     onDetailOpenChange={(open) =>
-                      onDetailOpenChange?.(open ? emotion.id : undefined)
+                      setOpenDetailForId(open ? emotion.id : undefined)
                     }
                   />
                 ))

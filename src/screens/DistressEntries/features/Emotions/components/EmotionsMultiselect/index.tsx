@@ -17,7 +17,6 @@ type EmotionsMultiselectProps = {
 export function EmotionsMultiselect({ value, onChange }: EmotionsMultiselectProps) {
   const [searchQuery, setSearchQuery] = React.useState('');
   const { data, isLoading, isError } = useEmotionsOptions();
-  const [openDetailForId, setOpenDetailForId] = React.useState<string | undefined>(undefined);
   const [activeTab, setActiveTab] = React.useState<string>('all');
 
   const handleRemove = (emotionId: string) => {
@@ -66,7 +65,7 @@ export function EmotionsMultiselect({ value, onChange }: EmotionsMultiselectProp
 
       <SelectedEmotions value={value} allEmotionOptions={data} onRemove={handleRemove} />
 
-      {filteredEmotions && !searchQuery && <BaseEmotionsTabs
+      {filteredEmotions && !searchQuery.trim() && <BaseEmotionsTabs
         options={filteredEmotions}
         activeTab={activeTab}
         onTabChange={setActiveTab}
@@ -77,10 +76,8 @@ export function EmotionsMultiselect({ value, onChange }: EmotionsMultiselectProp
         <EmotionsOptionsList
           options={filteredByTabOptions}
           activeTab={activeTab}
-          openDetailForId={openDetailForId}
           selectedIds={value}
           onChange={(emotionIds) => onChange(emotionIds)}
-          onDetailOpenChange={setOpenDetailForId}
           commandEmpty={
             isError ? (
               'Error while getting options'
