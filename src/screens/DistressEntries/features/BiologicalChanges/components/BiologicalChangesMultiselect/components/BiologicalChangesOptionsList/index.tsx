@@ -1,6 +1,5 @@
 import * as React from "react";
 import {
-  ComboboxEmpty,
   ComboboxGroup,
   ComboboxLabel,
   ComboboxList,
@@ -29,7 +28,7 @@ export function BiologicalChangesOptionsList({
 
   return (
     <>
-      {!hasOptions && <ComboboxEmpty>{commandEmpty}</ComboboxEmpty>}
+      {!hasOptions && commandEmpty}
       {hasOptions && (
         <div className="flex flex-col gap-2">
           <BaseEmotionsTabs

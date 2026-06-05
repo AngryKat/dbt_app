@@ -20,6 +20,7 @@ import { PromptingEventsMultiselect } from "../PromptingEvents/components/Prompt
 import { InterpretationsMultiselect } from "../Interpretations/components/InterpretationsMultiselect";
 import { ReactionsMultiselect } from "../Reactions/components/ReactionsMultiselect";
 import { Card } from "@/components/shadcn/card";
+import { Badge } from "@/components/shadcn/badge";
 
 type DistressEntryFormData = {
   date: Date;
@@ -86,27 +87,32 @@ export function DistressEntryForm() {
         {/* Accordion for all inputs */}
         <Accordion type="multiple" className="grid gap-3">
           {/* Emotions */}
-          <AccordionItem value="emotions" className="border border-border rounded-lg overflow-hidden bg-card">
-            <AccordionTrigger className="px-5">
-              <Label htmlFor="emotions" className="text-base">
-                Emotions
-              </Label>
-            </AccordionTrigger>
-            <AccordionContent>
-              <Controller
-                name="emotions"
-                control={control}
-                render={({ field: { value, onChange } }) => (
+          <Controller
+            name="emotions"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <AccordionItem value="emotions" className="border border-border rounded-lg overflow-hidden bg-card">
+                <AccordionTrigger className="px-5">
+                  <Label htmlFor="emotions" className="text-base flex items-center gap-2">
+                    <span className="hover:underline">
+                      Emotions
+                    </span>
+                    <Badge>
+                      {value.length}
+                    </Badge>
+                  </Label>
+                </AccordionTrigger>
+                <AccordionContent className="h-[25rem] overflow-auto border-t border-border">
                   <EmotionsMultiselect
                     value={value}
                     onChange={onChange}
                     id="emotions"
                   />
-                )}
-              />
-            </AccordionContent>
-          </AccordionItem>
 
+                </AccordionContent>
+              </AccordionItem>
+            )}
+          />
           {/* Prompting Events */}
           <AccordionItem value="promptingEvents" className="border border-border rounded-lg overflow-hidden bg-card">
             <AccordionTrigger className="px-5">

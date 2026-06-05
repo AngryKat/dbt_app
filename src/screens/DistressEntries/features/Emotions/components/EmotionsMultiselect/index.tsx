@@ -1,45 +1,26 @@
-import * as React from "react";
-
-import {
-  Combobox,
-  ComboboxChips,
-  ComboboxChip,
-  ComboboxChipsInput,
-  ComboboxContent,
-  ComboboxValue,
-  useComboboxAnchor,
-} from "@/components/shadcn/combobox";
-import { EmotionsOptionsList } from "./components/EmotionsOptionsList";
-import { useEmotionsOptions } from "./components/EmotionDescriptionPopover/components/EmotionDescriptionPopoverContent/hooks/useEmotionsOptions";
-import { Loader } from "@/components/ui/Loader";
-import type { BaseEmotionEnum } from "@/types/base-emotions";
+import * as React from 'react';
+import { EmotionsOptionsList } from './components/EmotionsOptionsList';
+import { useEmotionsOptions } from './components/EmotionDescriptionPopover/components/EmotionDescriptionPopoverContent/hooks/useEmotionsOptions';
+import { SelectedEmotions } from '../SelectedEmotions';
+import { Loader } from '@/components/ui/Loader';
+import type { BaseEmotionEnum } from '@/types/base-emotions';
+import { Input } from '@/components/shadcn/input';
+import { BaseEmotionsTabs } from '@/components/ui/BaseEmotionsTabs';
+import { Label } from '@/components/shadcn/label';
 
 type EmotionsMultiselectProps = {
   value: string[];
   onChange: (value: string[]) => void;
-  id?: string;
 };
 
-export function EmotionsMultiselect({
-  value,
-  onChange,
-  id,
-}: EmotionsMultiselectProps) {
-  const [searchQuery, setSearchQuery] = React.useState("");
+export function EmotionsMultiselect({ value, onChange }: EmotionsMultiselectProps) {
+  const [searchQuery, setSearchQuery] = React.useState('');
   const { data, isLoading, isError } = useEmotionsOptions();
-  const anchorRef = useComboboxAnchor();
-  const highlightedIdRef = React.useRef<string | undefined>(undefined);
-  const [openDetailForId, setOpenDetailForId] = React.useState<string | undefined>(undefined);
+  const [activeTab, setActiveTab] = React.useState<string>('all');
 
-  const allEmotions = React.useMemo(
-    () => data ? Object.values(data).flatMap(({ options }) => options) : [],
-    [data],
-  );
-
-  const allEmotionIds = React.useMemo(
-    () => allEmotions.map((e) => e.id),
-    [allEmotions],
-  );
+  const handleRemove = (emotionId: string) => {
+    onChange(value.filter((id) => id !== emotionId));
+  };
 
   const filteredEmotions = React.useMemo(() => {
     if (!searchQuery.trim()) return data;
@@ -63,67 +44,52 @@ export function EmotionsMultiselect({
     return Object.keys(filtered).length > 0 ? filtered : undefined;
   }, [data, searchQuery]);
 
+  const filteredByTabOptions = React.useMemo(() => {
+    if (!filteredEmotions || activeTab === 'all' || searchQuery.trim()) return filteredEmotions;
+    const entry = filteredEmotions[activeTab as BaseEmotionEnum];
+    if (!entry) return undefined;
+    return { [activeTab]: entry } as NonNullable<typeof filteredEmotions>;
+  }, [filteredEmotions, activeTab, searchQuery]);
+
   return (
-    <Combobox
-      multiple
-      autoHighlight
-      items={allEmotionIds}
-      value={value}
-      onValueChange={onChange}
-      onItemHighlighted={(itemValue) => {
-        highlightedIdRef.current = itemValue as string | undefined;
-      }}
-    >
-      <ComboboxChips ref={anchorRef} className="w-full">
-        <ComboboxValue>
-          {(values: string[]) => (
-            <React.Fragment>
-              {values.map((id) => (
-                <ComboboxChip key={id}>
-                  {allEmotions.find((e) => e.id === id)?.label ?? id}
-                </ComboboxChip>
-              ))}
-              <ComboboxChipsInput
-                id={id}
-                placeholder="Search emotions"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
-                    e.preventDefault();
-                    if (highlightedIdRef.current) {
-                      setOpenDetailForId(openDetailForId === highlightedIdRef.current ? undefined : highlightedIdRef.current);
-                    }
-                  }
-                }}
-              />
-            </React.Fragment>
-          )}
-        </ComboboxValue>
-      </ComboboxChips>
-      <ComboboxContent
-        anchor={anchorRef}
-        align="start"
-        side="bottom"
-        className="min-w-[clamp(12.5rem,2.484rem+40.064vw,28.125rem)]"
-      >
+    <div className="flex flex-col h-full px-4 gap-4">
+      <Label htmlFor="emotions-search" className="sr-only">Search emotions</Label>
+      <Input
+        id="emotions-search"
+        placeholder="Search emotions"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="mt-2"
+      />
+
+      <SelectedEmotions value={value} allEmotionOptions={data} onRemove={handleRemove} />
+
+      {filteredEmotions && !searchQuery.trim() && <BaseEmotionsTabs
+        options={filteredEmotions}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        showAllTab
+      />}
+
+      <div id="emotions-options-scroll-container" className="overflow-y-auto flex-1 max-h-[300px] px-2">
         <EmotionsOptionsList
-          options={filteredEmotions}
-          openDetailForId={openDetailForId}
-          onDetailOpenChange={setOpenDetailForId}
+          options={filteredByTabOptions}
+          activeTab={activeTab}
+          selectedIds={value}
+          onChange={(emotionIds) => onChange(emotionIds)}
           commandEmpty={
             isError ? (
-              "Error while getting options"
+              'Error while getting options'
             ) : isLoading ? (
               <Loader label="Loading emotions list" />
             ) : searchQuery.trim() && !filteredEmotions ? (
-              "No emotions match your search."
+              'No emotions match your search.'
             ) : (
-              "No emotion found."
+              'No emotion found.'
             )
           }
         />
-      </ComboboxContent>
-    </Combobox>
+      </div>
+    </div>
   );
 }

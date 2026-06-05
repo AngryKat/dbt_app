@@ -1,83 +1,80 @@
-import * as React from "react";
-import {
-  ComboboxEmpty,
-  ComboboxGroup,
-  ComboboxLabel,
-  ComboboxList,
-} from "@/components/shadcn/combobox";
-import { OptionItem } from "./components/OptionItem";
-import { BaseEmotionsTabs } from "@/components/ui/BaseEmotionsTabs";
-import type { EmotionsOptions } from "../../types";
-import { useTabsWithScroll } from "@/screens/DistressEntries/features/hooks/useTabsWithScroll";
+import * as React from 'react';
+import { OptionItem } from './components/OptionItem';
+import type { EmotionsOptions } from '../../types';
+import { Label } from '@/components/shadcn/label';
+import { cn } from '@/lib/utils';
 
 export function EmotionsOptionsList({
   options,
-  commandEmpty = "No emotion found.",
-  openDetailForId,
-  onDetailOpenChange,
+  commandEmpty = 'No emotion found.',
+  onChange,
+  selectedIds = [],
+  className
 }: {
   options: EmotionsOptions | undefined;
+  activeTab: string;
   commandEmpty?: React.ReactNode;
-  openDetailForId?: string;
-  onDetailOpenChange?: (id: string | undefined) => void;
+  className?: string;
+  onChange: (ids: string[]) => void;
+  selectedIds?: string[];
 }) {
+  const [openDetailForId, setOpenDetailForId] = React.useState<string | undefined>(undefined);
+
+  React.useEffect(() => {
+    const scrollContainer = document.getElementById('emotions-options-scroll-container');
+
+    const handleScroll = () => {
+      if (openDetailForId) {
+        setOpenDetailForId(undefined);
+      }
+    };
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll);
+      return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    }
+  }, [openDetailForId]);
+
   const hasOptions = options && Object.keys(options).length > 0;
-  const {
-    activeTab,
-    groupRefs,
-    listRef,
-    handleTabChange,
-    handleUserScroll,
-    handleScroll,
-  } = useTabsWithScroll(Object.keys(options ?? {}));
+
+  const handleSelect = (id: string) => {
+    if (selectedIds.includes(id)) {
+      onChange(selectedIds.filter((selectedId) => selectedId !== id));
+    } else {
+      onChange([...selectedIds, id]);
+    }
+  };
 
   return (
-    <>
-      {!hasOptions && <ComboboxEmpty>{commandEmpty}</ComboboxEmpty>}
+    <div className={cn(className)}>
+      {!hasOptions && commandEmpty}
       {hasOptions && (
-        <div className="flex flex-col gap-2">
-          <BaseEmotionsTabs
-            options={options}
-            activeTab={activeTab}
-            onTabChange={handleTabChange}
-            groupRefs={groupRefs}
-          />
-          <ComboboxList
-            ref={listRef}
-            onScroll={handleScroll}
-            onWheel={handleUserScroll}
-            onTouchStart={handleUserScroll}
-            className="overflow-y-auto"
-          >
-            {Object.entries(options).map(
-              ([baseEmotion, { baseEmotionLabel, options: emotions }]) => (
-                <div
-                  key={baseEmotion}
-                  ref={(el) => {
-                    if (el) groupRefs.current[baseEmotion] = el;
-                  }}
-                >
-                  <ComboboxGroup>
-                    <ComboboxLabel>{baseEmotionLabel}</ComboboxLabel>
-                    {emotions.map((emotion) => (
-                      <OptionItem
-                        key={emotion.id}
-                        id={emotion.id}
-                        label={emotion.label || ""}
-                        description={emotion.description || ""}
-                        isDetailOpen={openDetailForId === emotion.id}
-                        onDetailOpenChange={(open) =>
-                          onDetailOpenChange?.(open ? emotion.id : undefined)
-                        }
-                      />
-                    ))}
-                  </ComboboxGroup>
-                </div>
-              ),
-            )}
-          </ComboboxList>
-        </div>
+        <ul className="flex flex-col" role="listbox">
+          {options && Object.entries(options).map(([baseEmotion, { baseEmotionLabel, options: emotions }]) => (
+            <React.Fragment key={baseEmotion}>
+              <li key={`${baseEmotion}-label`}>
+                <Label className="uppercase text-sm font-medium pt-2 pl-2.5">{baseEmotionLabel}</Label>
+              </li >
+              {
+                emotions.map((emotion) => (
+                  <OptionItem
+                    key={emotion.id}
+                    id={emotion.id}
+                    label={emotion.label || ''}
+                    description={emotion.description || ''}
+                    isDetailOpen={openDetailForId === emotion.id}
+                    isSelected={selectedIds.includes(emotion.id)}
+                    onSelect={handleSelect}
+                    onDetailOpenChange={(open) =>
+                      setOpenDetailForId(open ? emotion.id : undefined)
+                    }
+                  />
+                ))
+              }
+            </React.Fragment >
+          ))}
+        </ul >
       )}
-    </>
+    </div>
   );
 }

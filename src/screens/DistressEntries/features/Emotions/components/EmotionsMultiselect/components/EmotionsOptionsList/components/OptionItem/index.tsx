@@ -1,14 +1,10 @@
-import * as React from "react";
-import { ExternalLink } from "lucide-react";
+import * as React from 'react';
+import { ExternalLink, Check } from 'lucide-react';
 
-import { Button } from "@/components/shadcn/button";
-import { ComboboxItem } from "@/components/shadcn/combobox";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/shadcn/tooltip";
-import { EmotionDescriptionPopover } from "../../../EmotionDescriptionPopover";
+import { Button, buttonVariants } from '@/components/shadcn/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/shadcn/tooltip';
+import { cn } from '@/lib/utils';
+import { EmotionDescriptionPopover } from '../../../EmotionDescriptionPopover';
 
 type OptionItemProps = {
   id: string;
@@ -16,32 +12,68 @@ type OptionItemProps = {
   description: string;
   isDetailOpen?: boolean;
   onDetailOpenChange?: (open: boolean) => void;
+  onSelect: (id: string) => void;
+  isSelected?: boolean;
 };
 
-export function OptionItem({ id, label, description, isDetailOpen, onDetailOpenChange }: OptionItemProps) {
+export function OptionItem({
+  id,
+  label,
+  description,
+  isDetailOpen,
+  onDetailOpenChange,
+  onSelect,
+  isSelected,
+}: OptionItemProps) {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
+  const handleClick = () => {
+    onSelect(id);
+  };
+
   return (
-    <ComboboxItem
-      value={id}
-      indicatorPlacement="start"
-      className="group flex items-center gap-2"
+    <li
+      className={cn(
+        buttonVariants({ variant: 'ghost', size: 'default' }),
+        'relative max-w-full h-auto w-full grid gap-2 items-start p-2 hover:opacity-100'
+      )}
+      role="option"
+      style={{ gridTemplateColumns: 'auto 1fr auto' }}
+      aria-selected={isSelected}
     >
-      <span className="flex flex-col">
-        <span className="font-semibold">{label}</span>
-        <span>{description}</span>
-      </span>
+      <Check
+        className={cn(
+          'size-5 text-green-600 shrink-0 relative z-10',
+          isSelected ? 'opacity-100' : 'opacity-0'
+        )}
+      />
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleClick();
+        }}
+        className="relative flex flex-col gap-1 text-left before:content-[''] before:absolute before:inset-0"
+      >
+        <span className="whitespace-normal font-semibold text-sm text-foreground relative z-10">
+          {label}
+        </span>
+        <span className="whitespace-normal text-xs text-muted-foreground leading-relaxed relative z-10">
+          {description}
+        </span>
+      </button>
       <Tooltip>
         <EmotionDescriptionPopover
           id={id}
-          label={label || ""}
+          label={label || ''}
           open={isDetailOpen}
           onOpenChange={onDetailOpenChange}
-          trigger={(
+          trigger={
             <TooltipTrigger asChild>
               <Button
+                type="button"
                 ref={buttonRef}
-                className="size-6 shrink-0 ml-auto"
+                className="size-6 shrink-0 relative z-10"
                 size="icon"
                 variant="ghost"
                 aria-label={`Open details for ${label}`}
@@ -50,12 +82,12 @@ export function OptionItem({ id, label, description, isDetailOpen, onDetailOpenC
                 <ExternalLink className="size-4" />
               </Button>
             </TooltipTrigger>
-          )}
+          }
         />
         <TooltipContent side="top">
           Open details (<kbd data-slot="kbd">⌘ Enter</kbd>)
         </TooltipContent>
       </Tooltip>
-    </ComboboxItem>
+    </li>
   );
 }
