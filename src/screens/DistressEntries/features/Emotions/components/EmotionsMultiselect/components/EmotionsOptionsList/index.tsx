@@ -36,7 +36,7 @@ export function EmotionsOptionsList({
     <div className={cn(className)}>
       {!hasOptions && commandEmpty}
       {hasOptions && (
-        <ul className="flex flex-col">
+        <ul className="flex flex-col" role="listbox">
           {options && Object.entries(options).map(([baseEmotion, { baseEmotionLabel, options: emotions }]) => (
             <React.Fragment key={baseEmotion}>
               <li key={`${baseEmotion}-label`}>
