@@ -29,7 +29,7 @@ export function BiologicalChangesOptionsList({
 
   return (
     <>
-      {!hasOptions && <p>{commandEmpty}</p>}
+      {!hasOptions && commandEmpty}
       {hasOptions && (
         <div className="flex flex-col gap-2">
           <BaseEmotionsTabs

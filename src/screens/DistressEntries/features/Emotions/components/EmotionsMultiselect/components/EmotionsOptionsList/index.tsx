@@ -34,7 +34,7 @@ export function EmotionsOptionsList({
 
   return (
     <div className={cn(className)}>
-      {!hasOptions && <p>{commandEmpty}</p>}
+      {!hasOptions && commandEmpty}
       {hasOptions && (
         <ul className="flex flex-col">
           {options && Object.entries(options).map(([baseEmotion, { baseEmotionLabel, options: emotions }]) => (
